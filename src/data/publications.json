@@ -1,0 +1,30 @@
+[
+    {
+        "year": "2026",
+        "title": "Optimizing SmartBins: A Software-Level Framework for Future IoT Integration",
+        "authors": "Turing, A., Anvesh, K., & Hopper, G.",
+        "venue": "International Conference on Sustainable Systems",
+        "link": "#"
+    },
+    {
+        "year": "2025",
+        "title": "Real-time Object Detection using YOLO and OpenCV in Dense Urban Environments",
+        "authors": "Turing, A., & Lovelace, A.",
+        "venue": "Journal of Computer Vision Research",
+        "link": "#"
+    },
+    {
+        "year": "2025",
+        "title": "Comparative Analysis of ResNet and DenseNet Architectures for Medical Imaging",
+        "authors": "Hopper, G., & Turing, A.",
+        "venue": "IEEE Transactions on AI",
+        "link": "#"
+    },
+    {
+        "year": "2024",
+        "title": "Foundations of Neural Computation",
+        "authors": "Turing, A.",
+        "venue": "Cambridge University Press",
+        "link": "#"
+    }
+]
