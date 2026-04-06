@@ -1,7 +1,0 @@
-# Note: This is a Next.js (Node.js) project.
-# Python's pip is not used for dependencies here.
-# Please install Node.js and run the following command in the terminal to install dependencies:
-# 
-# npm install
-#
-# (The actual dependencies are defined in package.json)
