@@ -11,6 +11,8 @@ const initialForm = {
   speaker: "",
   location: "",
   eventDate: "",
+  eventEndDate: "",
+  registrationUrl: "",
   isFeatured: false,
 };
 
@@ -32,6 +34,7 @@ export default function AdminEventsPage() {
     const payload = {
       ...form,
       eventDate: form.eventDate ? new Date(form.eventDate).toISOString() : new Date().toISOString(),
+      eventEndDate: form.eventEndDate ? new Date(form.eventEndDate).toISOString() : "",
     };
 
     if (editingId) {
@@ -54,6 +57,8 @@ export default function AdminEventsPage() {
       speaker: eventItem.speaker || "",
       location: eventItem.location || "",
       eventDate: eventItem.eventDate ? new Date(eventItem.eventDate).toISOString().slice(0, 16) : "",
+      eventEndDate: eventItem.eventEndDate ? new Date(eventItem.eventEndDate).toISOString().slice(0, 16) : "",
+      registrationUrl: eventItem.registrationUrl || "",
       isFeatured: Boolean(eventItem.isFeatured),
     });
   };
@@ -81,6 +86,10 @@ export default function AdminEventsPage() {
             <input name="speaker" value={form.speaker} onChange={onChange} placeholder="Speaker" className="bg-gray-50 border border-gray-200 p-3 rounded-lg" />
             <input name="location" value={form.location} onChange={onChange} placeholder="Location" className="bg-gray-50 border border-gray-200 p-3 rounded-lg" />
             <input name="eventDate" type="datetime-local" value={form.eventDate} onChange={onChange} className="bg-gray-50 border border-gray-200 p-3 rounded-lg" />
+          </div>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <input name="eventEndDate" type="datetime-local" value={form.eventEndDate} onChange={onChange} className="bg-gray-50 border border-gray-200 p-3 rounded-lg" />
+            <input name="registrationUrl" value={form.registrationUrl} onChange={onChange} placeholder="Event URL" className="bg-gray-50 border border-gray-200 p-3 rounded-lg" />
           </div>
           <label className="text-sm text-gray-700 flex items-center gap-2"><input type="checkbox" name="isFeatured" checked={form.isFeatured} onChange={onChange} />Featured</label>
           <div className="flex gap-3">

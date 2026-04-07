@@ -3,6 +3,7 @@
 import { useCallback, useState } from "react";
 import { useAsyncData } from "@/hooks/useAsyncData";
 import { addIntern, deleteIntern, getInterns, updateIntern } from "@/services/internService";
+import { getProjects } from "@/services/projectService";
 import { addTeamMember, deleteTeamMember, getTeamMembers, updateTeamMember } from "@/services/teamService";
 
 const initialInternForm = {
@@ -11,18 +12,23 @@ const initialInternForm = {
   cohort: "",
   mentorId: "",
   focusArea: "",
+  projectId: "",
   status: "active",
 };
 
 const initialTeamForm = {
   name: "",
-  roleCategory: "lead",
   designation: "",
-  bio: "",
   email: "",
-  researchAreas: "",
-  active: true,
+  profileUrl: "",
 };
+
+function deriveRoleCategory(designation) {
+  const value = String(designation || "").toLowerCase();
+  if (value.includes("alumni")) return "alumni";
+  if (value.includes("professor")) return "lead";
+  return "associate";
+}
 
 export default function AdminPeoplePage() {
   const [activeTab, setActiveTab] = useState("team");
@@ -36,6 +42,7 @@ export default function AdminPeoplePage() {
 
   const fetchTeam = useCallback(() => getTeamMembers({ roleCategory: "all" }), []);
   const fetchInterns = useCallback(() => getInterns({ status: "all", cohort: "all" }), []);
+  const fetchProjects = useCallback(() => getProjects(), []);
 
   const {
     data: teamData,
@@ -51,8 +58,11 @@ export default function AdminPeoplePage() {
     refresh: refreshInterns,
   } = useAsyncData(fetchInterns);
 
+  const { data: projectData } = useAsyncData(fetchProjects);
+
   const members = teamData || [];
   const interns = internData || [];
+  const projects = projectData || [];
 
   const onTeamChange = (event) => {
     const { name, value, type, checked } = event.target;
@@ -62,8 +72,12 @@ export default function AdminPeoplePage() {
   const onTeamSubmit = async (event) => {
     event.preventDefault();
     const payload = {
-      ...teamForm,
-      researchAreas: teamForm.researchAreas.split(",").map((item) => item.trim()).filter(Boolean),
+      name: teamForm.name,
+      designation: teamForm.designation,
+      email: teamForm.email,
+      profileUrl: teamForm.profileUrl,
+      roleCategory: deriveRoleCategory(teamForm.designation),
+      active: true,
     };
 
     if (editingTeamId) {
@@ -83,12 +97,9 @@ export default function AdminPeoplePage() {
     setEditingTeamId(member.id);
     setTeamForm({
       name: member.name || "",
-      roleCategory: member.roleCategory || "lead",
       designation: member.designation || "",
-      bio: member.bio || "",
       email: member.email || "",
-      researchAreas: (member.researchAreas || []).join(", "),
-      active: member.active !== false,
+      profileUrl: member.profileUrl || "",
     });
     setActiveTab("team");
   };
@@ -123,6 +134,7 @@ export default function AdminPeoplePage() {
       cohort: intern.cohort || "",
       mentorId: intern.mentorId || "",
       focusArea: intern.focusArea || "",
+      projectId: intern.projectId || "",
       status: intern.status || "active",
     });
     setActiveTab("interns");
@@ -164,19 +176,12 @@ export default function AdminPeoplePage() {
             <form onSubmit={onTeamSubmit} className="bg-white border border-gray-100 rounded-xl p-6 space-y-4 mb-8">
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 <input name="name" value={teamForm.name} onChange={onTeamChange} placeholder="Name" className="bg-gray-50 border border-gray-200 p-3 rounded-lg" />
-                <select name="roleCategory" value={teamForm.roleCategory} onChange={onTeamChange} className="bg-gray-50 border border-gray-200 p-3 rounded-lg">
-                  <option value="lead">lead</option>
-                  <option value="associate">associate</option>
-                  <option value="alumni">alumni</option>
-                </select>
+                <input name="designation" value={teamForm.designation} onChange={onTeamChange} placeholder="Designation" className="bg-gray-50 border border-gray-200 p-3 rounded-lg" />
               </div>
-              <input name="designation" value={teamForm.designation} onChange={onTeamChange} placeholder="Designation" className="w-full bg-gray-50 border border-gray-200 p-3 rounded-lg" />
-              <textarea name="bio" value={teamForm.bio} onChange={onTeamChange} placeholder="Bio" className="w-full bg-gray-50 border border-gray-200 p-3 rounded-lg" />
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 <input name="email" value={teamForm.email} onChange={onTeamChange} placeholder="Email" className="bg-gray-50 border border-gray-200 p-3 rounded-lg" />
-                <input name="researchAreas" value={teamForm.researchAreas} onChange={onTeamChange} placeholder="research areas, comma-separated" className="bg-gray-50 border border-gray-200 p-3 rounded-lg" />
+                <input name="profileUrl" value={teamForm.profileUrl} onChange={onTeamChange} placeholder="Profile URL" className="bg-gray-50 border border-gray-200 p-3 rounded-lg" />
               </div>
-              <label className="text-sm text-gray-700 flex items-center gap-2"><input type="checkbox" name="active" checked={teamForm.active} onChange={onTeamChange} />Active</label>
               <div className="flex gap-3">
                 <button type="submit" className="bg-blue-600 text-white px-6 py-2 rounded-lg font-semibold">{editingTeamId ? "Update" : "Add"} Member</button>
                 {editingTeamId && <button type="button" onClick={() => { setEditingTeamId(""); setTeamForm(initialTeamForm); }} className="bg-gray-200 text-gray-900 px-6 py-2 rounded-lg font-semibold">Cancel</button>}
@@ -192,6 +197,8 @@ export default function AdminPeoplePage() {
                 <article key={member.id} className="bg-white border border-gray-100 rounded-lg p-4">
                   <h2 className="text-xl font-bold text-gray-900">{member.name}</h2>
                   <p className="text-sm text-gray-600">{member.designation}</p>
+                  {member.email && <p className="text-sm text-gray-600">{member.email}</p>}
+                  {member.profileUrl && <p className="text-sm text-gray-600">{member.profileUrl}</p>}
                   <div className="mt-3 flex gap-3">
                     <button type="button" onClick={() => startEditTeam(member)} className="text-blue-700 font-semibold">Edit</button>
                     <button type="button" onClick={() => removeTeam(member.id)} className="text-red-700 font-semibold">Delete</button>
@@ -217,6 +224,14 @@ export default function AdminPeoplePage() {
                   <option value="completed">completed</option>
                 </select>
               </div>
+              <select name="projectId" value={internForm.projectId} onChange={onInternChange} className="w-full bg-gray-50 border border-gray-200 p-3 rounded-lg">
+                <option value="">Select project</option>
+                {projects.map((project) => (
+                  <option key={project.id} value={project.id}>
+                    {project.title}
+                  </option>
+                ))}
+              </select>
               <textarea name="focusArea" value={internForm.focusArea} onChange={onInternChange} placeholder="Focus area" className="w-full bg-gray-50 border border-gray-200 p-3 rounded-lg" />
               <div className="flex gap-3">
                 <button type="submit" className="bg-blue-600 text-white px-6 py-2 rounded-lg font-semibold">{editingInternId ? "Update" : "Add"} Intern</button>

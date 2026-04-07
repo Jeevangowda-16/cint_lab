@@ -15,34 +15,42 @@ export default function AdminHomePage() {
   const { user, logout } = useAdminAuth();
 
   return (
-    <main className="min-h-screen bg-gray-50 px-8 py-16">
-      <div className="max-w-6xl mx-auto">
-        <div className="flex flex-wrap items-center justify-between gap-4 mb-8">
-          <div>
-            <h1 className="text-4xl font-bold text-gray-900">Admin Dashboard</h1>
-            <p className="text-gray-600 mt-2">Signed in as {user?.email}</p>
+    <main className="page-shell text-slate-800">
+      <div className="section-shell space-y-8">
+        <section className="glass-card relative overflow-hidden rounded-3xl p-6 md:p-10">
+          <div className="absolute -top-16 -right-10 h-52 w-52 hero-glow-blue" />
+          <div className="absolute -bottom-14 -left-10 h-40 w-40 hero-glow-gold" />
+          <div className="relative flex flex-wrap items-center justify-between gap-4">
+            <div>
+              <p className="text-xs uppercase tracking-[0.18em] text-slate-500">Control Center</p>
+              <h1 className="section-title mt-2">Admin Dashboard</h1>
+              <p className="text-slate-600 mt-3">Signed in as {user?.email}</p>
+            </div>
+            <button
+              type="button"
+              onClick={logout}
+              className="rounded-xl bg-slate-900 px-5 py-2.5 text-sm font-semibold text-white transition hover:bg-slate-800"
+            >
+              Sign out
+            </button>
           </div>
-          <button
-            type="button"
-            onClick={logout}
-            className="bg-gray-900 text-white px-5 py-2 rounded-lg font-semibold"
-          >
-            Sign out
-          </button>
-        </div>
+        </section>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-5">
+        <section className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-5">
           {adminSections.map((section) => (
             <Link
               key={section.href}
               href={section.href}
-              className="bg-white border border-gray-100 rounded-xl p-6 shadow-sm hover:shadow-md transition"
+              className="paper-card rounded-2xl p-6 transition-transform duration-200 hover:-translate-y-1"
             >
-              <h2 className="text-xl font-bold text-blue-700">{section.label}</h2>
-              <p className="text-gray-600 mt-2 text-sm">{section.note}</p>
+              <div className="flex items-center justify-between gap-3">
+                <h2 className="text-xl text-slate-900">{section.label}</h2>
+                <span className="text-lg text-slate-400">&rarr;</span>
+              </div>
+              <p className="mt-2 text-sm text-slate-600">{section.note}</p>
             </Link>
           ))}
-        </div>
+        </section>
       </div>
     </main>
   );

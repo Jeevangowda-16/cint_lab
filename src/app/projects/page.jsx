@@ -1,6 +1,7 @@
 "use client";
 
 import { useCallback, useMemo, useState } from "react";
+import Link from "next/link";
 import { useAsyncData } from "@/hooks/useAsyncData";
 import { getProjects } from "@/services/projectService";
 
@@ -82,11 +83,9 @@ export default function ProjectsPage() {
                 <p className="text-sm text-slate-500">
                   Status: <span className="font-semibold capitalize text-slate-800">{project.status}</span>
                 </p>
-                {project.links?.[0]?.href && (
-                  <a className="text-sky-700 text-sm font-bold hover:underline" href={project.links[0].href}>
-                    {project.links[0].label}
-                  </a>
-                )}
+                <Link className="text-slate-900 text-sm font-bold hover:underline" href={`/projects/${project.id}`}>
+                  Get More Info
+                </Link>
               </div>
             </article>
           ))}

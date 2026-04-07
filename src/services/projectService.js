@@ -2,6 +2,7 @@ import {
   addDoc,
   collection,
   deleteDoc,
+  getDoc,
   doc,
   getDocs,
   query,
@@ -12,7 +13,6 @@ import { db } from "@/lib/firebase";
 import {
   asFirestoreList,
   ensureRequiredFields,
-  sortByDateDesc,
 } from "@/services/helpers";
 
 const COLLECTION_NAME = "projects";
@@ -34,7 +34,52 @@ export async function getProjects(filters = {}) {
     projects = projects.filter((project) => (project.tags || []).includes(tag));
   }
 
-  return sortByDateDesc(projects, "updatedAt");
+  const sortedProjects = [...projects].sort((a, b) => {
+    const aSort = typeof a.sortOrder === "number" ? a.sortOrder : 9999;
+    const bSort = typeof b.sortOrder === "number" ? b.sortOrder : 9999;
+
+    if (aSort !== bSort) {
+      return aSort - bSort;
+    }
+
+    return new Date(b.updatedAt || 0).getTime() - new Date(a.updatedAt || 0).getTime();
+  });
+
+  const seen = new Set();
+  const uniqueProjects = [];
+
+  for (const project of sortedProjects) {
+    const key = String(project.title || project.id || "").trim().toLowerCase();
+    if (!key || seen.has(key)) {
+      continue;
+    }
+
+    seen.add(key);
+    uniqueProjects.push(project);
+  }
+
+  return uniqueProjects;
+}
+
+export async function getProjectById(projectId) {
+  if (!db) {
+    throw new Error("Firebase is not configured.");
+  }
+
+  if (!projectId) {
+    return null;
+  }
+
+  const snapshot = await getDoc(doc(db, COLLECTION_NAME, projectId));
+
+  if (!snapshot.exists()) {
+    return null;
+  }
+
+  return {
+    id: snapshot.id,
+    ...snapshot.data(),
+  };
 }
 
 export async function addProject(payload) {

@@ -5,13 +5,13 @@ import { useAsyncData } from "@/hooks/useAsyncData";
 import { getInterns } from "@/services/internService";
 import { getTeamMembers } from "@/services/teamService";
 
-const TEAM_FILTERS = [
-  { label: "All", value: "all" },
-  { label: "Leads", value: "lead" },
-  { label: "Associates", value: "associate" },
-  { label: "Alumni", value: "alumni" },
-  { label: "Interns", value: "interns" },
-];
+const TEAM_FILTERS = [{ label: "All", value: "all" }];
+
+function toAbsoluteUrl(value) {
+  if (!value) return "";
+  if (value.startsWith("http://") || value.startsWith("https://")) return value;
+  return `https://${value}`;
+}
 
 export default function PeopleDirectory() {
   const [roleFilter, setRoleFilter] = useState("all");
@@ -21,10 +21,10 @@ export default function PeopleDirectory() {
   const fetchTeamMembers = useCallback(
     () =>
       getTeamMembers({
-        roleCategory: isInternView ? "all" : roleFilter,
+        roleCategory: "all",
         activeOnly,
       }),
-    [roleFilter, activeOnly, isInternView]
+    [activeOnly]
   );
 
   const fetchInterns = useCallback(() => getInterns({ status: "all", cohort: "all" }), []);
@@ -43,6 +43,21 @@ export default function PeopleDirectory() {
 
   const teamMembers = useMemo(() => teamData || [], [teamData]);
   const interns = useMemo(() => internData || [], [internData]);
+  const designationFilters = useMemo(() => {
+    const values = new Set(
+      teamMembers
+        .map((member) => (member.designation || "").trim())
+        .filter(Boolean)
+    );
+
+    return [...values].sort((a, b) => a.localeCompare(b));
+  }, [teamMembers]);
+
+  const visibleTeamMembers = useMemo(() => {
+    if (roleFilter === "all" || roleFilter === "interns") return teamMembers;
+    return teamMembers.filter((member) => (member.designation || "").trim() === roleFilter);
+  }, [teamMembers, roleFilter]);
+
   return (
     <main className="page-shell text-slate-800">
       <section className="section-shell mb-10 glass-card relative overflow-hidden rounded-3xl p-6 md:p-10 reveal-up">
@@ -72,6 +87,33 @@ export default function PeopleDirectory() {
             </button>
           ))}
 
+          {designationFilters.map((designation) => (
+            <button
+              key={designation}
+              type="button"
+              onClick={() => setRoleFilter(designation)}
+              className={`px-4 py-2 rounded-xl font-semibold border transition ${
+                roleFilter === designation
+                  ? "bg-sky-800 text-white border-sky-800"
+                  : "bg-white text-slate-700 border-slate-200 hover:border-sky-300"
+              }`}
+            >
+              {designation}
+            </button>
+          ))}
+
+          <button
+            type="button"
+            onClick={() => setRoleFilter("interns")}
+            className={`px-4 py-2 rounded-xl font-semibold border transition ${
+              roleFilter === "interns"
+                ? "bg-sky-800 text-white border-sky-800"
+                : "bg-white text-slate-700 border-slate-200 hover:border-sky-300"
+            }`}
+          >
+            Interns
+          </button>
+
           {!isInternView && <label className="ml-auto text-sm text-gray-700 flex items-center gap-2">
             <input
               type="checkbox"
@@ -89,33 +131,35 @@ export default function PeopleDirectory() {
         {teamError && <p className="text-red-600">{teamError}</p>}
 
         {!teamLoading && !teamError && (
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            {teamMembers.map((member) => (
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 items-stretch">
+            {visibleTeamMembers.map((member) => (
               <article
                 key={member.id}
-                className="paper-card p-6 rounded-2xl transition-transform duration-200 hover:-translate-y-1"
+                className="paper-card p-6 rounded-2xl transition-transform duration-200 hover:-translate-y-1 h-full flex flex-col"
               >
-                <div className="flex items-center justify-between gap-3 flex-wrap">
-                  <p className="text-xs font-bold text-sky-700 uppercase tracking-[0.16em]">{member.roleCategory}</p>
-                  <p className="text-xs text-slate-500">Profile ID: {member.id}</p>
+                <h3 className="text-2xl text-slate-900">{member.name}</h3>
+                <p className="text-sm font-semibold text-slate-600 mt-2">Designation: {member.designation || "Faculty"}</p>
+                <div className="mt-auto pt-6 space-y-2 text-sm">
+                  {member.email ? (
+                    <a className="block text-sky-700 font-semibold hover:underline" href={`mailto:${member.email}`}>
+                      {member.email}
+                    </a>
+                  ) : (
+                    <p className="text-gray-400">No public email</p>
+                  )}
+                  {member.profileUrl ? (
+                    <a
+                      className="block text-sky-700 font-semibold hover:underline"
+                      href={toAbsoluteUrl(member.profileUrl)}
+                      target="_blank"
+                      rel="noreferrer"
+                    >
+                      Profile Link
+                    </a>
+                  ) : (
+                    <p className="text-gray-400">No profile link</p>
+                  )}
                 </div>
-                <h3 className="text-2xl text-slate-900 mt-2">{member.name}</h3>
-                <p className="text-sm font-semibold text-slate-600 mt-1">{member.designation}</p>
-                <p className="text-slate-700 mt-4 leading-relaxed">{member.bio}</p>
-                <div className="mt-4 flex flex-wrap gap-2">
-                  {(member.researchAreas || []).map((area) => (
-                    <span key={area} className="text-xs bg-slate-100 text-slate-700 px-2 py-1 rounded-full border border-slate-200">
-                      {area}
-                    </span>
-                  ))}
-                </div>
-                {member.email ? (
-                  <a className="inline-block mt-4 text-sky-700 font-semibold hover:underline" href={`mailto:${member.email}`}>
-                    {member.email}
-                  </a>
-                ) : (
-                  <p className="inline-block mt-4 text-gray-400">No public email</p>
-                )}
               </article>
             ))}
           </div>
@@ -134,13 +178,37 @@ export default function PeopleDirectory() {
             {interns.map((intern) => (
               <article key={intern.id} className="paper-card rounded-2xl p-6 transition-transform duration-200 hover:-translate-y-1">
                 <div className="flex items-center justify-between gap-3">
-                  <span className="chip">{intern.status}</span>
-                  <p className="text-xs uppercase tracking-[0.15em] text-slate-500">Cohort {intern.cohort}</p>
+                  <span className="chip">{intern.status || "active"}</span>
+                  <p className="text-xs uppercase tracking-[0.15em] text-slate-500">{intern.cohort ? `Cohort ${intern.cohort}` : "Intern"}</p>
                 </div>
                 <h3 className="text-2xl text-slate-900 mt-3">{intern.name}</h3>
-                <p className="text-sm font-semibold text-sky-700 mt-1">{intern.program}</p>
-                <p className="text-sm text-slate-700 mt-4 leading-relaxed">Focus: {intern.focusArea}</p>
-                <p className="text-sm text-slate-500 mt-3">Mentor ID: {intern.mentorId || "TBD"}</p>
+                <p className="text-sm font-semibold text-sky-700 mt-1">{intern.project || intern.program}</p>
+                {(intern.college || intern.focusArea) && (
+                  <p className="text-sm text-slate-700 mt-3 leading-relaxed">{intern.college || `Focus: ${intern.focusArea}`}</p>
+                )}
+                {(intern.email || intern.phone || intern.github || intern.linkedin) && (
+                  <div className="mt-4 space-y-2 text-sm">
+                    {intern.email && (
+                      <a className="block text-sky-700 font-semibold hover:underline" href={`mailto:${intern.email}`}>
+                        {intern.email}
+                      </a>
+                    )}
+                    {intern.phone && <p className="text-slate-700">Phone: {intern.phone}</p>}
+                    {intern.github && (
+                      <a className="block text-sky-700 hover:underline" href={toAbsoluteUrl(intern.github)} target="_blank" rel="noreferrer">
+                        GitHub
+                      </a>
+                    )}
+                    {intern.linkedin && (
+                      <a className="block text-sky-700 hover:underline" href={toAbsoluteUrl(intern.linkedin)} target="_blank" rel="noreferrer">
+                        LinkedIn
+                      </a>
+                    )}
+                  </div>
+                )}
+                {!intern.email && !intern.phone && !intern.github && !intern.linkedin && (
+                  <p className="text-sm text-slate-500 mt-3">Mentor ID: {intern.mentorId || "TBD"}</p>
+                )}
               </article>
             ))}
           </div>

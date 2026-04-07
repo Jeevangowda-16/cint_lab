@@ -18,7 +18,7 @@ import {
 const COLLECTION_NAME = "interns";
 
 export async function getInterns(filters = {}) {
-  const { status, cohort } = filters;
+  const { status, cohort, projectId } = filters;
   if (!db) {
     throw new Error("Firebase is not configured.");
   }
@@ -34,11 +34,15 @@ export async function getInterns(filters = {}) {
     interns = interns.filter((intern) => intern.cohort === cohort);
   }
 
+  if (projectId && projectId !== "all") {
+    interns = interns.filter((intern) => intern.projectId === projectId);
+  }
+
   return sortByDateDesc(interns, "updatedAt");
 }
 
 export async function addIntern(payload) {
-  ensureRequiredFields(payload, ["name", "program", "cohort", "status"]);
+  ensureRequiredFields(payload, ["name", "program", "cohort", "status", "projectId"]);
   if (!db) {
     throw new Error("Firebase is not configured.");
   }

@@ -1,0 +1,57 @@
+[
+  {
+    "title": "Innovations in Aerospace Systems – Current Research (including Artificial Intelligence) and Future Challenges",
+    "type": "seminar",
+    "description": "Aircraft and spacecraft are highly complex systems, comprising various subsystems such as flight control, propulsion, and power. These subsystems feature Multiple Input & Multiple Output (MIMO) configurations and exhibit highly nonlinear characteristics.",
+    "speaker": "",
+    "location": "IISc Aerospace Engineering",
+    "eventDate": "2024-02-05T14:00:00.000Z",
+    "eventEndDate": "2024-02-05T15:00:00.000Z",
+    "registrationUrl": "https://aero.iisc.ac.in/event/innovations-in-aerospace-systems-current-research-including-artificial-intelligence-and-future-challenges/",
+    "isFeatured": false
+  },
+  {
+    "title": "Nonequilibrium reacting flows: First principles based modeling for chemical kinetics and hydrodynamics",
+    "type": "seminar",
+    "description": "Predicting state of the gas hitting vehicles flying at hypersonic speeds (Mach ~5) is challenging and is an exciting area of research. Hypersonic flows create shock waves, which compress and heat the surrounding gas to high-temperatures, nearly thousands of Kelvins.",
+    "speaker": "",
+    "location": "IISc Aerospace Engineering",
+    "eventDate": "2024-03-04T14:30:00.000Z",
+    "eventEndDate": "2024-03-04T16:00:00.000Z",
+    "registrationUrl": "https://aero.iisc.ac.in/event/nonequilibrium-reacting-flows-first-principles-based-modeling-for-chemical-kinetics-and-hydrodynamics/",
+    "isFeatured": false
+  },
+  {
+    "title": "Aerospace power as a critical tool of statecraft",
+    "type": "seminar",
+    "description": "Air Marshal TD Joseph examines aerospace power as a critical instrument of statecraft, highlighting its strategic, coercive, and diplomatic roles in modern conflict and international relations.",
+    "speaker": "Air Marshal TD Joseph",
+    "location": "IISc Aerospace Engineering",
+    "eventDate": "2026-02-23T16:00:00.000Z",
+    "eventEndDate": "2026-02-23T17:00:00.000Z",
+    "registrationUrl": "https://aero.iisc.ac.in/event/aerospace-power-as-a-critical-tool-of-statecraft/",
+    "isFeatured": true
+  },
+  {
+    "title": "Aerospace Engineering Open Day 2026",
+    "type": "event",
+    "description": "Indian Institute of Science, Bengaluru, as in the previous years, is organizing an OPEN DAY event to show-case its activities to the student community and the general public.",
+    "speaker": "",
+    "location": "Indian Institute of Science, Bengaluru",
+    "eventDate": "2026-03-07T09:00:00.000Z",
+    "eventEndDate": "2026-03-07T17:00:00.000Z",
+    "registrationUrl": "https://aero.iisc.ac.in/event/aerospace-engineering-open-day-2026/",
+    "isFeatured": true
+  },
+  {
+    "title": "Statistical Discovery for Engineering and Science – a hands-on workshop using JMP®",
+    "type": "workshop",
+    "description": "We are happy announce a one-day hands-on workshop using JMP in the Auditorium of Department of Aerospace Engineering, IISc on 9th March.",
+    "speaker": "",
+    "location": "IISc Aerospace Engineering",
+    "eventDate": "2026-03-09T09:30:00.000Z",
+    "eventEndDate": "2026-03-09T17:00:00.000Z",
+    "registrationUrl": "https://aero.iisc.ac.in/event/statistical-discovery-for-engineering-and-science-a-hands-on-workshop-using-jmp/",
+    "isFeatured": true
+  }
+]
