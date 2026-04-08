@@ -14,9 +14,6 @@ export default function Navbar() {
                     <span className="text-2xl md:text-[1.8rem] font-semibold text-slate-900 tracking-wide group-hover:text-[#2a3d7f] transition">
                         CINT Lab
                     </span>
-                    <span className="block text-[10px] md:text-[11px] uppercase tracking-[0.24em] text-[#7a6b46]">
-                        Aerospace Intelligence Unit
-                    </span>
                 </Link>
 
                 <div className="flex flex-wrap md:flex-nowrap gap-2 md:gap-2 font-semibold text-xs md:text-[13px] text-slate-700">

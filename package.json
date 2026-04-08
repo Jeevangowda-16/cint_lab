@@ -6,7 +6,10 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "eslint"
+    "lint": "eslint",
+    "events:normalize": "node scripts/build-events-json-from-raw.mjs",
+    "events:sync": "node scripts/sync-events-from-aero-api.mjs",
+    "events:import": "node scripts/import-events-from-json.mjs"
   },
   "dependencies": {
     "firebase": "^12.11.0",

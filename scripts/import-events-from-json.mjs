@@ -41,6 +41,30 @@ function toId(title) {
     .slice(0, 110);
 }
 
+function withSuffix(baseId, index) {
+  if (index <= 1) {
+    return baseId;
+  }
+
+  const suffix = `-${index}`;
+  const maxBaseLength = 110 - suffix.length;
+  const safeBase = baseId.slice(0, Math.max(1, maxBaseLength));
+  return `${safeBase}${suffix}`;
+}
+
+function resolveUniqueId(candidateId, seenIds) {
+  let index = 1;
+  let resolved = withSuffix(candidateId, index);
+
+  while (seenIds.has(resolved)) {
+    index += 1;
+    resolved = withSuffix(candidateId, index);
+  }
+
+  seenIds.add(resolved);
+  return resolved;
+}
+
 async function clearExistingEvents() {
   const snapshot = await db.collection("events").get();
   for (const docItem of snapshot.docs) {
@@ -50,12 +74,20 @@ async function clearExistingEvents() {
 }
 
 async function seedEvents() {
+  const seenIds = new Set();
+
   for (const item of eventsData) {
     if (!item.title || !item.eventDate) {
       throw new Error(`Invalid event item: ${JSON.stringify(item)}`);
     }
 
-    const id = item.id || toId(item.title);
+    const baseId = item.id || toId(item.title);
+    const id = resolveUniqueId(baseId, seenIds);
+
+    if (baseId !== id) {
+      console.log(`ID collision resolved: ${baseId} -> ${id}`);
+    }
+
     await db.collection("events").doc(id).set(
       {
         id,

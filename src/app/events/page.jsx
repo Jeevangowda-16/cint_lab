@@ -43,6 +43,18 @@ function buildCalendarDays(monthDate) {
   });
 }
 
+function previewText(value, maxLength = 140) {
+  if (!value) {
+    return "";
+  }
+
+  if (value.length <= maxLength) {
+    return value;
+  }
+
+  return `${value.slice(0, maxLength).trimEnd()}...`;
+}
+
 export default function EventsPage() {
   const fetchEvents = useCallback(() => getEvents(), []);
   const { data, loading, error } = useAsyncData(fetchEvents);
@@ -54,6 +66,13 @@ export default function EventsPage() {
 
   const selectedMonth = useMemo(() => startOfMonth(selectedDate), [selectedDate]);
   const calendarDays = useMemo(() => buildCalendarDays(calendarMonth), [calendarMonth]);
+  const currentMonth = useMemo(() => startOfMonth(new Date()), []);
+  const isCurrentMonthSelected = useMemo(
+    () =>
+      selectedMonth.getFullYear() === currentMonth.getFullYear() &&
+      selectedMonth.getMonth() === currentMonth.getMonth(),
+    [selectedMonth, currentMonth]
+  );
 
   const latestTop3 = useMemo(() => events.slice(0, 3), [events]);
 
@@ -152,8 +171,8 @@ export default function EventsPage() {
                 </div>
 
                 <div className="grid grid-cols-7 gap-1 text-center text-xs uppercase tracking-[0.12em] text-slate-500 mb-2">
-                  {['S', 'M', 'T', 'W', 'T', 'F', 'S'].map((day) => (
-                    <span key={day}>{day}</span>
+                  {['S', 'M', 'T', 'W', 'T', 'F', 'S'].map((day, index) => (
+                    <span key={`${day}-${index}`}>{day}</span>
                   ))}
                 </div>
 
@@ -191,45 +210,65 @@ export default function EventsPage() {
                 {monthEvents.map((eventItem) => (
                   <article key={`month-${eventItem.id}`} className="paper-card rounded-xl p-4">
                     <h3 className="text-lg text-slate-900">{eventItem.title}</h3>
-                    <p className="text-sm text-slate-600 mt-1">{formatDate(eventItem.eventDate)}</p>
+                    <p className="text-sm text-slate-600 mt-1">
+                      {eventItem.eventEndDate
+                        ? `${formatDate(eventItem.eventDate)} - ${formatDate(eventItem.eventEndDate)}`
+                        : formatDate(eventItem.eventDate)}
+                    </p>
+                    {eventItem.registrationUrl && (
+                      <a
+                        className="inline-flex mt-3 items-center rounded-full bg-sky-800 px-4 py-2 text-sm font-semibold text-white transition hover:bg-sky-900"
+                        href={eventItem.registrationUrl}
+                        target="_blank"
+                        rel="noreferrer"
+                      >
+                        Open Event
+                      </a>
+                    )}
                   </article>
                 ))}
               </div>
             )}
           </div>
 
-          <h2 className="text-2xl md:text-3xl text-slate-900">Latest Top 3 Events</h2>
-          {latestTop3.map((eventItem) => (
-            <article key={eventItem.id} className="paper-card rounded-2xl p-6">
-              <div className="flex items-start justify-between gap-3 flex-wrap">
-                <div>
-                  <p className="text-xs uppercase tracking-[0.16em] text-sky-700 font-bold">
-                    {eventItem.type}
-                    {eventItem.isFeatured ? " • featured" : ""}
+          {isCurrentMonthSelected && (
+            <>
+              <h2 className="text-2xl md:text-3xl text-slate-900">Latest Top 3 Events</h2>
+              {latestTop3.map((eventItem) => (
+                <article key={eventItem.id} className="paper-card rounded-2xl p-6">
+                  <div className="flex items-start justify-between gap-3 flex-wrap">
+                    <div>
+                      <p className="text-xs uppercase tracking-[0.16em] text-sky-700 font-bold">
+                        {eventItem.type}
+                        {eventItem.isFeatured ? " • featured" : ""}
+                      </p>
+                      <h2 className="text-2xl text-slate-900 mt-2">{eventItem.title}</h2>
+                    </div>
+                    <p className="text-sm text-slate-500">
+                      {eventItem.eventEndDate
+                        ? `${formatDate(eventItem.eventDate)} - ${formatDate(eventItem.eventEndDate)}`
+                        : formatDate(eventItem.eventDate)}
+                    </p>
+                  </div>
+                  <p className="mt-4 max-w-3xl text-sm md:text-[15px] leading-7 text-slate-600">
+                    {previewText(eventItem.description)}
                   </p>
-                  <h2 className="text-2xl text-slate-900 mt-2">{eventItem.title}</h2>
-                </div>
-                <p className="text-sm text-slate-500">
-                  {eventItem.eventEndDate
-                    ? `${formatDate(eventItem.eventDate)} - ${formatDate(eventItem.eventEndDate)}`
-                    : formatDate(eventItem.eventDate)}
-                </p>
-              </div>
-              <p className="mt-4 text-slate-700">{eventItem.description}</p>
-              <p className="mt-3 text-sm text-slate-600">Speaker: {eventItem.speaker}</p>
-              <p className="text-sm text-slate-600">Location: {eventItem.location}</p>
-              {eventItem.registrationUrl && (
-                <a
-                  className="inline-flex mt-4 items-center rounded-full bg-sky-800 px-4 py-2 text-sm font-semibold text-white transition hover:bg-sky-900"
-                  href={eventItem.registrationUrl}
-                  target="_blank"
-                  rel="noreferrer"
-                >
-                  Open Event
-                </a>
-              )}
-            </article>
-          ))}
+                  <p className="mt-3 text-sm text-slate-600">Speaker: {eventItem.speaker}</p>
+                  <p className="text-sm text-slate-600">Location: {eventItem.location}</p>
+                  {eventItem.registrationUrl && (
+                    <a
+                      className="inline-flex mt-4 items-center rounded-full bg-sky-800 px-4 py-2 text-sm font-semibold text-white transition hover:bg-sky-900"
+                      href={eventItem.registrationUrl}
+                      target="_blank"
+                      rel="noreferrer"
+                    >
+                      Open Event
+                    </a>
+                  )}
+                </article>
+              ))}
+            </>
+          )}
         </div>
       )}
     </main>

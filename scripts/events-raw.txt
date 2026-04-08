@@ -1,0 +1,25 @@
+PAST EVENTS
+========================================
+
+Title: Innovations in Aerospace Systems - Current Research (including Artificial Intelligence) and Future Challenges
+Date: 2024-02-05 14:00:00 - 15:00:00
+Description:
+  Aircraft and spacecraft are highly complex systems, comprising various subsystems such as flight control, propulsion, and power.
+  These subsystems feature Multiple Input &amp; Multiple Output (MIMO) configurations and exhibit highly nonlinear characteristics.
+Link: https://aero.iisc.ac.in/event/innovations-in-aerospace-systems-current-research-including-artificial-intelligence-and-future-challenges/
+
+Title: Nonequilibrium reacting flows: First principles based modeling for chemical kinetics and hydrodynamics
+Date: 2024-03-04 14:30:00 - 16:00:00
+Description:
+  Predicting state of the gas hitting vehicles flying at hypersonic speeds (Mach ~5) is challenging and is an exciting area of research.
+  Hypersonic flows create shock waves, which compress and heat the surrounding gas to high-temperatures, nearly thousands of Kelvins.
+Link: https://aero.iisc.ac.in/event/nonequilibrium-reacting-flows-first-principles-based-modeling-for-chemical-kinetics-and-hydrodynamics/
+
+Title: Aerospace Engineering Open Day 2026
+Date: 2026-03-07 09:00:00 - 17:00:00
+Description:
+  Indian Institute of Science, Bengaluru, as in the previous years, is organizing an OPEN DAY event to show-case its activities to the student community and the general public.
+  Click here for Registration.
+Link: https://aero.iisc.ac.in/event/aerospace-engineering-open-day-2026/
+
+# Paste the full raw list in this exact format below this line.

@@ -42,7 +42,23 @@ export default function PeopleDirectory() {
   } = useAsyncData(fetchInterns);
 
   const teamMembers = useMemo(() => teamData || [], [teamData]);
-  const interns = useMemo(() => internData || [], [internData]);
+  const interns = useMemo(() => {
+    const list = [...(internData || [])];
+    const harshIndex = list.findIndex(
+      (intern) => (intern.name || "").trim().toLowerCase() === "harshavardhan k"
+    );
+    const jeevanIndex = list.findIndex(
+      (intern) => (intern.name || "").trim().toLowerCase() === "jeevan d"
+    );
+
+    if (harshIndex !== -1 && jeevanIndex !== -1 && jeevanIndex !== harshIndex + 1) {
+      const [jeevan] = list.splice(jeevanIndex, 1);
+      const insertAt = harshIndex < jeevanIndex ? harshIndex + 1 : harshIndex + 1;
+      list.splice(insertAt, 0, jeevan);
+    }
+
+    return list;
+  }, [internData]);
   const designationFilters = useMemo(() => {
     const values = new Set(
       teamMembers

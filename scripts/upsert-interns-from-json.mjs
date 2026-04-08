@@ -27,7 +27,8 @@ const rawInterns = {
     phone: "9110488856",
     email: "harshakrupakar2004@gmail.com",
     github: "https://github.com/harsharupakar",
-    linkedin: "linkedin.com/in/harsha-krupakar887328333",
+    linkedin:
+      "https://www.linkedin.com/in/harsha-krupakar-887328333?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app",
   },
   "Mohammed Ayan": {
     college: "Dr Ambedkar Institute of Technology",

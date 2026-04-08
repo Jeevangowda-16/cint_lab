@@ -56,7 +56,7 @@ export default function ApplyPage() {
 
     try {
       const result = await submitApplication(form);
-      setFeedback(`Application submitted via ${result.mode} mode. Reference: ${result.id}`);
+      setFeedback(`Application submitted successfully. Reference: ${result.id}`);
       setForm(initialApplicationForm);
     } catch (submitError) {
       setFeedback(submitError instanceof Error ? submitError.message : "Submission failed.");

@@ -49,7 +49,7 @@ export default function ContactPage() {
 
         try {
             const result = await submitContact(form);
-            setFeedback(`Message submitted successfully via ${result.mode} mode.`);
+            setFeedback("Message submitted successfully.");
             setForm(initialContactForm);
         } catch (submitError) {
             setFeedback(submitError instanceof Error ? submitError.message : "Unable to send message.");
