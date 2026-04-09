@@ -15,21 +15,21 @@ export default function AdminHomePage() {
   const { user, logout } = useAdminAuth();
 
   return (
-    <main className="page-shell text-slate-800">
+    <main className="page-shell text-gray-800">
       <div className="section-shell space-y-8">
-        <section className="glass-card relative overflow-hidden rounded-3xl p-6 md:p-10">
+        <section className="glass-card relative overflow-hidden rounded p-6 md:p-10">
           <div className="absolute -top-16 -right-10 h-52 w-52 hero-glow-blue" />
           <div className="absolute -bottom-14 -left-10 h-40 w-40 hero-glow-gold" />
           <div className="relative flex flex-wrap items-center justify-between gap-4">
             <div>
-              <p className="text-xs uppercase tracking-[0.18em] text-slate-500">Control Center</p>
+              <p className="text-xs uppercase tracking-[0.12em] text-gray-600">Control Center</p>
               <h1 className="section-title mt-2">Admin Dashboard</h1>
-              <p className="text-slate-600 mt-3">Signed in as {user?.email}</p>
+              <p className="text-gray-700 mt-3">Signed in as {user?.email}</p>
             </div>
             <button
               type="button"
               onClick={logout}
-              className="rounded-xl bg-slate-900 px-5 py-2.5 text-sm font-semibold text-white transition hover:bg-slate-800"
+              className="rounded border border-gray-800 bg-gray-900 px-5 py-2.5 text-sm font-semibold text-white hover:bg-gray-800"
             >
               Sign out
             </button>
@@ -41,13 +41,13 @@ export default function AdminHomePage() {
             <Link
               key={section.href}
               href={section.href}
-              className="paper-card rounded-2xl p-6 transition-transform duration-200 hover:-translate-y-1"
+              className="paper-card rounded p-6"
             >
               <div className="flex items-center justify-between gap-3">
-                <h2 className="text-xl text-slate-900">{section.label}</h2>
-                <span className="text-lg text-slate-400">&rarr;</span>
+                <h2 className="text-xl text-gray-900">{section.label}</h2>
+                <span className="text-lg text-gray-500">&rarr;</span>
               </div>
-              <p className="mt-2 text-sm text-slate-600">{section.note}</p>
+              <p className="mt-2 text-sm text-gray-700">{section.note}</p>
             </Link>
           ))}
         </section>

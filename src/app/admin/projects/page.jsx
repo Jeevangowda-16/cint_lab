@@ -68,28 +68,28 @@ export default function AdminProjectsPage() {
   };
 
   return (
-    <main className="min-h-screen bg-gray-50 px-8 py-12">
+    <main className="min-h-screen bg-gray-100 px-8 py-12">
       <div className="max-w-6xl mx-auto">
-        <h1 className="text-3xl font-bold text-gray-900 mb-6">Admin: Projects</h1>
+        <h1 className="text-3xl font-semibold text-gray-900 mb-6">Admin: Projects</h1>
 
-        <form onSubmit={onSubmit} className="bg-white border border-gray-100 rounded-xl p-6 space-y-4 mb-8">
+        <form onSubmit={onSubmit} className="bg-white border border-gray-300 rounded p-6 space-y-4 mb-8">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-            <input name="title" value={form.title} onChange={onChange} placeholder="Title" className="bg-gray-50 border border-gray-200 p-3 rounded-lg" />
-            <input name="summary" value={form.summary} onChange={onChange} placeholder="Summary" className="bg-gray-50 border border-gray-200 p-3 rounded-lg" />
+            <input name="title" value={form.title} onChange={onChange} placeholder="Title" className="bg-white border border-gray-300 p-3 rounded" />
+            <input name="summary" value={form.summary} onChange={onChange} placeholder="Summary" className="bg-white border border-gray-300 p-3 rounded" />
           </div>
-          <textarea name="description" value={form.description} onChange={onChange} placeholder="Description" className="w-full bg-gray-50 border border-gray-200 p-3 rounded-lg" />
+          <textarea name="description" value={form.description} onChange={onChange} placeholder="Description" className="w-full bg-white border border-gray-300 p-3 rounded" />
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-            <select name="status" value={form.status} onChange={onChange} className="bg-gray-50 border border-gray-200 p-3 rounded-lg">
+            <select name="status" value={form.status} onChange={onChange} className="bg-white border border-gray-300 p-3 rounded">
               <option value="ongoing">ongoing</option>
               <option value="review">review</option>
               <option value="completed">completed</option>
             </select>
-            <input name="tags" value={form.tags} onChange={onChange} placeholder="tags, comma-separated" className="bg-gray-50 border border-gray-200 p-3 rounded-lg" />
+            <input name="tags" value={form.tags} onChange={onChange} placeholder="tags, comma-separated" className="bg-white border border-gray-300 p-3 rounded" />
           </div>
           <div className="flex gap-3">
-            <button type="submit" className="bg-blue-600 text-white px-6 py-2 rounded-lg font-semibold">{editingId ? "Update" : "Add"} Project</button>
+            <button type="submit" className="bg-blue-700 text-white px-6 py-2 rounded border border-blue-800 font-semibold hover:bg-blue-800">{editingId ? "Update" : "Add"} Project</button>
             {editingId && (
-              <button type="button" onClick={() => { setEditingId(""); setForm(initialForm); }} className="bg-gray-200 text-gray-900 px-6 py-2 rounded-lg font-semibold">
+              <button type="button" onClick={() => { setEditingId(""); setForm(initialForm); }} className="bg-white border border-gray-300 text-gray-900 px-6 py-2 rounded font-semibold hover:bg-gray-100">
                 Cancel
               </button>
             )}
@@ -102,12 +102,12 @@ export default function AdminProjectsPage() {
 
         <div className="space-y-4">
           {projects.map((project) => (
-            <article key={project.id} className="bg-white border border-gray-100 rounded-lg p-4">
-              <h2 className="text-xl font-bold text-gray-900">{project.title}</h2>
-              <p className="text-sm text-gray-600 mt-1">{project.summary}</p>
+            <article key={project.id} className="bg-white border border-gray-300 rounded p-4">
+              <h2 className="text-xl font-semibold text-gray-900">{project.title}</h2>
+              <p className="text-sm text-gray-700 mt-1">{project.summary}</p>
               <div className="mt-3 flex gap-3">
-                <button type="button" onClick={() => startEdit(project)} className="text-blue-700 font-semibold">Edit</button>
-                <button type="button" onClick={() => remove(project.id)} className="text-red-700 font-semibold">Delete</button>
+                <button type="button" onClick={() => startEdit(project)} className="text-blue-700 font-semibold hover:text-blue-800">Edit</button>
+                <button type="button" onClick={() => remove(project.id)} className="text-gray-700 font-semibold hover:text-gray-900">Delete</button>
               </div>
             </article>
           ))}

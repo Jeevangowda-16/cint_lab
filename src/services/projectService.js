@@ -1,17 +1,5 @@
+import { addItem, deleteItem, getById, getCollection, updateItem } from "@/lib/localDataStore";
 import {
-  addDoc,
-  collection,
-  deleteDoc,
-  getDoc,
-  doc,
-  getDocs,
-  query,
-  serverTimestamp,
-  updateDoc,
-} from "firebase/firestore";
-import { db } from "@/lib/firebase";
-import {
-  asFirestoreList,
   ensureRequiredFields,
 } from "@/services/helpers";
 
@@ -19,12 +7,7 @@ const COLLECTION_NAME = "projects";
 
 export async function getProjects(filters = {}) {
   const { status, tag } = filters;
-  if (!db) {
-    throw new Error("Firebase is not configured.");
-  }
-
-  const snapshot = await getDocs(query(collection(db, COLLECTION_NAME)));
-  let projects = asFirestoreList(snapshot);
+  let projects = getCollection(COLLECTION_NAME);
 
   if (status) {
     projects = projects.filter((project) => project.status === status);
@@ -62,60 +45,32 @@ export async function getProjects(filters = {}) {
 }
 
 export async function getProjectById(projectId) {
-  if (!db) {
-    throw new Error("Firebase is not configured.");
-  }
-
   if (!projectId) {
     return null;
   }
 
-  const snapshot = await getDoc(doc(db, COLLECTION_NAME, projectId));
-
-  if (!snapshot.exists()) {
-    return null;
-  }
-
-  return {
-    id: snapshot.id,
-    ...snapshot.data(),
-  };
+  return getById(COLLECTION_NAME, projectId);
 }
 
 export async function addProject(payload) {
   ensureRequiredFields(payload, ["title", "summary", "status"]);
-  if (!db) {
-    throw new Error("Firebase is not configured.");
-  }
-
-  const ref = await addDoc(collection(db, COLLECTION_NAME), {
+  const created = addItem(
+    COLLECTION_NAME,
+    {
     ...payload,
-    createdAt: serverTimestamp(),
-    updatedAt: serverTimestamp(),
-  });
+    },
+    { withTimestamps: true }
+  );
 
-  return { id: ref.id, ...payload };
+  return { id: created.id, ...payload };
 }
 
 export async function updateProject(projectId, payload) {
-  if (!db) {
-    throw new Error("Firebase is not configured.");
-  }
-
-  const ref = doc(db, COLLECTION_NAME, projectId);
-  await updateDoc(ref, {
-    ...payload,
-    updatedAt: serverTimestamp(),
-  });
+  updateItem(COLLECTION_NAME, projectId, payload, { touchUpdatedAt: true });
 
   return { id: projectId, ...payload };
 }
 
 export async function deleteProject(projectId) {
-  if (!db) {
-    throw new Error("Firebase is not configured.");
-  }
-
-  await deleteDoc(doc(db, COLLECTION_NAME, projectId));
-  return { success: true };
+  return deleteItem(COLLECTION_NAME, projectId);
 }

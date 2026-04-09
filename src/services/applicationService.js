@@ -1,44 +1,31 @@
-import { addDoc, collection, getDocs, query, serverTimestamp, updateDoc, doc } from "firebase/firestore";
-import { db } from "@/lib/firebase";
-import { asFirestoreList, ensureRequiredFields, sortByDateDesc } from "@/services/helpers";
+import { addItem, getCollection, updateItem } from "@/lib/localDataStore";
+import { ensureRequiredFields, sortByDateDesc } from "@/services/helpers";
 
 const COLLECTION_NAME = "applications";
 
 export async function submitApplication(payload) {
   ensureRequiredFields(payload, ["fullName", "email", "institution", "statement"]);
-  if (!db) {
-    throw new Error("Firebase is not configured.");
-  }
 
-  const ref = await addDoc(collection(db, COLLECTION_NAME), {
+  const created = addItem(COLLECTION_NAME, {
     ...payload,
     status: "submitted",
-    submittedAt: serverTimestamp(),
+    submittedAt: new Date().toISOString(),
   });
 
   return {
     success: true,
-    mode: "firestore",
-    id: ref.id,
+    mode: "local",
+    id: created.id,
   };
 }
 
 export async function getApplications() {
-  if (!db) {
-    throw new Error("Firebase is not configured.");
-  }
-
-  const snapshot = await getDocs(query(collection(db, COLLECTION_NAME)));
-  return sortByDateDesc(asFirestoreList(snapshot), "submittedAt");
+  const applications = getCollection(COLLECTION_NAME);
+  return sortByDateDesc(applications, "submittedAt");
 }
 
 export async function updateApplication(applicationId, payload) {
-  if (!db) {
-    throw new Error("Firebase is not configured.");
-  }
-
-  const ref = doc(db, COLLECTION_NAME, applicationId);
-  await updateDoc(ref, payload);
+  updateItem(COLLECTION_NAME, applicationId, payload);
 
   return { id: applicationId, ...payload };
 }

@@ -100,14 +100,14 @@ export default function EventsPage() {
   };
 
   return (
-    <main className="page-shell text-slate-800">
-      <div className="section-shell max-w-5xl mb-10 glass-card relative overflow-hidden rounded-3xl p-6 md:p-10 reveal-up">
+    <main className="page-shell text-gray-800">
+      <div className="section-shell max-w-5xl mb-10 glass-card relative overflow-hidden rounded p-6 md:p-10 reveal-up">
         <div className="absolute -top-12 -right-8 h-44 w-44 hero-glow-blue" />
         <div className="absolute -bottom-14 -left-8 h-36 w-36 hero-glow-gold" />
-        <p className="text-xs uppercase tracking-[0.18em] text-slate-500">Events and Academic Sessions</p>
-        <h1 className="text-4xl md:text-5xl text-slate-900 tracking-tight mt-2">Seminars and Events</h1>
-        <p className="mt-4 text-lg text-slate-600">
-          Upcoming and recent interactions loaded directly from the Firestore events feed.
+        <p className="text-xs uppercase tracking-[0.12em] text-gray-600">Events and Academic Sessions</p>
+        <h1 className="text-4xl md:text-5xl text-gray-900 mt-2">Seminars and Events</h1>
+        <p className="mt-4 text-lg text-gray-700">
+          Upcoming and recent interactions loaded directly from the local events feed.
         </p>
       </div>
 
@@ -116,12 +116,12 @@ export default function EventsPage() {
 
       {!loading && !error && (
         <div className="section-shell max-w-5xl space-y-6">
-          <div className="pt-6 border-t border-slate-200 relative">
+          <div className="pt-6 border-t border-gray-300 relative">
             <div className="flex items-center gap-3 mb-5 flex-wrap">
               <button
                 type="button"
                 onClick={() => shiftSelectedMonth(-1)}
-                className="rounded-lg border border-slate-200 px-3 py-2 text-sm font-semibold text-slate-700"
+                className="rounded border border-gray-300 px-3 py-2 text-sm font-semibold text-gray-700 hover:bg-gray-100"
                 aria-label="Previous month"
               >
                 &lt;
@@ -129,21 +129,21 @@ export default function EventsPage() {
               <button
                 type="button"
                 onClick={setToToday}
-                className="rounded-lg border border-slate-200 px-4 py-2 text-sm font-semibold text-slate-700"
+                className="rounded border border-gray-300 px-4 py-2 text-sm font-semibold text-gray-700 hover:bg-gray-100"
               >
                 Today
               </button>
               <button
                 type="button"
                 onClick={() => setShowCalendar((previous) => !previous)}
-                className="rounded-lg border border-slate-200 px-4 py-2 text-sm font-semibold text-slate-900"
+                className="rounded border border-gray-300 px-4 py-2 text-sm font-semibold text-gray-900 hover:bg-gray-100"
               >
                 {monthLabel(selectedMonth)}
               </button>
               <button
                 type="button"
                 onClick={() => shiftSelectedMonth(1)}
-                className="rounded-lg border border-slate-200 px-3 py-2 text-sm font-semibold text-slate-700"
+                className="rounded border border-gray-300 px-3 py-2 text-sm font-semibold text-gray-700 hover:bg-gray-100"
                 aria-label="Next month"
               >
                 &gt;
@@ -151,26 +151,26 @@ export default function EventsPage() {
             </div>
 
             {showCalendar && (
-              <div className="z-20 absolute top-16 left-0 rounded-2xl border border-slate-200 bg-white p-4 shadow-xl w-[320px]">
+              <div className="z-20 absolute top-16 left-0 rounded border border-gray-300 bg-white p-4 w-[320px]">
                 <div className="flex items-center justify-between mb-3">
                   <button
                     type="button"
                     onClick={() => setCalendarMonth((previous) => new Date(previous.getFullYear(), previous.getMonth() - 1, 1))}
-                    className="rounded-md px-2 py-1 text-slate-600 hover:bg-slate-100"
+                    className="rounded px-2 py-1 text-gray-700 hover:bg-gray-100"
                   >
                     &lt;
                   </button>
-                  <p className="font-semibold text-slate-900">{monthLabel(calendarMonth)}</p>
+                  <p className="font-semibold text-gray-900">{monthLabel(calendarMonth)}</p>
                   <button
                     type="button"
                     onClick={() => setCalendarMonth((previous) => new Date(previous.getFullYear(), previous.getMonth() + 1, 1))}
-                    className="rounded-md px-2 py-1 text-slate-600 hover:bg-slate-100"
+                    className="rounded px-2 py-1 text-gray-700 hover:bg-gray-100"
                   >
                     &gt;
                   </button>
                 </div>
 
-                <div className="grid grid-cols-7 gap-1 text-center text-xs uppercase tracking-[0.12em] text-slate-500 mb-2">
+                <div className="grid grid-cols-7 gap-1 text-center text-xs uppercase tracking-[0.1em] text-gray-600 mb-2">
                   {['S', 'M', 'T', 'W', 'T', 'F', 'S'].map((day, index) => (
                     <span key={`${day}-${index}`}>{day}</span>
                   ))}
@@ -186,12 +186,12 @@ export default function EventsPage() {
                         setCalendarMonth(startOfMonth(item.date));
                         setShowCalendar(false);
                       }}
-                      className={`h-9 rounded-md text-sm transition ${
+                      className={`h-9 rounded text-sm ${
                         isSameDay(item.date, selectedDate)
-                          ? "bg-blue-600 text-white font-semibold"
+                          ? "bg-blue-700 text-white font-semibold"
                           : item.isCurrentMonth
-                            ? "text-slate-800 hover:bg-slate-100"
-                            : "text-slate-400 hover:bg-slate-100"
+                            ? "text-gray-800 hover:bg-gray-100"
+                            : "text-gray-400 hover:bg-gray-100"
                       }`}
                     >
                       {item.date.getDate()}
@@ -201,23 +201,23 @@ export default function EventsPage() {
               </div>
             )}
 
-            <p className="text-sm text-slate-600 mb-4">Showing events for {monthLabel(selectedMonth)}.</p>
+            <p className="text-sm text-gray-700 mb-4">Showing events for {monthLabel(selectedMonth)}.</p>
 
             {monthEvents.length === 0 ? (
-              <p className="text-sm text-slate-600">No events found for this month.</p>
+              <p className="text-sm text-gray-700">No events found for this month.</p>
             ) : (
               <div className="space-y-4">
                 {monthEvents.map((eventItem) => (
-                  <article key={`month-${eventItem.id}`} className="paper-card rounded-xl p-4">
-                    <h3 className="text-lg text-slate-900">{eventItem.title}</h3>
-                    <p className="text-sm text-slate-600 mt-1">
+                  <article key={`month-${eventItem.id}`} className="paper-card rounded p-4">
+                    <h3 className="text-lg text-gray-900">{eventItem.title}</h3>
+                    <p className="text-sm text-gray-700 mt-1">
                       {eventItem.eventEndDate
                         ? `${formatDate(eventItem.eventDate)} - ${formatDate(eventItem.eventEndDate)}`
                         : formatDate(eventItem.eventDate)}
                     </p>
                     {eventItem.registrationUrl && (
                       <a
-                        className="inline-flex mt-3 items-center rounded-full bg-sky-800 px-4 py-2 text-sm font-semibold text-white transition hover:bg-sky-900"
+                        className="inline-flex mt-3 items-center rounded border border-blue-800 bg-blue-700 px-4 py-2 text-sm font-semibold text-white hover:bg-blue-800"
                         href={eventItem.registrationUrl}
                         target="_blank"
                         rel="noreferrer"
@@ -233,31 +233,31 @@ export default function EventsPage() {
 
           {isCurrentMonthSelected && (
             <>
-              <h2 className="text-2xl md:text-3xl text-slate-900">Latest Top 3 Events</h2>
+              <h2 className="text-2xl md:text-3xl text-gray-900">Latest Top 3 Events</h2>
               {latestTop3.map((eventItem) => (
-                <article key={eventItem.id} className="paper-card rounded-2xl p-6">
+                <article key={eventItem.id} className="paper-card rounded p-6">
                   <div className="flex items-start justify-between gap-3 flex-wrap">
                     <div>
-                      <p className="text-xs uppercase tracking-[0.16em] text-sky-700 font-bold">
+                      <p className="text-xs uppercase tracking-[0.1em] text-blue-700 font-semibold">
                         {eventItem.type}
                         {eventItem.isFeatured ? " • featured" : ""}
                       </p>
-                      <h2 className="text-2xl text-slate-900 mt-2">{eventItem.title}</h2>
+                      <h2 className="text-2xl text-gray-900 mt-2">{eventItem.title}</h2>
                     </div>
-                    <p className="text-sm text-slate-500">
+                    <p className="text-sm text-gray-600">
                       {eventItem.eventEndDate
                         ? `${formatDate(eventItem.eventDate)} - ${formatDate(eventItem.eventEndDate)}`
                         : formatDate(eventItem.eventDate)}
                     </p>
                   </div>
-                  <p className="mt-4 max-w-3xl text-sm md:text-[15px] leading-7 text-slate-600">
+                  <p className="mt-4 max-w-3xl text-sm md:text-[15px] leading-7 text-gray-700">
                     {previewText(eventItem.description)}
                   </p>
-                  <p className="mt-3 text-sm text-slate-600">Speaker: {eventItem.speaker}</p>
-                  <p className="text-sm text-slate-600">Location: {eventItem.location}</p>
+                  <p className="mt-3 text-sm text-gray-700">Speaker: {eventItem.speaker}</p>
+                  <p className="text-sm text-gray-700">Location: {eventItem.location}</p>
                   {eventItem.registrationUrl && (
                     <a
-                      className="inline-flex mt-4 items-center rounded-full bg-sky-800 px-4 py-2 text-sm font-semibold text-white transition hover:bg-sky-900"
+                      className="inline-flex mt-4 items-center rounded border border-blue-800 bg-blue-700 px-4 py-2 text-sm font-semibold text-white hover:bg-blue-800"
                       href={eventItem.registrationUrl}
                       target="_blank"
                       rel="noreferrer"

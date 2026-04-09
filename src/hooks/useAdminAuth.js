@@ -3,7 +3,7 @@
 import { useAuth } from "@/lib/authContext";
 
 export function useAdminAuth() {
-  const { user, isAdmin, claims, loading, isFirebaseAuthAvailable, logout } = useAuth();
+  const { user, isAdmin, claims, loading, isAuthAvailable, logout } = useAuth();
 
   return {
     user,
@@ -11,7 +11,7 @@ export function useAdminAuth() {
     isAdmin,
     loading,
     isAuthenticated: Boolean(user),
-    isFirebaseAuthAvailable,
+    isAuthAvailable,
     logout,
   };
 }

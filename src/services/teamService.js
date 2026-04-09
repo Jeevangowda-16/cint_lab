@@ -1,16 +1,5 @@
+import { addItem, deleteItem, getCollection, updateItem } from "@/lib/localDataStore";
 import {
-  addDoc,
-  collection,
-  deleteDoc,
-  doc,
-  getDocs,
-  query,
-  serverTimestamp,
-  updateDoc,
-} from "firebase/firestore";
-import { db } from "@/lib/firebase";
-import {
-  asFirestoreList,
   ensureRequiredFields,
 } from "@/services/helpers";
 
@@ -23,12 +12,7 @@ const ROLE_ORDER = {
 
 export async function getTeamMembers(filters = {}) {
   const { roleCategory, activeOnly } = filters;
-  if (!db) {
-    throw new Error("Firebase is not configured.");
-  }
-
-  const snapshot = await getDocs(query(collection(db, COLLECTION_NAME)));
-  let teamMembers = asFirestoreList(snapshot);
+  let teamMembers = getCollection(COLLECTION_NAME);
 
   if (roleCategory && roleCategory !== "all") {
     teamMembers = teamMembers.filter((member) => member.roleCategory === roleCategory);
@@ -49,38 +33,23 @@ export async function getTeamMembers(filters = {}) {
 
 export async function addTeamMember(payload) {
   ensureRequiredFields(payload, ["name", "roleCategory", "designation"]);
-  if (!db) {
-    throw new Error("Firebase is not configured.");
-  }
-
-  const ref = await addDoc(collection(db, COLLECTION_NAME), {
+  const created = addItem(
+    COLLECTION_NAME,
+    {
     ...payload,
-    createdAt: serverTimestamp(),
-    updatedAt: serverTimestamp(),
-  });
+    },
+    { withTimestamps: true }
+  );
 
-  return { id: ref.id, ...payload };
+  return { id: created.id, ...payload };
 }
 
 export async function updateTeamMember(memberId, payload) {
-  if (!db) {
-    throw new Error("Firebase is not configured.");
-  }
-
-  const ref = doc(db, COLLECTION_NAME, memberId);
-  await updateDoc(ref, {
-    ...payload,
-    updatedAt: serverTimestamp(),
-  });
+  updateItem(COLLECTION_NAME, memberId, payload, { touchUpdatedAt: true });
 
   return { id: memberId, ...payload };
 }
 
 export async function deleteTeamMember(memberId) {
-  if (!db) {
-    throw new Error("Firebase is not configured.");
-  }
-
-  await deleteDoc(doc(db, COLLECTION_NAME, memberId));
-  return { success: true };
+  return deleteItem(COLLECTION_NAME, memberId);
 }

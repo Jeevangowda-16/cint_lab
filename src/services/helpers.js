@@ -18,13 +18,6 @@ export function sortByDateDesc(items, fieldName) {
   return [...items].sort((a, b) => toTimeValue(b[fieldName]) - toTimeValue(a[fieldName]));
 }
 
-export function asFirestoreList(snapshot) {
-  return snapshot.docs.map((docItem) => ({
-    id: docItem.id,
-    ...docItem.data(),
-  }));
-}
-
 export function ensureRequiredFields(data, requiredFields) {
   const missing = requiredFields.filter((field) => !data[field]);
 

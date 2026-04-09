@@ -1,122 +1,27 @@
 import fs from "node:fs";
 import path from "node:path";
-import admin from "firebase-admin";
 
-const serviceAccountPath = path.resolve(process.cwd(), "service-account.json");
-const eventsJsonPath = path.resolve(process.cwd(), "scripts", "events-data.json");
+const sourcePath = path.resolve(process.cwd(), "scripts", "events-data.json");
+const dataPath = path.resolve(process.cwd(), "src", "data", "data.json");
 
-if (!fs.existsSync(serviceAccountPath)) {
-  console.error("service-account.json not found in project root.");
+if (!fs.existsSync(sourcePath) || !fs.existsSync(dataPath)) {
+  console.error("Required file missing. Ensure scripts/events-data.json and src/data/data.json exist.");
   process.exit(1);
 }
 
-if (!fs.existsSync(eventsJsonPath)) {
-  console.error("scripts/events-data.json not found.");
+const events = JSON.parse(fs.readFileSync(sourcePath, "utf8"));
+if (!Array.isArray(events)) {
+  console.error("scripts/events-data.json must be an array.");
   process.exit(1);
 }
 
-const serviceAccount = JSON.parse(fs.readFileSync(serviceAccountPath, "utf8"));
-const eventsData = JSON.parse(fs.readFileSync(eventsJsonPath, "utf8"));
+const db = JSON.parse(fs.readFileSync(dataPath, "utf8"));
+db.events = events.map((event, index) => ({
+  id: event.id || `event-${index + 1}`,
+  ...event,
+  createdAt: event.createdAt || new Date().toISOString(),
+  updatedAt: new Date().toISOString(),
+}));
 
-if (!Array.isArray(eventsData)) {
-  console.error("events-data.json must be an array.");
-  process.exit(1);
-}
-
-if (!admin.apps.length) {
-  admin.initializeApp({
-    credential: admin.credential.cert(serviceAccount),
-  });
-}
-
-const db = admin.firestore();
-const timestamp = admin.firestore.FieldValue.serverTimestamp();
-
-function toId(title) {
-  return title
-    .toLowerCase()
-    .replace(/&amp;/g, "and")
-    .replace(/[^a-z0-9]+/g, "-")
-    .replace(/(^-|-$)/g, "")
-    .slice(0, 110);
-}
-
-function withSuffix(baseId, index) {
-  if (index <= 1) {
-    return baseId;
-  }
-
-  const suffix = `-${index}`;
-  const maxBaseLength = 110 - suffix.length;
-  const safeBase = baseId.slice(0, Math.max(1, maxBaseLength));
-  return `${safeBase}${suffix}`;
-}
-
-function resolveUniqueId(candidateId, seenIds) {
-  let index = 1;
-  let resolved = withSuffix(candidateId, index);
-
-  while (seenIds.has(resolved)) {
-    index += 1;
-    resolved = withSuffix(candidateId, index);
-  }
-
-  seenIds.add(resolved);
-  return resolved;
-}
-
-async function clearExistingEvents() {
-  const snapshot = await db.collection("events").get();
-  for (const docItem of snapshot.docs) {
-    await docItem.ref.delete();
-    console.log(`Deleted events/${docItem.id}`);
-  }
-}
-
-async function seedEvents() {
-  const seenIds = new Set();
-
-  for (const item of eventsData) {
-    if (!item.title || !item.eventDate) {
-      throw new Error(`Invalid event item: ${JSON.stringify(item)}`);
-    }
-
-    const baseId = item.id || toId(item.title);
-    const id = resolveUniqueId(baseId, seenIds);
-
-    if (baseId !== id) {
-      console.log(`ID collision resolved: ${baseId} -> ${id}`);
-    }
-
-    await db.collection("events").doc(id).set(
-      {
-        id,
-        title: item.title,
-        type: item.type || "seminar",
-        description: item.description || "",
-        speaker: item.speaker || "",
-        location: item.location || "IISc Aerospace Engineering",
-        eventDate: item.eventDate,
-        eventEndDate: item.eventEndDate || "",
-        registrationUrl: item.registrationUrl || "",
-        isFeatured: Boolean(item.isFeatured),
-        createdAt: timestamp,
-        updatedAt: timestamp,
-      },
-      { merge: true }
-    );
-
-    console.log(`Seeded events/${id}`);
-  }
-}
-
-async function run() {
-  await clearExistingEvents();
-  await seedEvents();
-  console.log(`Done. Imported ${eventsData.length} events.`);
-}
-
-run().catch((error) => {
-  console.error("Import failed:", error.message || error);
-  process.exit(1);
-});
+fs.writeFileSync(dataPath, JSON.stringify(db, null, 2));
+console.log(`Updated local dataset with ${db.events.length} events.`);

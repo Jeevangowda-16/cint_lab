@@ -1,16 +1,5 @@
+import { addItem, deleteItem, getCollection, updateItem } from "@/lib/localDataStore";
 import {
-  addDoc,
-  collection,
-  deleteDoc,
-  doc,
-  getDocs,
-  query,
-  serverTimestamp,
-  updateDoc,
-} from "firebase/firestore";
-import { db } from "@/lib/firebase";
-import {
-  asFirestoreList,
   ensureRequiredFields,
   sortByDateDesc,
 } from "@/services/helpers";
@@ -19,12 +8,7 @@ const COLLECTION_NAME = "interns";
 
 export async function getInterns(filters = {}) {
   const { status, cohort, projectId } = filters;
-  if (!db) {
-    throw new Error("Firebase is not configured.");
-  }
-
-  const snapshot = await getDocs(query(collection(db, COLLECTION_NAME)));
-  let interns = asFirestoreList(snapshot);
+  let interns = getCollection(COLLECTION_NAME);
 
   if (status && status !== "all") {
     interns = interns.filter((intern) => intern.status === status);
@@ -43,38 +27,23 @@ export async function getInterns(filters = {}) {
 
 export async function addIntern(payload) {
   ensureRequiredFields(payload, ["name", "program", "cohort", "status", "projectId"]);
-  if (!db) {
-    throw new Error("Firebase is not configured.");
-  }
-
-  const ref = await addDoc(collection(db, COLLECTION_NAME), {
+  const created = addItem(
+    COLLECTION_NAME,
+    {
     ...payload,
-    createdAt: serverTimestamp(),
-    updatedAt: serverTimestamp(),
-  });
+    },
+    { withTimestamps: true }
+  );
 
-  return { id: ref.id, ...payload };
+  return { id: created.id, ...payload };
 }
 
 export async function updateIntern(internId, payload) {
-  if (!db) {
-    throw new Error("Firebase is not configured.");
-  }
-
-  const ref = doc(db, COLLECTION_NAME, internId);
-  await updateDoc(ref, {
-    ...payload,
-    updatedAt: serverTimestamp(),
-  });
+  updateItem(COLLECTION_NAME, internId, payload, { touchUpdatedAt: true });
 
   return { id: internId, ...payload };
 }
 
 export async function deleteIntern(internId) {
-  if (!db) {
-    throw new Error("Firebase is not configured.");
-  }
-
-  await deleteDoc(doc(db, COLLECTION_NAME, internId));
-  return { success: true };
+  return deleteItem(COLLECTION_NAME, internId);
 }

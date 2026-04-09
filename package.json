@@ -8,12 +8,9 @@
     "start": "next start",
     "lint": "eslint",
     "events:normalize": "node scripts/build-events-json-from-raw.mjs",
-    "events:sync": "node scripts/sync-events-from-aero-api.mjs",
     "events:import": "node scripts/import-events-from-json.mjs"
   },
   "dependencies": {
-    "firebase": "^12.11.0",
-    "firebase-admin": "^13.7.0",
     "next": "16.2.2",
     "react": "19.2.4",
     "react-dom": "19.2.4"

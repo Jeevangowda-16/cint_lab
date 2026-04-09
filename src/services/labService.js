@@ -1,16 +1,9 @@
-import { collection, doc, getDoc, getDocs, serverTimestamp, setDoc } from "firebase/firestore";
-import { db } from "@/lib/firebase";
-import { asFirestoreList } from "@/services/helpers";
+import { getCollection, upsertDocument } from "@/lib/localDataStore";
 
 const COLLECTION_NAME = "lab_overview";
 
 export async function getLabOverview() {
-  if (!db) {
-    throw new Error("Firebase is not configured.");
-  }
-
-  const snapshot = await getDocs(collection(db, COLLECTION_NAME));
-  const rows = asFirestoreList(snapshot);
+  const rows = getCollection(COLLECTION_NAME);
 
   if (rows.length > 0) {
     return rows[0];
@@ -20,21 +13,14 @@ export async function getLabOverview() {
 }
 
 export async function updateLabOverview(payload) {
-  if (!db) {
-    throw new Error("Firebase is not configured.");
-  }
-
-  const ref = doc(db, COLLECTION_NAME, payload.id || "primary");
-
-  await setDoc(
-    ref,
+  const updated = upsertDocument(
+    COLLECTION_NAME,
+    payload.id || "primary",
     {
       ...payload,
-      updatedAt: serverTimestamp(),
     },
-    { merge: true }
+    { merge: true, touchUpdatedAt: true }
   );
 
-  const updated = await getDoc(ref);
-  return { id: updated.id, ...updated.data() };
+  return updated;
 }

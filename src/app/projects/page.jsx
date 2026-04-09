@@ -20,14 +20,14 @@ export default function ProjectsPage() {
   const projects = useMemo(() => data || [], [data]);
 
   return (
-    <main className="page-shell text-slate-800">
-      <section className="section-shell mb-10 relative overflow-hidden rounded-3xl glass-card p-6 md:p-10 reveal-up">
+    <main className="page-shell text-gray-800">
+      <section className="section-shell mb-10 relative overflow-hidden rounded glass-card p-6 md:p-10 reveal-up">
         <div className="absolute -top-20 right-0 h-60 w-60 hero-glow-blue" />
         <div className="absolute bottom-0 left-0 h-44 w-44 hero-glow-gold" />
         <div className="relative">
-          <p className="text-xs uppercase tracking-[0.18em] text-slate-500">Project Portfolio</p>
+          <p className="text-xs uppercase tracking-[0.15em] text-gray-600">Project Portfolio</p>
           <h1 className="section-title mt-2">Projects</h1>
-          <p className="mt-4 text-lg text-slate-600 max-w-3xl">
+          <p className="mt-4 text-lg text-gray-700 max-w-3xl">
             Explore active and recently reviewed initiatives in autonomy, biomechanics, sensing, and data-driven aerospace systems.
           </p>
         </div>
@@ -39,10 +39,10 @@ export default function ProjectsPage() {
             key={filter}
             type="button"
             onClick={() => setStatusFilter(filter)}
-            className={`px-4 py-2.5 rounded-xl text-sm font-semibold border transition ${
+            className={`px-4 py-2.5 rounded text-sm font-semibold border ${
               statusFilter === filter
-                ? "bg-sky-800 text-white border-sky-800 shadow-md"
-                : "bg-white text-slate-700 border-slate-200 hover:border-sky-300 hover:text-sky-800"
+                ? "bg-blue-700 text-white border-blue-800"
+                : "bg-white text-gray-700 border-gray-300 hover:bg-gray-100 hover:text-blue-800"
             }`}
           >
             {filter}
@@ -58,20 +58,20 @@ export default function ProjectsPage() {
           {projects.map((project) => (
             <article
               key={project.id}
-              className="paper-card rounded-2xl p-7 md:p-8 flex flex-col justify-between transition-transform duration-200 hover:-translate-y-1"
+              className="paper-card rounded p-7 md:p-8 flex flex-col justify-between"
             >
               <div>
                 <div className="flex items-center justify-between gap-3">
                   <span className="chip">{project.status || "ongoing"}</span>
-                  <p className="text-xs uppercase tracking-[0.15em] text-slate-500">ID: {project.id}</p>
+                  <p className="text-xs uppercase tracking-[0.1em] text-gray-600">ID: {project.id}</p>
                 </div>
-                <h2 className="text-2xl text-slate-900 mt-4">{project.title}</h2>
-                <p className="text-slate-700 mt-3 leading-relaxed">{project.summary}</p>
-                <p className="text-sm text-slate-600 mt-4 leading-relaxed">{project.description}</p>
+                <h2 className="text-2xl text-gray-900 mt-4">{project.title}</h2>
+                <p className="text-gray-700 mt-3 leading-relaxed">{project.summary}</p>
+                <p className="text-sm text-gray-700 mt-4 leading-relaxed">{project.description}</p>
                 {(project.tags || []).length > 0 && (
                   <div className="mt-4 flex flex-wrap gap-2">
                     {(project.tags || []).map((tag) => (
-                      <span key={tag} className="text-xs bg-slate-100 border border-slate-200 text-slate-700 px-2 py-1 rounded-full">
+                      <span key={tag} className="text-xs bg-gray-100 border border-gray-300 text-gray-700 px-2 py-1 rounded">
                         {tag}
                       </span>
                     ))}
@@ -79,11 +79,11 @@ export default function ProjectsPage() {
                 )}
               </div>
 
-              <div className="pt-6 mt-6 border-t border-slate-200 flex items-center justify-between">
-                <p className="text-sm text-slate-500">
-                  Status: <span className="font-semibold capitalize text-slate-800">{project.status}</span>
+              <div className="pt-6 mt-6 border-t border-gray-300 flex items-center justify-between">
+                <p className="text-sm text-gray-600">
+                  Status: <span className="font-semibold capitalize text-gray-800">{project.status}</span>
                 </p>
-                <Link className="text-slate-900 text-sm font-bold hover:underline" href={`/projects/${project.id}`}>
+                <Link className="text-blue-800 text-sm font-semibold hover:underline" href={`/projects/${project.id}`}>
                   Get More Info
                 </Link>
               </div>
