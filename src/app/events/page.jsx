@@ -55,28 +55,36 @@ function previewText(value, maxLength = 140) {
   return `${value.slice(0, maxLength).trimEnd()}...`;
 }
 
+function eventTimingStatus(eventItem, now = new Date()) {
+  const start = new Date(eventItem.eventDate);
+  const end = eventItem.eventEndDate ? new Date(eventItem.eventEndDate) : start;
+
+  if (start <= now && now <= end) {
+    return "current";
+  }
+
+  if (start > now) {
+    return "future";
+  }
+
+  return "past";
+}
+
 export default function EventsPage() {
   const fetchEvents = useCallback(() => getEvents(), []);
   const { data, loading, error } = useAsyncData(fetchEvents);
   const events = useMemo(() => data || [], [data]);
-
-  const [selectedDate, setSelectedDate] = useState(() => new Date());
+  const [timingFilter, setTimingFilter] = useState("current");
+  const [selectedMonth, setSelectedMonth] = useState(() => startOfMonth(new Date()));
   const [calendarMonth, setCalendarMonth] = useState(() => startOfMonth(new Date()));
   const [showCalendar, setShowCalendar] = useState(false);
 
-  const selectedMonth = useMemo(() => startOfMonth(selectedDate), [selectedDate]);
+  const now = useMemo(() => new Date(), []);
   const calendarDays = useMemo(() => buildCalendarDays(calendarMonth), [calendarMonth]);
-  const currentMonth = useMemo(() => startOfMonth(new Date()), []);
-  const isCurrentMonthSelected = useMemo(
-    () =>
-      selectedMonth.getFullYear() === currentMonth.getFullYear() &&
-      selectedMonth.getMonth() === currentMonth.getMonth(),
-    [selectedMonth, currentMonth]
-  );
 
   const latestTop3 = useMemo(() => events.slice(0, 3), [events]);
 
-  const monthEvents = useMemo(
+  const currentEvents = useMemo(
     () =>
       events.filter((eventItem) => {
         const date = new Date(eventItem.eventDate);
@@ -85,16 +93,45 @@ export default function EventsPage() {
     [events, selectedMonth]
   );
 
+  const futureEvents = useMemo(
+    () =>
+      events
+        .filter((eventItem) => new Date(eventItem.eventDate) > now)
+        .sort((a, b) => new Date(a.eventDate).getTime() - new Date(b.eventDate).getTime()),
+    [events, now]
+  );
+
+  const pastEvents = useMemo(
+    () =>
+      events.filter((eventItem) => {
+        const endDate = eventItem.eventEndDate ? new Date(eventItem.eventEndDate) : new Date(eventItem.eventDate);
+        return endDate < now;
+      }),
+    [events, now]
+  );
+
+  const displayedEvents = useMemo(() => {
+    if (timingFilter === "future") {
+      return futureEvents;
+    }
+
+    if (timingFilter === "past") {
+      return pastEvents;
+    }
+
+    return currentEvents;
+  }, [timingFilter, currentEvents, futureEvents, pastEvents]);
+
   const setToToday = () => {
-    const now = new Date();
-    setSelectedDate(now);
-    setCalendarMonth(startOfMonth(now));
+    const today = startOfMonth(new Date());
+    setSelectedMonth(today);
+    setCalendarMonth(today);
     setShowCalendar(false);
   };
 
   const shiftSelectedMonth = (offset) => {
     const next = new Date(selectedMonth.getFullYear(), selectedMonth.getMonth() + offset, 1);
-    setSelectedDate(next);
+    setSelectedMonth(next);
     setCalendarMonth(next);
     setShowCalendar(false);
   };
@@ -117,41 +154,45 @@ export default function EventsPage() {
       {!loading && !error && (
         <div className="section-shell max-w-5xl space-y-6">
           <div className="pt-6 border-t border-gray-300 relative">
-            <div className="flex items-center gap-3 mb-5 flex-wrap">
-              <button
-                type="button"
-                onClick={() => shiftSelectedMonth(-1)}
-                className="rounded border border-gray-300 px-3 py-2 text-sm font-semibold text-gray-700 hover:bg-gray-100"
-                aria-label="Previous month"
-              >
-                &lt;
-              </button>
-              <button
-                type="button"
-                onClick={setToToday}
-                className="rounded border border-gray-300 px-4 py-2 text-sm font-semibold text-gray-700 hover:bg-gray-100"
-              >
-                Today
-              </button>
-              <button
-                type="button"
-                onClick={() => setShowCalendar((previous) => !previous)}
-                className="rounded border border-gray-300 px-4 py-2 text-sm font-semibold text-gray-900 hover:bg-gray-100"
-              >
-                {monthLabel(selectedMonth)}
-              </button>
-              <button
-                type="button"
-                onClick={() => shiftSelectedMonth(1)}
-                className="rounded border border-gray-300 px-3 py-2 text-sm font-semibold text-gray-700 hover:bg-gray-100"
-                aria-label="Next month"
-              >
-                &gt;
-              </button>
+            <div className="mb-4 flex flex-col gap-3 md:flex-row md:items-center md:justify-between">
+              <p className="text-sm text-gray-700">Showing events for {monthLabel(selectedMonth)}.</p>
+
+              <div className="flex items-center gap-2 flex-wrap">
+                <button
+                  type="button"
+                  onClick={() => shiftSelectedMonth(-1)}
+                  className="rounded border border-gray-300 px-3 py-2 text-sm font-semibold text-gray-700 hover:bg-gray-100"
+                  aria-label="Previous month"
+                >
+                  &lt;
+                </button>
+                <button
+                  type="button"
+                  onClick={setToToday}
+                  className="rounded border border-gray-300 px-4 py-2 text-sm font-semibold text-gray-700 hover:bg-gray-100"
+                >
+                  Today
+                </button>
+                <button
+                  type="button"
+                  onClick={() => setShowCalendar((previous) => !previous)}
+                  className="rounded border border-gray-300 px-4 py-2 text-sm font-semibold text-gray-900 hover:bg-gray-100"
+                >
+                  {monthLabel(selectedMonth)}
+                </button>
+                <button
+                  type="button"
+                  onClick={() => shiftSelectedMonth(1)}
+                  className="rounded border border-gray-300 px-3 py-2 text-sm font-semibold text-gray-700 hover:bg-gray-100"
+                  aria-label="Next month"
+                >
+                  &gt;
+                </button>
+              </div>
             </div>
 
             {showCalendar && (
-              <div className="z-20 absolute top-16 left-0 rounded border border-gray-300 bg-white p-4 w-[320px]">
+              <div className="z-20 absolute right-0 top-16 rounded border border-gray-300 bg-white p-4 w-[320px]">
                 <div className="flex items-center justify-between mb-3">
                   <button
                     type="button"
@@ -182,12 +223,12 @@ export default function EventsPage() {
                       key={`${item.date.toISOString()}-${item.isCurrentMonth}`}
                       type="button"
                       onClick={() => {
-                        setSelectedDate(item.date);
+                        setSelectedMonth(startOfMonth(item.date));
                         setCalendarMonth(startOfMonth(item.date));
                         setShowCalendar(false);
                       }}
                       className={`h-9 rounded text-sm ${
-                        isSameDay(item.date, selectedDate)
+                        isSameDay(item.date, selectedMonth)
                           ? "bg-blue-700 text-white font-semibold"
                           : item.isCurrentMonth
                             ? "text-gray-800 hover:bg-gray-100"
@@ -201,70 +242,133 @@ export default function EventsPage() {
               </div>
             )}
 
-            <p className="text-sm text-gray-700 mb-4">Showing events for {monthLabel(selectedMonth)}.</p>
+            <div className="mb-4 flex flex-wrap items-center gap-2">
+              {[
+                { value: "current", label: "Current Events" },
+                { value: "future", label: "Future Events" },
+                { value: "past", label: "Past Events" },
+              ].map((option) => (
+                <button
+                  key={option.value}
+                  type="button"
+                  onClick={() => setTimingFilter(option.value)}
+                  className={`rounded border px-3 py-2 text-sm font-semibold ${
+                    timingFilter === option.value
+                      ? "border-blue-800 bg-blue-700 text-white"
+                      : "border-gray-300 text-gray-700 hover:bg-gray-100"
+                  }`}
+                >
+                  {option.label}
+                </button>
+              ))}
+            </div>
 
-            {monthEvents.length === 0 ? (
-              <p className="text-sm text-gray-700">No events found for this month.</p>
+            <p className="text-sm text-gray-700 mb-4 capitalize">
+              {timingFilter === "current"
+                ? `Showing current events for ${monthLabel(selectedMonth)}.`
+                : timingFilter === "future"
+                  ? "Showing all upcoming events."
+                  : "Showing all past events."}
+            </p>
+
+            {displayedEvents.length === 0 ? (
+              <p className="text-sm text-gray-700">
+                {timingFilter === "future"
+                  ? "No upcoming events found."
+                  : timingFilter === "past"
+                    ? "No past events found."
+                    : `No current events found for ${monthLabel(selectedMonth)}.`}
+              </p>
             ) : (
               <div className="space-y-4">
-                {monthEvents.map((eventItem) => (
+                {displayedEvents.map((eventItem) => (
                   <article key={`month-${eventItem.id}`} className="paper-card rounded p-4">
-                    <h3 className="text-lg text-gray-900">{eventItem.title}</h3>
-                    <p className="text-sm text-gray-700 mt-1">
-                      {eventItem.eventEndDate
-                        ? `${formatDate(eventItem.eventDate)} - ${formatDate(eventItem.eventEndDate)}`
-                        : formatDate(eventItem.eventDate)}
-                    </p>
-                    {eventItem.registrationUrl && (
-                      <a
-                        className="inline-flex mt-3 items-center rounded border border-blue-800 bg-blue-700 px-4 py-2 text-sm font-semibold text-white hover:bg-blue-800"
-                        href={eventItem.registrationUrl}
-                        target="_blank"
-                        rel="noreferrer"
-                      >
-                        Open Event
-                      </a>
-                    )}
+                    <div className="flex flex-col gap-4 md:flex-row md:items-start md:justify-between">
+                      <div className="min-w-0 flex-1">
+                        <h3 className="text-lg text-gray-900">{eventItem.title}</h3>
+                        <p className="text-sm text-gray-700 mt-1">
+                          {eventItem.eventEndDate
+                            ? `${formatDate(eventItem.eventDate)} - ${formatDate(eventItem.eventEndDate)}`
+                            : formatDate(eventItem.eventDate)}
+                        </p>
+                        {eventItem.registrationUrl && (
+                          <a
+                            className="inline-flex mt-3 items-center rounded border border-blue-800 bg-blue-700 px-4 py-2 text-sm font-semibold text-white hover:bg-blue-800"
+                            href={eventItem.registrationUrl}
+                            target="_blank"
+                            rel="noreferrer"
+                          >
+                            Open Event
+                          </a>
+                        )}
+                      </div>
+
+                      {eventItem.imageUrl && (
+                        <div className="h-56 w-full overflow-hidden rounded border border-gray-300 bg-white md:w-80 md:shrink-0">
+                          <img
+                            src={eventItem.imageUrl}
+                            alt={eventItem.title}
+                            className="h-full w-full object-contain p-2"
+                            loading="lazy"
+                          />
+                        </div>
+                      )}
+                    </div>
                   </article>
                 ))}
               </div>
             )}
           </div>
 
-          {isCurrentMonthSelected && (
+          {timingFilter === "current" && (
             <>
               <h2 className="text-2xl md:text-3xl text-gray-900">Latest Top 3 Events</h2>
               {latestTop3.map((eventItem) => (
                 <article key={eventItem.id} className="paper-card rounded p-6">
-                  <div className="flex items-start justify-between gap-3 flex-wrap">
-                    <div>
-                      <p className="text-xs uppercase tracking-[0.1em] text-blue-700 font-semibold">
-                        {eventItem.type}
-                        {eventItem.isFeatured ? " • featured" : ""}
+                  <div className="flex flex-col gap-5 md:flex-row md:items-start md:justify-between">
+                    <div className="min-w-0 flex-1">
+                      <div className="flex items-start justify-between gap-3 flex-wrap">
+                        <div>
+                          <p className="text-xs uppercase tracking-[0.1em] text-blue-700 font-semibold">
+                            {eventItem.type}
+                            {eventItem.isFeatured ? " • featured" : ""}
+                          </p>
+                          <h2 className="text-2xl text-gray-900 mt-2">{eventItem.title}</h2>
+                        </div>
+                        <p className="text-sm text-gray-600">
+                          {eventItem.eventEndDate
+                            ? `${formatDate(eventItem.eventDate)} - ${formatDate(eventItem.eventEndDate)}`
+                            : formatDate(eventItem.eventDate)}
+                        </p>
+                      </div>
+                      <p className="mt-4 max-w-3xl text-sm md:text-[15px] leading-7 text-gray-700">
+                        {previewText(eventItem.description)}
                       </p>
-                      <h2 className="text-2xl text-gray-900 mt-2">{eventItem.title}</h2>
+                      <p className="mt-3 text-sm text-gray-700">Speaker: {eventItem.speaker}</p>
+                      <p className="text-sm text-gray-700">Location: {eventItem.location}</p>
+                      {eventItem.registrationUrl && (
+                        <a
+                          className="inline-flex mt-4 items-center rounded border border-blue-800 bg-blue-700 px-4 py-2 text-sm font-semibold text-white hover:bg-blue-800"
+                          href={eventItem.registrationUrl}
+                          target="_blank"
+                          rel="noreferrer"
+                        >
+                          Open Event
+                        </a>
+                      )}
                     </div>
-                    <p className="text-sm text-gray-600">
-                      {eventItem.eventEndDate
-                        ? `${formatDate(eventItem.eventDate)} - ${formatDate(eventItem.eventEndDate)}`
-                        : formatDate(eventItem.eventDate)}
-                    </p>
+
+                    {eventItem.imageUrl && (
+                      <div className="h-56 w-full overflow-hidden rounded border border-gray-300 bg-white md:w-80 md:shrink-0">
+                        <img
+                          src={eventItem.imageUrl}
+                          alt={eventItem.title}
+                          className="h-full w-full object-contain p-2"
+                          loading="lazy"
+                        />
+                      </div>
+                    )}
                   </div>
-                  <p className="mt-4 max-w-3xl text-sm md:text-[15px] leading-7 text-gray-700">
-                    {previewText(eventItem.description)}
-                  </p>
-                  <p className="mt-3 text-sm text-gray-700">Speaker: {eventItem.speaker}</p>
-                  <p className="text-sm text-gray-700">Location: {eventItem.location}</p>
-                  {eventItem.registrationUrl && (
-                    <a
-                      className="inline-flex mt-4 items-center rounded border border-blue-800 bg-blue-700 px-4 py-2 text-sm font-semibold text-white hover:bg-blue-800"
-                      href={eventItem.registrationUrl}
-                      target="_blank"
-                      rel="noreferrer"
-                    >
-                      Open Event
-                    </a>
-                  )}
                 </article>
               ))}
             </>

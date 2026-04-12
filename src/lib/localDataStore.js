@@ -33,6 +33,46 @@ function ensureCollection(state, collectionName) {
   return state[collectionName];
 }
 
+function mergeStoredStateWithSeed(seedState, storedState) {
+  const mergedState = deepClone(seedState);
+
+  Object.keys(storedState || {}).forEach((collectionName) => {
+    const storedValue = storedState[collectionName];
+
+    if (Array.isArray(storedValue) && Array.isArray(seedState[collectionName])) {
+      const storedById = new Map(
+        storedValue
+          .filter((item) => item && item.id)
+          .map((item) => [item.id, item])
+      );
+
+      const mergedRows = seedState[collectionName].map((seedItem) => {
+        const existingItem = storedById.get(seedItem.id);
+        return existingItem ? { ...seedItem, ...existingItem } : seedItem;
+      });
+
+      storedValue.forEach((item) => {
+        if (!item || !item.id) {
+          return;
+        }
+
+        if (!mergedRows.some((row) => row.id === item.id)) {
+          mergedRows.push(item);
+        }
+      });
+
+      mergedState[collectionName] = mergedRows;
+      return;
+    }
+
+    if (!(collectionName in mergedState)) {
+      mergedState[collectionName] = storedValue;
+    }
+  });
+
+  return mergedState;
+}
+
 function loadClientState() {
   if (!isBrowser()) {
     return serverState;
@@ -46,7 +86,7 @@ function loadClientState() {
 
   try {
     const raw = window.localStorage.getItem(STORAGE_KEY);
-    clientState = raw ? JSON.parse(raw) : fallback;
+    clientState = raw ? mergeStoredStateWithSeed(fallback, JSON.parse(raw)) : fallback;
   } catch {
     clientState = fallback;
   }

@@ -129,6 +129,16 @@ export default function ProjectDetailPage() {
   } = useAsyncData(fetchInterns);
 
   const interns = useMemo(() => internData || [], [internData]);
+  const isGmaProject = useMemo(() => {
+    if (!project) {
+      return false;
+    }
+
+    const id = String(project.id || "").toLowerCase();
+    const slug = String(project.slug || "").toLowerCase();
+    return id === "gma-project" || slug === "gma-project";
+  }, [project]);
+
   const projectTitleById = useMemo(() => {
     const map = new Map();
     (allProjects || []).forEach((item) => {
@@ -183,11 +193,13 @@ export default function ProjectDetailPage() {
         </div>
       </section>
 
-      <section className="section-shell grid gap-6">
-        {(project.sections || []).map((section) => (
-          <SectionBlock key={section.title} section={section} />
-        ))}
-      </section>
+      {!isGmaProject && (
+        <section className="section-shell grid gap-6">
+          {(project.sections || []).map((section) => (
+            <SectionBlock key={section.title} section={section} />
+          ))}
+        </section>
+      )}
 
       <section className="section-shell mt-10">
         <div className="flex items-end justify-between gap-4 flex-wrap mb-6">

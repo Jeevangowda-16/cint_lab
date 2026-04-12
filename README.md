@@ -1,6 +1,6 @@
 # CINT Lab Website (Local Data Mode)
 
-This project is now fully local-data-driven and runs offline without Firebase.
+This project is now local-data-driven for content and admin CRUD, with server-side email delivery for internship applications.
 
 ## What changed
 
@@ -11,6 +11,7 @@ This project is now fully local-data-driven and runs offline without Firebase.
   - admin routes are available locally without login
 - Firebase SDK usage removed from runtime app code (`src/`)
 - Service layer kept intact, but now reads/writes local data through `src/lib/localDataStore.js`
+- Internship application form now sends submissions to Gmail via a Next.js API route
 
 ## Data source
 
@@ -43,6 +44,24 @@ npm run dev
 Open: `http://localhost:3000`
 
 No `.env.local` is required.
+
+## Internship application email setup
+
+The Apply for Internship page sends submissions to Gmail.
+
+Create `.env.local` with:
+
+```bash
+GMAIL_USER=sender-account@gmail.com
+GMAIL_APP_PASSWORD=your-16-char-app-password
+GMAIL_TO=jeevangowda1622@gmail.com
+```
+
+Notes:
+
+- `GMAIL_USER` must be a Gmail account with 2-Step Verification enabled.
+- `GMAIL_APP_PASSWORD` must be a Gmail App Password (not your normal Gmail password).
+- `GMAIL_TO` is optional; if omitted, the app defaults to `jeevangowda1622@gmail.com`.
 
 ## Notes
 

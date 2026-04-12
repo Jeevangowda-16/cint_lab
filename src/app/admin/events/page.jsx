@@ -13,6 +13,7 @@ const initialForm = {
   eventDate: "",
   eventEndDate: "",
   registrationUrl: "",
+  imageUrl: "",
   isFeatured: false,
 };
 
@@ -59,6 +60,7 @@ export default function AdminEventsPage() {
       eventDate: eventItem.eventDate ? new Date(eventItem.eventDate).toISOString().slice(0, 16) : "",
       eventEndDate: eventItem.eventEndDate ? new Date(eventItem.eventEndDate).toISOString().slice(0, 16) : "",
       registrationUrl: eventItem.registrationUrl || "",
+      imageUrl: eventItem.imageUrl || "",
       isFeatured: Boolean(eventItem.isFeatured),
     });
   };
@@ -91,6 +93,7 @@ export default function AdminEventsPage() {
             <input name="eventEndDate" type="datetime-local" value={form.eventEndDate} onChange={onChange} className="bg-white border border-gray-300 p-3 rounded" />
             <input name="registrationUrl" value={form.registrationUrl} onChange={onChange} placeholder="Event URL" className="bg-white border border-gray-300 p-3 rounded" />
           </div>
+          <input name="imageUrl" value={form.imageUrl} onChange={onChange} placeholder="Photo URL" className="w-full bg-white border border-gray-300 p-3 rounded" />
           <label className="text-sm text-gray-700 flex items-center gap-2"><input type="checkbox" name="isFeatured" checked={form.isFeatured} onChange={onChange} />Featured</label>
           <div className="flex gap-3">
             <button type="submit" className="bg-blue-700 text-white px-6 py-2 rounded border border-blue-800 font-semibold hover:bg-blue-800">{editingId ? "Update" : "Add"} Event</button>
@@ -104,8 +107,38 @@ export default function AdminEventsPage() {
         <div className="space-y-4">
           {events.map((eventItem) => (
             <article key={eventItem.id} className="bg-white border border-gray-300 rounded p-4">
+              {eventItem.imageUrl && (
+                <div className="mb-4 h-40 w-full overflow-hidden rounded border border-gray-300 bg-white md:w-72">
+                  <img
+                    src={eventItem.imageUrl}
+                    alt={eventItem.title}
+                    className="h-full w-full object-contain p-2"
+                    loading="lazy"
+                  />
+                </div>
+              )}
               <h2 className="text-xl font-semibold text-gray-900">{eventItem.title}</h2>
-              <p className="text-sm text-gray-700">{eventItem.type} • {new Date(eventItem.eventDate).toLocaleString()}</p>
+              <p className="text-sm text-gray-700">
+                {eventItem.type}
+                {eventItem.isFeatured ? " • featured" : ""}
+                {" • "}
+                {eventItem.eventEndDate
+                  ? `${new Date(eventItem.eventDate).toLocaleString()} - ${new Date(eventItem.eventEndDate).toLocaleString()}`
+                  : new Date(eventItem.eventDate).toLocaleString()}
+              </p>
+              {eventItem.description && <p className="mt-2 text-sm text-gray-700">{eventItem.description}</p>}
+              {eventItem.speaker && <p className="mt-2 text-sm text-gray-700">Speaker: {eventItem.speaker}</p>}
+              {eventItem.location && <p className="text-sm text-gray-700">Location: {eventItem.location}</p>}
+              {eventItem.registrationUrl && (
+                <a
+                  href={eventItem.registrationUrl}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="mt-3 inline-flex items-center rounded border border-blue-800 bg-blue-700 px-4 py-2 text-sm font-semibold text-white hover:bg-blue-800"
+                >
+                  Open Event
+                </a>
+              )}
               <div className="mt-3 flex gap-3">
                 <button type="button" onClick={() => startEdit(eventItem)} className="text-blue-700 font-semibold hover:text-blue-800">Edit</button>
                 <button type="button" onClick={() => remove(eventItem.id)} className="text-gray-700 font-semibold hover:text-gray-900">Delete</button>

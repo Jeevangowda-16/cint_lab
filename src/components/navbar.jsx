@@ -4,7 +4,7 @@ import Link from "next/link";
 import { useAdminAuth } from "@/hooks/useAdminAuth";
 
 export default function Navbar() {
-    const { isAuthenticated, isAdmin } = useAdminAuth();
+    const { isAuthenticated } = useAdminAuth();
 
     return (
         <nav className="sticky top-0 z-50 border-b border-gray-300 bg-white">
@@ -24,7 +24,6 @@ export default function Navbar() {
                     <Link href="/publications" className="px-3 py-1.5 rounded border border-transparent hover:bg-gray-100 hover:text-blue-800">Publications</Link>
                     <Link href="/apply" className="px-2.5 py-1.5 rounded border border-transparent whitespace-nowrap hover:bg-gray-100 hover:text-blue-800">Apply for Internship</Link>
                     <Link href="/contact" className="px-3 py-1.5 rounded border border-transparent hover:bg-gray-100 hover:text-blue-800">Contact</Link>
-                    {isAdmin && <Link href="/admin" className="px-3 py-1.5 rounded border border-transparent hover:bg-gray-100 hover:text-blue-800">Admin</Link>}
                     {!isAuthenticated && <Link href="/login" className="px-3 py-1.5 rounded border border-transparent hover:bg-gray-100 hover:text-blue-800">Login</Link>}
                 </div>
             </div>

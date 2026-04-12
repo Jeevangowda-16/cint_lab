@@ -7,8 +7,6 @@ const adminSections = [
   { href: "/admin/projects", label: "Manage Projects", note: "Create, update, and archive projects." },
   { href: "/admin/people", label: "Manage People", note: "Update team members and intern profiles." },
   { href: "/admin/events", label: "Manage Events", note: "Publish seminars and latest events." },
-  { href: "/admin/applications", label: "Review Applications", note: "Screen internship applications." },
-  { href: "/admin/contacts", label: "Review Contacts", note: "Handle contact form submissions." },
 ];
 
 export default function AdminHomePage() {

@@ -1,8 +1,7 @@
 "use client";
 
-import { useCallback, useMemo, useState } from "react";
+import { useCallback, useEffect, useMemo, useState } from "react";
 import { useAsyncData } from "@/hooks/useAsyncData";
-import { submitApplication } from "@/services/applicationService";
 import { getFormConfig } from "@/services/formConfigService";
 
 const initialApplicationForm = {
@@ -20,12 +19,25 @@ export default function ApplyPage() {
   const [form, setForm] = useState(initialApplicationForm);
   const [submitting, setSubmitting] = useState(false);
   const [feedback, setFeedback] = useState("");
+  const [successMessage, setSuccessMessage] = useState("");
   const fetchFormConfig = useCallback(() => getFormConfig(), []);
   const { data: formConfig, loading: optionsLoading } = useAsyncData(fetchFormConfig);
   const internshipInterestOptions = useMemo(
     () => formConfig?.internshipInterestOptions || [],
     [formConfig]
   );
+
+  useEffect(() => {
+    if (!successMessage) {
+      return undefined;
+    }
+
+    const timer = window.setTimeout(() => {
+      setSuccessMessage("");
+    }, 2800);
+
+    return () => window.clearTimeout(timer);
+  }, [successMessage]);
 
   const onInputChange = (event) => {
     const { name, value } = event.target;
@@ -46,6 +58,7 @@ export default function ApplyPage() {
   const onSubmit = async (event) => {
     event.preventDefault();
     setFeedback("");
+    setSuccessMessage("");
 
     if (!form.fullName || !form.email || !form.institution || !form.statement) {
       setFeedback("Please fill all required fields before submitting.");
@@ -55,8 +68,21 @@ export default function ApplyPage() {
     setSubmitting(true);
 
     try {
-      const result = await submitApplication(form);
-      setFeedback(`Application submitted successfully. Reference: ${result.id}`);
+      const response = await fetch("/api/applications/submit", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(form),
+      });
+
+      const result = await response.json();
+
+      if (!response.ok) {
+        throw new Error(result?.error || "Submission failed.");
+      }
+
+      setSuccessMessage("Application submitted successfully.");
       setForm(initialApplicationForm);
     } catch (submitError) {
       setFeedback(submitError instanceof Error ? submitError.message : "Submission failed.");
@@ -67,6 +93,16 @@ export default function ApplyPage() {
 
   return (
     <main className="page-shell text-gray-800">
+      {successMessage && (
+        <div className="success-overlay" role="status" aria-live="polite">
+          <div className="success-card">
+            <div className="success-icon">✓</div>
+            <h2 className="success-title">Application Submitted Successfully</h2>
+            <p className="success-text">Thank you for submitting your application.</p>
+          </div>
+        </div>
+      )}
+
       <section className="section-shell max-w-4xl mb-10 relative overflow-hidden rounded glass-card p-6 md:p-10 reveal-up">
         <div className="absolute -top-14 -right-10 h-48 w-48 hero-glow-gold" />
         <div className="relative">

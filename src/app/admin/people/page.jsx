@@ -10,10 +10,12 @@ const initialInternForm = {
   name: "",
   program: "",
   cohort: "",
-  mentorId: "",
-  focusArea: "",
   projectId: "",
-  status: "active",
+  college: "",
+  email: "",
+  phone: "",
+  github: "",
+  linkedin: "",
 };
 
 const initialTeamForm = {
@@ -21,6 +23,7 @@ const initialTeamForm = {
   designation: "",
   email: "",
   profileUrl: "",
+  imageUrl: "",
 };
 
 function deriveRoleCategory(designation) {
@@ -76,6 +79,7 @@ export default function AdminPeoplePage() {
       designation: teamForm.designation,
       email: teamForm.email,
       profileUrl: teamForm.profileUrl,
+      imageUrl: teamForm.imageUrl,
       roleCategory: deriveRoleCategory(teamForm.designation),
       active: true,
     };
@@ -100,6 +104,7 @@ export default function AdminPeoplePage() {
       designation: member.designation || "",
       email: member.email || "",
       profileUrl: member.profileUrl || "",
+      imageUrl: member.imageUrl || "",
     });
     setActiveTab("team");
   };
@@ -119,6 +124,7 @@ export default function AdminPeoplePage() {
     const payload = {
       ...internForm,
       project: internForm.program,
+      status: "active",
     };
 
     if (editingInternId) {
@@ -137,10 +143,12 @@ export default function AdminPeoplePage() {
       name: intern.name || "",
       program: intern.program || intern.project || "",
       cohort: intern.cohort || "",
-      mentorId: intern.mentorId || "",
-      focusArea: intern.focusArea || "",
       projectId: intern.projectId || "",
-      status: intern.status || "active",
+      college: intern.college || "",
+      email: intern.email || "",
+      phone: intern.phone || "",
+      github: intern.github || "",
+      linkedin: intern.linkedin || "",
     });
     setActiveTab("interns");
   };
@@ -187,6 +195,13 @@ export default function AdminPeoplePage() {
                 <input name="email" value={teamForm.email} onChange={onTeamChange} placeholder="Email" className="bg-white border border-gray-300 p-3 rounded" />
                 <input name="profileUrl" value={teamForm.profileUrl} onChange={onTeamChange} placeholder="Profile URL" className="bg-white border border-gray-300 p-3 rounded" />
               </div>
+              <input
+                name="imageUrl"
+                value={teamForm.imageUrl}
+                onChange={onTeamChange}
+                placeholder="Photo URL"
+                className="w-full bg-white border border-gray-300 p-3 rounded"
+              />
               <div className="flex gap-3">
                 <button type="submit" className="bg-blue-700 text-white px-6 py-2 rounded border border-blue-800 font-semibold hover:bg-blue-800">{editingTeamId ? "Update" : "Add"} Member</button>
                 {editingTeamId && <button type="button" onClick={() => { setEditingTeamId(""); setTeamForm(initialTeamForm); }} className="bg-white border border-gray-300 text-gray-900 px-6 py-2 rounded font-semibold hover:bg-gray-100">Cancel</button>}
@@ -200,6 +215,13 @@ export default function AdminPeoplePage() {
             <div className="space-y-4">
               {members.map((member) => (
                 <article key={member.id} className="bg-white border border-gray-300 rounded p-4">
+                  {member.imageUrl && (
+                    <img
+                      src={member.imageUrl}
+                      alt={member.name}
+                      className="mb-3 h-24 w-24 rounded border border-gray-300 object-cover"
+                    />
+                  )}
                   <h2 className="text-xl font-semibold text-gray-900">{member.name}</h2>
                   <p className="text-sm text-gray-700">{member.designation}</p>
                   {member.email && <p className="text-sm text-gray-700">{member.email}</p>}
@@ -223,12 +245,16 @@ export default function AdminPeoplePage() {
               </div>
               <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
                 <input name="cohort" value={internForm.cohort} onChange={onInternChange} placeholder="Cohort" className="bg-white border border-gray-300 p-3 rounded" />
-                <input name="mentorId" value={internForm.mentorId} onChange={onInternChange} placeholder="Mentor ID" className="bg-white border border-gray-300 p-3 rounded" />
-                <select name="status" value={internForm.status} onChange={onInternChange} className="bg-white border border-gray-300 p-3 rounded">
-                  <option value="active">active</option>
-                  <option value="completed">completed</option>
-                </select>
               </div>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <input name="college" value={internForm.college} onChange={onInternChange} placeholder="College" className="bg-white border border-gray-300 p-3 rounded" />
+                <input name="email" value={internForm.email} onChange={onInternChange} placeholder="Email" className="bg-white border border-gray-300 p-3 rounded" />
+              </div>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <input name="phone" value={internForm.phone} onChange={onInternChange} placeholder="Phone" className="bg-white border border-gray-300 p-3 rounded" />
+                <input name="github" value={internForm.github} onChange={onInternChange} placeholder="GitHub URL" className="bg-white border border-gray-300 p-3 rounded" />
+              </div>
+              <input name="linkedin" value={internForm.linkedin} onChange={onInternChange} placeholder="LinkedIn URL" className="w-full bg-white border border-gray-300 p-3 rounded" />
               <select name="projectId" value={internForm.projectId} onChange={onInternChange} className="w-full bg-white border border-gray-300 p-3 rounded">
                 <option value="">Select project</option>
                 {projects.map((project) => (
@@ -237,7 +263,6 @@ export default function AdminPeoplePage() {
                   </option>
                 ))}
               </select>
-              <textarea name="focusArea" value={internForm.focusArea} onChange={onInternChange} placeholder="Focus area" className="w-full bg-white border border-gray-300 p-3 rounded" />
               <div className="flex gap-3">
                 <button type="submit" className="bg-blue-700 text-white px-6 py-2 rounded border border-blue-800 font-semibold hover:bg-blue-800">{editingInternId ? "Update" : "Add"} Intern</button>
                 {editingInternId && <button type="button" onClick={() => { setEditingInternId(""); setInternForm(initialInternForm); }} className="bg-white border border-gray-300 text-gray-900 px-6 py-2 rounded font-semibold hover:bg-gray-100">Cancel</button>}
@@ -252,6 +277,11 @@ export default function AdminPeoplePage() {
                 <article key={intern.id} className="bg-white border border-gray-300 rounded p-4">
                   <h2 className="text-xl font-semibold text-gray-900">{intern.name}</h2>
                   <p className="text-sm text-gray-700">{intern.program} • {intern.cohort}</p>
+                  {intern.college && <p className="text-sm text-gray-700">{intern.college}</p>}
+                  {intern.email && <p className="text-sm text-gray-700">{intern.email}</p>}
+                  {intern.phone && <p className="text-sm text-gray-700">{intern.phone}</p>}
+                  {intern.github && <p className="text-sm text-gray-700">{intern.github}</p>}
+                  {intern.linkedin && <p className="text-sm text-gray-700">{intern.linkedin}</p>}
                   <div className="mt-3 flex gap-3">
                     <button type="button" onClick={() => startEditIntern(intern)} className="text-blue-700 font-semibold hover:text-blue-800">Edit</button>
                     <button type="button" onClick={() => removeIntern(intern.id)} className="text-gray-700 font-semibold hover:text-gray-900">Delete</button>

@@ -76,34 +76,49 @@ export default function HomePage() {
                 <div className="mt-6 space-y-4">
                   {latestEvents.map((eventItem) => (
                     <article key={eventItem.id} className="rounded border bg-gray-50 p-4 md:p-6 border border-gray-300">
-                      <div className="flex items-start justify-between gap-3 flex-wrap">
-                        <div>
-                          <p className="text-xs uppercase tracking-[0.15em] text-gray-600">{eventItem.type}</p>
-                          <h3 className="mt-2 text-xl md:text-2xl font-semibold text-gray-900 leading-tight">{eventItem.title}</h3>
+                      <div className="flex flex-col gap-5 md:flex-row md:items-start md:justify-between">
+                        <div className="min-w-0 flex-1">
+                          <div className="flex items-start justify-between gap-3 flex-wrap">
+                            <div>
+                              <p className="text-xs uppercase tracking-[0.15em] text-gray-600">{eventItem.type}</p>
+                              <h3 className="mt-2 text-xl md:text-2xl font-semibold text-gray-900 leading-tight">{eventItem.title}</h3>
+                            </div>
+                            <p className="text-sm text-gray-600">
+                              {eventItem.eventEndDate
+                                ? `${formatDate(eventItem.eventDate)} - ${formatDate(eventItem.eventEndDate)}`
+                                : formatDate(eventItem.eventDate)}
+                            </p>
+                          </div>
+
+                          <p className="mt-4 max-w-3xl text-sm md:text-[15px] leading-7 text-gray-700">
+                            {previewText(eventItem.description)}
+                          </p>
+
+                          <div className="mt-5 flex flex-wrap items-center gap-3 text-sm text-gray-700">
+                            <p>Speaker: {eventItem.speaker || "TBA"}</p>
+                            <p>Location: {eventItem.location || "IISc Aerospace Engineering"}</p>
+                            {eventItem.registrationUrl && (
+                              <a
+                                href={eventItem.registrationUrl}
+                                target="_blank"
+                                rel="noreferrer"
+                                className="inline-flex items-center rounded border border-blue-800 bg-blue-700 px-4 py-2 text-sm font-semibold text-white hover:bg-blue-800"
+                              >
+                                Open Event
+                              </a>
+                            )}
+                          </div>
                         </div>
-                        <p className="text-sm text-gray-600">
-                          {eventItem.eventEndDate
-                            ? `${formatDate(eventItem.eventDate)} - ${formatDate(eventItem.eventEndDate)}`
-                            : formatDate(eventItem.eventDate)}
-                        </p>
-                      </div>
 
-                      <p className="mt-4 max-w-3xl text-sm md:text-[15px] leading-7 text-gray-700">
-                        {previewText(eventItem.description)}
-                      </p>
-
-                      <div className="mt-5 flex flex-wrap items-center gap-3 text-sm text-gray-700">
-                        <p>Speaker: {eventItem.speaker || "TBA"}</p>
-                        <p>Location: {eventItem.location || "IISc Aerospace Engineering"}</p>
-                        {eventItem.registrationUrl && (
-                          <a
-                            href={eventItem.registrationUrl}
-                            target="_blank"
-                            rel="noreferrer"
-                            className="inline-flex items-center rounded border border-blue-800 bg-blue-700 px-4 py-2 text-sm font-semibold text-white hover:bg-blue-800"
-                          >
-                            Open Event
-                          </a>
+                        {eventItem.imageUrl && (
+                          <div className="h-56 w-full overflow-hidden rounded border border-gray-300 bg-white md:w-80 md:shrink-0">
+                            <img
+                              src={eventItem.imageUrl}
+                              alt={eventItem.title}
+                              className="h-full w-full object-contain p-2"
+                              loading="lazy"
+                            />
+                          </div>
                         )}
                       </div>
                     </article>

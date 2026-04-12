@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import { useCallback, useMemo, useState } from "react";
 import { useAsyncData } from "@/hooks/useAsyncData";
 import { getInterns } from "@/services/internService";
@@ -12,6 +13,15 @@ function toAbsoluteUrl(value) {
   if (!value) return "";
   if (value.startsWith("http://") || value.startsWith("https://")) return value;
   return `https://${value}`;
+}
+
+function getInitials(name) {
+  return (name || "")
+    .split(/\s+/)
+    .filter(Boolean)
+    .slice(0, 2)
+    .map((part) => part[0]?.toUpperCase())
+    .join("");
 }
 
 export default function PeopleDirectory() {
@@ -161,15 +171,30 @@ export default function PeopleDirectory() {
         {teamError && <p className="text-red-600">{teamError}</p>}
 
         {!teamLoading && !teamError && (
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 items-stretch">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 items-stretch">
             {visibleTeamMembers.map((member) => (
               <article
                 key={member.id}
-                className="paper-card p-6 rounded h-full flex flex-col"
+                className="paper-card p-4 rounded-xl h-full flex flex-col overflow-hidden"
               >
-                <h3 className="text-2xl text-gray-900">{member.name}</h3>
-                <p className="text-sm font-semibold text-gray-700 mt-2">Designation: {member.designation || "Faculty"}</p>
-                <div className="mt-auto pt-6 space-y-2 text-sm">
+                <div className="relative mb-4 overflow-hidden rounded-lg border border-gray-200 bg-gray-100 aspect-[1/1.05]">
+                  {member.imageUrl ? (
+                    <Image
+                      src={member.imageUrl}
+                      alt={`${member.name} portrait`}
+                      fill
+                      sizes="(max-width: 768px) 100vw, 50vw"
+                      className="object-cover object-center"
+                    />
+                  ) : (
+                    <div className="flex h-full w-full items-center justify-center bg-gradient-to-br from-blue-100 to-gray-100 text-2xl font-semibold text-blue-900">
+                      {getInitials(member.name)}
+                    </div>
+                  )}
+                </div>
+                <h3 className="text-xl text-gray-900 leading-tight">{member.name}</h3>
+                <p className="text-xs font-semibold uppercase tracking-[0.08em] text-gray-600 mt-2">{member.designation || "Faculty"}</p>
+                <div className="mt-auto pt-4 space-y-2 text-sm">
                   {member.email ? (
                     <a className="block text-blue-700 font-semibold hover:underline" href={`mailto:${member.email}`}>
                       {member.email}
@@ -206,19 +231,13 @@ export default function PeopleDirectory() {
         {!internLoading && !internError && (
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             {interns.map((intern) => (
-              <article key={intern.id} className="paper-card rounded p-6">
-                <div className="flex items-center justify-between gap-3">
-                  <span className="chip">{intern.status || "active"}</span>
-                  <p className="text-xs uppercase tracking-[0.1em] text-gray-600">{intern.cohort ? `Cohort ${intern.cohort}` : "Intern"}</p>
-                </div>
-                <h3 className="text-2xl text-gray-900 mt-3">{intern.name}</h3>
-                <p className="text-sm font-semibold text-blue-700 mt-1">
-                  {projectTitleById.get(String(intern.projectId || "")) || intern.program || intern.project}
-                </p>
-                {(intern.college || intern.focusArea) && (
-                  <p className="text-sm text-gray-700 mt-3 leading-relaxed">{intern.college || `Focus: ${intern.focusArea}`}</p>
-                )}
-                {(intern.email || intern.phone || intern.github || intern.linkedin) && (
+                <article key={intern.id} className="paper-card rounded p-6">
+                  <h3 className="text-2xl text-gray-900">{intern.name}</h3>
+                  <p className="text-sm font-semibold text-blue-700 mt-1">
+                    {projectTitleById.get(String(intern.projectId || "")) || intern.program || intern.project}
+                  </p>
+                  {intern.college && <p className="text-sm text-gray-700 mt-3 leading-relaxed">{intern.college}</p>}
+
                   <div className="mt-4 space-y-2 text-sm">
                     {intern.email && (
                       <a className="block text-blue-700 font-semibold hover:underline" href={`mailto:${intern.email}`}>
@@ -237,10 +256,6 @@ export default function PeopleDirectory() {
                       </a>
                     )}
                   </div>
-                )}
-                {!intern.email && !intern.phone && !intern.github && !intern.linkedin && (
-                  <p className="text-sm text-gray-600 mt-3">Mentor ID: {intern.mentorId || "TBD"}</p>
-                )}
               </article>
             ))}
           </div>

@@ -422,30 +422,6 @@
         "streaming"
       ],
       "updatedAt": "2026-03-28T11:10:00.000Z"
-    },
-    {
-      "id": "vedio-generation-platform",
-      "summary": "A private video generation platform handled under Dhruv.",
-      "createdAt": "2026-04-07T15:07:04.982Z",
-      "internRoles": "Project access is restricted and not exposed publicly.",
-      "sortOrder": 6,
-      "description": "This private project is tracked separately and is handled under Dhruv. Public-facing details are intentionally minimal.",
-      "title": "Vedio Generation Platform",
-      "sections": [
-        {
-          "title": "Project Scope",
-          "paragraphs": [
-            "Private project handled under Dhruv."
-          ]
-        }
-      ],
-      "slug": "vedio-generation-platform",
-      "status": "review",
-      "tags": [
-        "Private",
-        "Video Generation"
-      ],
-      "updatedAt": "2026-04-07T15:07:04.982Z"
     }
   ],
   "team": [
@@ -473,7 +449,8 @@
       "name": "Aloke Kumar",
       "designation": "Associate Professor",
       "email": "alokekumar@iisc.ac.in",
-      "updatedAt": "2026-04-07T17:37:14.272Z"
+      "updatedAt": "2026-04-07T17:37:14.272Z",
+      "imageUrl": "https://aero.iisc.ac.in/wp-content/uploads/elementor/thumbs/Aloke_Kumar-rjdji8l0v3wdxzbdnaa077dakpp0g7l1of7ij3kkgw.jpg"
     },
     {
       "id": "anagha-madhusudanan",
@@ -504,7 +481,8 @@
       "name": "Anagha Madhusudanan",
       "designation": "Inspire Faculty",
       "email": "anagham@iisc.ac.in",
-      "updatedAt": "2026-04-07T17:37:14.394Z"
+      "updatedAt": "2026-04-07T17:37:14.394Z",
+      "imageUrl": "https://aero.iisc.ac.in/wp-content/uploads/elementor/thumbs/Anagha_Madhusudanan-qtlq8tqnnss2q0d7b527lm6hbg2uolnbs7h5fbdbq8.jpg"
     },
     {
       "id": "aravind-balan",
@@ -533,7 +511,8 @@
       "name": "Aravind Balan",
       "designation": "Assistant Professor",
       "email": "aravindbalan@iisc.ac.in",
-      "updatedAt": "2026-04-07T17:37:14.534Z"
+      "updatedAt": "2026-04-07T17:37:14.534Z",
+      "imageUrl": "https://aero.iisc.ac.in/wp-content/uploads/elementor/thumbs/Aravind-Balan-2-qtlq8ruza4pi2sfxm48ygmnk4oc497fv3y66grg42o.jpg"
     },
     {
       "id": "ashwini-ratnoo",
@@ -561,7 +540,8 @@
       "name": "Ashwini Ratnoo",
       "designation": "Associate Professor",
       "email": "ratnoo@iisc.ac.in",
-      "updatedAt": "2026-04-07T17:37:14.653Z"
+      "updatedAt": "2026-04-07T17:37:14.653Z",
+      "imageUrl": "https://aero.iisc.ac.in/wp-content/uploads/elementor/thumbs/Ashwini-Ratnoo-qtlqevt7pd2ljjkfxrbno35f4u80adp1y6tsridzmo.jpg"
     },
     {
       "id": "charlie-oommen",
@@ -587,7 +567,8 @@
       "name": "Charlie Oommen",
       "designation": "Faculty",
       "email": "coommen@iisc.ac.in",
-      "updatedAt": "2026-04-07T17:37:14.774Z"
+      "updatedAt": "2026-04-07T17:37:14.774Z",
+      "imageUrl": "https://aero.iisc.ac.in/wp-content/uploads/elementor/thumbs/Charlie-Oommen-qtlqe2o7thypjmqrnwq80si4pw7mnrhdi6lqvxl6zk.jpg"
     },
     {
       "id": "d-roy-mahapatra",
@@ -617,7 +598,8 @@
       "name": "D. Roy Mahapatra",
       "designation": "Chair Professor",
       "email": "roymahapatra@iisc.ac.in",
-      "updatedAt": "2026-04-07T17:37:15.134Z"
+      "updatedAt": "2026-04-07T17:37:15.134Z",
+      "imageUrl": "https://aero.iisc.ac.in/wp-content/uploads/elementor/thumbs/Roy-qxl0mlx75wir425zbra7yf1svjmmrkuq2p06f5hhgg.jpg"
     },
     {
       "id": "d-sivakumar",
@@ -649,7 +631,8 @@
       "name": "D. Sivakumar",
       "designation": "Associate Professor",
       "email": "dskumar@iisc.ac.in",
-      "updatedAt": "2026-04-07T17:37:15.364Z"
+      "updatedAt": "2026-04-07T17:37:15.364Z",
+      "imageUrl": "https://aero.iisc.ac.in/wp-content/uploads/elementor/thumbs/D-Sivakumar-qtlqdx16ohqzlyyykuagltxd5kzfdkuzheou09tk0w.jpg"
     },
     {
       "id": "debasish-ghose",
@@ -678,7 +661,8 @@
       "name": "Debasish Ghose",
       "designation": "Associate Professor",
       "email": "dghose@iisc.ac.in",
-      "updatedAt": "2026-04-07T17:37:14.890Z"
+      "updatedAt": "2026-04-07T17:37:14.890Z",
+      "imageUrl": "https://aero.iisc.ac.in/wp-content/uploads/elementor/thumbs/Debasish-Ghose-e1743488260428-r3pf1c664ieo1vz3ro4dhh9oyuoug4t3r51x7q3esg.jpg"
     },
     {
       "id": "dineshkumar-harursampath",
@@ -706,7 +690,8 @@
       "name": "Dineshkumar Harursampath",
       "designation": "Associate Professor",
       "email": "dineshkumar@iisc.ac.in",
-      "updatedAt": "2026-04-07T17:37:15.013Z"
+      "updatedAt": "2026-04-07T17:37:15.013Z",
+      "imageUrl": "https://aero.iisc.ac.in/wp-content/uploads/elementor/thumbs/dinesh-qtlqbyjafx2hf7td0htfwtpslomwca347prf0iq2zk.jpg"
     },
     {
       "id": "duvvuri-subrahmanyam",
@@ -735,7 +720,8 @@
       "name": "Duvvuri Subrahmanyam",
       "designation": "Associate Professor",
       "email": "subrahmanyam@iisc.ac.in",
-      "updatedAt": "2026-04-07T17:37:15.476Z"
+      "updatedAt": "2026-04-07T17:37:15.476Z",
+      "imageUrl": "https://aero.iisc.ac.in/wp-content/uploads/elementor/thumbs/Duvvuri_Subrahmanyam-qvrxmx5b06w7d9w0l07a09hbrynba4dm0edqqcn6ao.jpg"
     },
     {
       "id": "g-narayana-naik",
@@ -768,7 +754,8 @@
       "name": "G. Narayana Naik",
       "designation": "Faculty",
       "email": "gnn@iisc.ac.in",
-      "updatedAt": "2026-04-07T17:37:15.613Z"
+      "updatedAt": "2026-04-07T17:37:15.613Z",
+      "imageUrl": "https://aero.iisc.ac.in/wp-content/uploads/elementor/thumbs/G-Narayana-Naik-qtlqeuvdij1b7xlt38x13ldyjgcn2olbm26ba8fdsw.jpg"
     },
     {
       "id": "gopalan-jagadeesh",
@@ -794,7 +781,8 @@
       "name": "Gopalan Jagadeesh",
       "designation": "Chair Professor",
       "email": "jaggie@iisc.ac.in",
-      "updatedAt": "2026-04-07T17:37:15.728Z"
+      "updatedAt": "2026-04-07T17:37:15.728Z",
+      "imageUrl": "https://aero.iisc.ac.in/wp-content/uploads/elementor/thumbs/Gopalan-Jagadeesh-e1772112357133-rjq3hjjn86374wc6nn9po747fii7ttja3whet1y200.jpg"
     },
     {
       "id": "irfan-mulla",
@@ -821,7 +809,8 @@
       "name": "Irfan Mulla",
       "designation": "Assistant Professor",
       "email": "irfanmulla@iisc.ac.in",
-      "updatedAt": "2026-04-07T17:37:15.833Z"
+      "updatedAt": "2026-04-07T17:37:15.833Z",
+      "imageUrl": "https://aero.iisc.ac.in/wp-content/uploads/elementor/thumbs/irfan-qtlqbwnm28zwrzw3bh06ru6veww5wvvnjggg1ysvc0.jpg"
     },
     {
       "id": "joseph-mathew",
@@ -851,7 +840,8 @@
       "name": "Joseph Mathew",
       "designation": "Assistant Professor",
       "email": "joseph@iisc.ac.in",
-      "updatedAt": "2026-04-07T17:37:15.947Z"
+      "updatedAt": "2026-04-07T17:37:15.947Z",
+      "imageUrl": "https://aero.iisc.ac.in/wp-content/uploads/elementor/thumbs/joseph-e1700810543447-qtlqbsw9awurhk1jxfdohv511dep23gq6xui4uyg0w.jpg"
     },
     {
       "id": "k-r-sreenivasan",
@@ -874,7 +864,8 @@
       "name": "K. R. Sreenivasan",
       "designation": "Professor",
       "email": "",
-      "updatedAt": "2026-04-07T17:37:16.515Z"
+      "updatedAt": "2026-04-07T17:37:16.515Z",
+      "imageUrl": "https://aero.iisc.ac.in/wp-content/uploads/elementor/thumbs/alumnus_k_sreenivasan-qtlqaoh751bfmbo9hfwq0nc7hsxwv409pdsmhymdgg.png"
     },
     {
       "id": "kartik-venkatraman",
@@ -900,7 +891,8 @@
       "name": "Kartik Venkatraman",
       "designation": "Associate Professor",
       "email": "kartik@iisc.ac.in",
-      "updatedAt": "2026-04-07T17:37:16.054Z"
+      "updatedAt": "2026-04-07T17:37:16.054Z",
+      "imageUrl": "https://aero.iisc.ac.in/wp-content/uploads/elementor/thumbs/Kartik-Venkatraman-qtlqexow31566rhpms4wt2ocblyqprwimg4rq2b7a8.jpg"
     },
     {
       "id": "m-ramachandra-bhat",
@@ -928,7 +920,8 @@
       "name": "M. Ramachandra Bhat",
       "designation": "Faculty",
       "email": "mrb@iisc.ac.in",
-      "updatedAt": "2026-04-07T17:37:16.145Z"
+      "updatedAt": "2026-04-07T17:37:16.145Z",
+      "imageUrl": "https://aero.iisc.ac.in/wp-content/uploads/elementor/thumbs/mr-bhat-qtlqe7dero555ojxwgrcv9bfotkgq9016tv6abe84g.jpg"
     },
     {
       "id": "n-balakrishnan",
@@ -955,7 +948,8 @@
       "name": "N. Balakrishnan",
       "designation": "Professor",
       "email": "nbalak@iisc.ac.in",
-      "updatedAt": "2026-04-07T17:37:16.235Z"
+      "updatedAt": "2026-04-07T17:37:16.235Z",
+      "imageUrl": "https://aero.iisc.ac.in/wp-content/uploads/elementor/thumbs/n-balakrishnan-qtlq8sstgyqseeekgmnl14f0q27hgwjlg2tny1epwg.jpg"
     },
     {
       "id": "o-n-ramesh",
@@ -982,7 +976,8 @@
       "name": "O. N. Ramesh",
       "designation": "Professor",
       "email": "onr@iisc.ac.in",
-      "updatedAt": "2026-04-07T17:37:16.334Z"
+      "updatedAt": "2026-04-07T17:37:16.334Z",
+      "imageUrl": "https://aero.iisc.ac.in/wp-content/uploads/elementor/thumbs/ON-Ramesh-qtloywcjq7wpfx2uhsdg9peoeog7l0bh4vy29lgtr4.jpg"
     },
     {
       "id": "pratikash-panda",
@@ -1015,7 +1010,8 @@
       "name": "Pratikash Panda",
       "designation": "Assistant Professor",
       "email": "pratikashp@iisc.ac.in",
-      "updatedAt": "2026-04-07T17:37:16.435Z"
+      "updatedAt": "2026-04-07T17:37:16.435Z",
+      "imageUrl": "https://aero.iisc.ac.in/wp-content/uploads/elementor/thumbs/pratikash-qtlqburxokxc4rytmg6xmuny855fhho6v75h3evnog.jpg"
     },
     {
       "id": "pushpak-jagtap",
@@ -1048,7 +1044,8 @@
       "name": "Pushpak Jagtap",
       "designation": "Assistant Professor",
       "email": "pushpak@iisc.ac.in",
-      "updatedAt": "2026-04-07T17:37:16.615Z"
+      "updatedAt": "2026-04-07T17:37:16.615Z",
+      "imageUrl": "https://aero.iisc.ac.in/wp-content/uploads/elementor/thumbs/pushpak-jagtap-r3pqu1ky3nspv32ds91x3b1fkddacsv058lxekdnds.png"
     },
     {
       "id": "radhakant-padhi",
@@ -1081,7 +1078,8 @@
       "name": "Radhakant Padhi",
       "designation": "Associate Professor",
       "email": "padhi@iisc.ac.in",
-      "updatedAt": "2026-04-07T17:37:16.716Z"
+      "updatedAt": "2026-04-07T17:37:16.716Z",
+      "imageUrl": "https://aero.iisc.ac.in/wp-content/uploads/elementor/thumbs/RP-qvrxmw7gtcux1nxdqhsnfrpv6kry2f9vo9q992okgw.jpg"
     },
     {
       "id": "rajesh-chaunsali",
@@ -1108,7 +1106,8 @@
       "name": "Rajesh Chaunsali",
       "designation": "Assistant Professor",
       "email": "rchaunsali@iisc.ac.in",
-      "updatedAt": "2026-04-07T17:37:16.800Z"
+      "updatedAt": "2026-04-07T17:37:16.800Z",
+      "imageUrl": "https://aero.iisc.ac.in/wp-content/uploads/elementor/thumbs/RajeshChaunsali-e1721626483348-ravlpszt5k699ai9c0r4s758u458b589hab4xis97k.jpg"
     },
     {
       "id": "rishita-das",
@@ -1140,7 +1139,8 @@
       "name": "Rishita Das",
       "designation": "Assistant Professor",
       "email": "rishitadas@iisc.ac.in",
-      "updatedAt": "2026-04-07T17:37:16.898Z"
+      "updatedAt": "2026-04-07T17:37:16.898Z",
+      "imageUrl": "https://aero.iisc.ac.in/wp-content/uploads/elementor/thumbs/RishitaDas-qtlptv54vqarxg3jo68zew3cxntj6194q5nxfrjwrk.jpg"
     },
     {
       "id": "s-b-kandagal",
@@ -1170,7 +1170,8 @@
       "name": "S. B. Kandagal",
       "designation": "Faculty",
       "email": "ksb@iisc.ac.in",
-      "updatedAt": "2026-04-07T17:37:17.100Z"
+      "updatedAt": "2026-04-07T17:37:17.100Z",
+      "imageUrl": "https://aero.iisc.ac.in/wp-content/uploads/elementor/thumbs/SB-Kandagal-qtlqdu7o3zn4n5321b2kwcmzdfdbqhjsh0qdkfxqjk.jpg"
     },
     {
       "id": "s-gopalakrishnan",
@@ -1196,7 +1197,8 @@
       "name": "S. Gopalakrishnan",
       "designation": "Associate Professor",
       "email": "krishnan@iisc.ac.in",
-      "updatedAt": "2026-04-07T17:37:17.196Z"
+      "updatedAt": "2026-04-07T17:37:17.196Z",
+      "imageUrl": "https://aero.iisc.ac.in/wp-content/uploads/elementor/thumbs/S-Gopalakrishnan-e1755945331856-raodvwssb1ebdrk6i8y9g4czuqasglx13t3985wasg.jpg"
     },
     {
       "id": "s-n-omkar",
@@ -1222,7 +1224,8 @@
       "name": "S. N. Omkar",
       "designation": "Faculty",
       "email": "omkar@iisc.ac.in",
-      "updatedAt": "2026-04-07T17:37:17.275Z"
+      "updatedAt": "2026-04-07T17:37:17.275Z",
+      "imageUrl": "https://aero.iisc.ac.in/wp-content/uploads/elementor/thumbs/SN-Omkar-qtlqf0ienj915ldm6bcsijyq3rkucv7pmu385w70rk.jpg"
     },
     {
       "id": "s-saravanan",
@@ -1252,7 +1255,8 @@
       "name": "S. Saravanan",
       "designation": "Faculty",
       "email": "saravan@iisc.ac.in",
-      "updatedAt": "2026-04-07T17:37:17.577Z"
+      "updatedAt": "2026-04-07T17:37:17.577Z",
+      "imageUrl": "https://aero.iisc.ac.in/wp-content/uploads/elementor/thumbs/S-Saravanan-qtlqdsbzqbkjzx5sca9brd426nmlb3cbsrfelw0iw0.jpg"
     },
     {
       "id": "s-somanath",
@@ -1279,7 +1283,8 @@
       "name": "S. Somanath",
       "designation": "Professor",
       "email": "",
-      "updatedAt": "2026-04-07T17:37:15.249Z"
+      "updatedAt": "2026-04-07T17:37:15.249Z",
+      "imageUrl": "https://aero.iisc.ac.in/wp-content/uploads/elementor/thumbs/alumnus_s_somanath-qtlqac9ao6upfe60gsmkm8f7rsm531nrbpbb9d4hpc.png"
     },
     {
       "id": "s-v-raghurama-rao",
@@ -1308,7 +1313,8 @@
       "name": "S. V. Raghurama Rao",
       "designation": "Associate Professor",
       "email": "raghu@iisc.ac.in",
-      "updatedAt": "2026-04-07T17:37:17.759Z"
+      "updatedAt": "2026-04-07T17:37:17.759Z",
+      "imageUrl": "https://aero.iisc.ac.in/wp-content/uploads/elementor/thumbs/SV-RaghuramaRao-qtlqeq66kcuvlvsmuovw94knkizt072nxewvvumco0.jpg"
     },
     {
       "id": "santosh-hemchandra",
@@ -1338,7 +1344,8 @@
       "name": "Santosh Hemchandra",
       "designation": "Professor",
       "email": "hsantosh@iisc.ac.in",
-      "updatedAt": "2026-04-07T17:37:16.995Z"
+      "updatedAt": "2026-04-07T17:37:16.995Z",
+      "imageUrl": "https://aero.iisc.ac.in/wp-content/uploads/elementor/thumbs/Santosh-Hemchandra-qtlqfo0dee577ufhd3igqw18yed0pat022ed5t86g0.jpg"
     },
     {
       "id": "sourabh-suhas-diwan",
@@ -1365,7 +1372,8 @@
       "name": "Sourabh Suhas Diwan",
       "designation": "Associate Professor",
       "email": "sdiwan@iisc.ac.in",
-      "updatedAt": "2026-04-07T17:37:17.375Z"
+      "updatedAt": "2026-04-07T17:37:17.375Z",
+      "imageUrl": "https://aero.iisc.ac.in/wp-content/uploads/elementor/thumbs/sourabh-scaled-qtlqc1ct0f6ce1p9k11bmb06du8zzdeb83pvgclwgw.jpg"
     },
     {
       "id": "srisha-rao-m-v",
@@ -1396,7 +1404,8 @@
       "name": "Srisha Rao M. V.",
       "designation": "Associate Professor",
       "email": "srisharao@iisc.ac.in",
-      "updatedAt": "2026-04-07T17:37:17.474Z"
+      "updatedAt": "2026-04-07T17:37:17.474Z",
+      "imageUrl": "https://aero.iisc.ac.in/wp-content/uploads/elementor/thumbs/Srisha-Rao-MV-qtlqeymq9v6gidgchajjdkfswzu3xh08yks97c9t40.jpg"
     },
     {
       "id": "suresh-sundaram",
@@ -1426,7 +1435,8 @@
       "name": "Suresh Sundaram",
       "designation": "Associate Professor",
       "email": "vssuresh@iisc.ac.in",
-      "updatedAt": "2026-04-07T17:37:17.669Z"
+      "updatedAt": "2026-04-07T17:37:17.669Z",
+      "imageUrl": "https://aero.iisc.ac.in/wp-content/uploads/elementor/thumbs/SS-scaled-qxpsutty365jye01ec4pmbb7r5j98kanixl0vacw4g.jpg"
     },
     {
       "id": "v-surendranath",
@@ -1454,7 +1464,8 @@
       "name": "V. Surendranath",
       "designation": "Faculty",
       "email": "vsnvms@iisc.ac.in",
-      "updatedAt": "2026-04-07T17:37:17.995Z"
+      "updatedAt": "2026-04-07T17:37:17.995Z",
+      "imageUrl": "https://aero.iisc.ac.in/wp-content/uploads/elementor/thumbs/PS-Kulkarni-qtlqfk90n201xekxz1vygwzekuvjuie2pjsf8pdr4w.jpg"
     },
     {
       "id": "vivekanand-dabade",
@@ -1484,7 +1495,8 @@
       "name": "Vivekanand Dabade",
       "designation": "Assistant Professor",
       "email": "dabade@iisc.ac.in",
-      "updatedAt": "2026-04-07T17:37:17.865Z"
+      "updatedAt": "2026-04-07T17:37:17.865Z",
+      "imageUrl": "https://aero.iisc.ac.in/wp-content/uploads/elementor/thumbs/vivek-e1721626186779-qtlqbzh4mr3rqtrzv082hbh972i9jz6ujuewhsootc.jpg"
     }
   ],
   "interns": [
@@ -1826,7 +1838,8 @@
       "type": "seminar",
       "registrationUrl": "https://aero.iisc.ac.in/event/a-class-of-vector-fields-for-path-following-guidance/",
       "eventDate": "2024-04-18T16:00:00.000Z",
-      "updatedAt": "2026-04-08T06:10:46.549Z"
+      "updatedAt": "2026-04-08T06:10:46.549Z",
+      "imageUrl": "https://aero.iisc.ac.in/wp-content/uploads/2024/04/Thesis-Colloquium-Defence.jpg"
     },
     {
       "id": "advanced-fiber-laser-technologies-and-applications-from-vpg-laserone-integrating-industrial-medical-and-scientific-innovations",
@@ -1840,7 +1853,8 @@
       "type": "seminar",
       "registrationUrl": "https://aero.iisc.ac.in/event/advanced-fiber-laser-technologies-and-applications-from-vpg-laserone-integrating-industrial-medical-and-scientific-innovations/",
       "eventDate": "2025-10-27T05:00:00.000Z",
-      "updatedAt": "2026-04-08T06:10:55.814Z"
+      "updatedAt": "2026-04-08T06:10:55.814Z",
+      "imageUrl": "https://aero.iisc.ac.in/wp-content/uploads/2025/10/Artur-.jpg"
     },
     {
       "id": "advanced-mission-architectures-for-long-term-exploration-of-mars-venus-and-beyond",
@@ -1854,7 +1868,8 @@
       "type": "seminar",
       "registrationUrl": "https://aero.iisc.ac.in/event/advanced-mission-architectures-for-long-term-exploration-of-mars-venus-and-beyond/",
       "eventDate": "2024-09-17T10:00:00.000Z",
-      "updatedAt": "2026-04-08T06:10:48.811Z"
+      "updatedAt": "2026-04-08T06:10:48.811Z",
+      "imageUrl": "https://aero.iisc.ac.in/wp-content/uploads/2024/04/AE-Seminar.jpg"
     },
     {
       "id": "ae-seminar-dr-maanasa-bhat-low-cost-and-low-emissions-strategies-for-resolving-challenges-in-the-hydrogen-supply-chain",
@@ -1868,7 +1883,8 @@
       "type": "seminar",
       "registrationUrl": "https://aero.iisc.ac.in/event/ae-seminar-dr-maanasa-bhat-low-cost-and-low-emissions-strategies-for-resolving-challenges-in-the-hydrogen-supply-chain/",
       "eventDate": "2026-02-11T09:30:00.000Z",
-      "updatedAt": "2026-04-08T06:10:58.211Z"
+      "updatedAt": "2026-04-08T06:10:58.211Z",
+      "imageUrl": "https://aero.iisc.ac.in/wp-content/uploads/2026/02/DR-MANASA-STC.png"
     },
     {
       "id": "aeres-2025",
@@ -1882,7 +1898,8 @@
       "type": "event",
       "registrationUrl": "https://aero.iisc.ac.in/event/aeres-2025/",
       "eventDate": "2025-01-28T03:30:00.000Z",
-      "updatedAt": "2026-04-08T06:10:51.406Z"
+      "updatedAt": "2026-04-08T06:10:51.406Z",
+      "imageUrl": "https://aero.iisc.ac.in/wp-content/uploads/2025/01/Copy-of-Indian-Institute-of-Science-IISc-Dept.-of-Aerospace-Engineering-32-x-64-in-64-x-32-in.pdf-4-1_page-0001_11zon-scaled.jpg"
     },
     {
       "id": "aerospace-engineering-open-day-2026",
@@ -1896,7 +1913,8 @@
       "type": "event",
       "registrationUrl": "https://aero.iisc.ac.in/event/aerospace-engineering-open-day-2026/",
       "eventDate": "2026-03-07T03:30:00.000Z",
-      "updatedAt": "2026-04-08T06:10:58.528Z"
+      "updatedAt": "2026-04-08T06:10:58.528Z",
+      "imageUrl": "https://aero.iisc.ac.in/wp-content/uploads/2026/03/AERO_Banner_page-0001-scaled.jpg"
     },
     {
       "id": "aerospace-power-as-a-critical-tool-of-statecraft",
@@ -1910,7 +1928,8 @@
       "type": "seminar",
       "registrationUrl": "https://aero.iisc.ac.in/event/aerospace-power-as-a-critical-tool-of-statecraft/",
       "eventDate": "2026-02-23T10:30:00.000Z",
-      "updatedAt": "2026-04-08T06:10:58.428Z"
+      "updatedAt": "2026-04-08T06:10:58.428Z",
+      "imageUrl": "https://aero.iisc.ac.in/wp-content/uploads/2026/02/9f8421c2-1.png"
     },
     {
       "id": "analysis-and-design-of-highly-flexible-morphing-structures",
@@ -1924,7 +1943,8 @@
       "type": "seminar",
       "registrationUrl": "https://aero.iisc.ac.in/event/analysis-and-design-of-highly-flexible-morphing-structures/",
       "eventDate": "2025-10-16T09:30:00.000Z",
-      "updatedAt": "2026-04-08T06:10:55.124Z"
+      "updatedAt": "2026-04-08T06:10:55.124Z",
+      "imageUrl": "https://aero.iisc.ac.in/wp-content/uploads/2025/10/Anilkumar.jpg"
     },
     {
       "id": "asymptotic-modelling-of-carbon-nanotube-cnt-and-cnt-reinforced-composite-structures-using-strain-gradient-formulations",
@@ -1938,7 +1958,8 @@
       "type": "seminar",
       "registrationUrl": "https://aero.iisc.ac.in/event/asymptotic-modelling-of-carbon-nanotube-cnt-and-cnt-reinforced-composite-structures-using-strain-gradient-formulations/",
       "eventDate": "2024-03-13T02:00:00.000Z",
-      "updatedAt": "2026-04-08T06:10:46.294Z"
+      "updatedAt": "2026-04-08T06:10:46.294Z",
+      "imageUrl": "https://aero.iisc.ac.in/wp-content/uploads/2024/04/Thesis-Colloquium-Defence.jpg"
     },
     {
       "id": "asymptotic-modelling-of-carbon-nanotube-cnt-and-cnt-reinforced-composite-structures-using-strain-gradient-formulations-2",
@@ -1952,7 +1973,8 @@
       "type": "seminar",
       "registrationUrl": "https://aero.iisc.ac.in/event/asymptotic-modelling-of-carbon-nanotube-cnt-and-cnt-reinforced-composite-structures-using-strain-gradient-formulations-2/",
       "eventDate": "2024-11-14T08:30:00.000Z",
-      "updatedAt": "2026-04-08T06:10:49.479Z"
+      "updatedAt": "2026-04-08T06:10:49.479Z",
+      "imageUrl": "https://aero.iisc.ac.in/wp-content/uploads/2024/11/renuka.jpg"
     },
     {
       "id": "bandgap-formation-mechanisms-in-phononic-crystals-with-square-bravais-lattice",
@@ -1966,7 +1988,8 @@
       "type": "seminar",
       "registrationUrl": "https://aero.iisc.ac.in/event/bandgap-formation-mechanisms-in-phononic-crystals-with-square-bravais-lattice/",
       "eventDate": "2024-10-24T05:30:00.000Z",
-      "updatedAt": "2026-04-08T06:10:49.043Z"
+      "updatedAt": "2026-04-08T06:10:49.043Z",
+      "imageUrl": "https://aero.iisc.ac.in/wp-content/uploads/2024/04/AE-Seminar.jpg"
     },
     {
       "id": "boundary-layer-transition-experiment-in-a-supersonic-flight",
@@ -1980,7 +2003,8 @@
       "type": "seminar",
       "registrationUrl": "https://aero.iisc.ac.in/event/boundary-layer-transition-experiment-in-a-supersonic-flight/",
       "eventDate": "2024-12-09T05:30:00.000Z",
-      "updatedAt": "2026-04-08T06:10:50.520Z"
+      "updatedAt": "2026-04-08T06:10:50.520Z",
+      "imageUrl": "https://aero.iisc.ac.in/wp-content/uploads/2024/12/Niranjan.jpg"
     },
     {
       "id": "challenges-and-strategies-for-machining-aerospace-high-temperature-materials",
@@ -1994,7 +2018,8 @@
       "type": "seminar",
       "registrationUrl": "https://aero.iisc.ac.in/event/challenges-and-strategies-for-machining-aerospace-high-temperature-materials/",
       "eventDate": "2025-03-27T04:30:00.000Z",
-      "updatedAt": "2026-04-08T06:10:52.925Z"
+      "updatedAt": "2026-04-08T06:10:52.925Z",
+      "imageUrl": "https://aero.iisc.ac.in/wp-content/uploads/2025/03/Narasimhan.jpg"
     },
     {
       "id": "cism-iisc-workshop",
@@ -2008,7 +2033,8 @@
       "type": "event",
       "registrationUrl": "https://aero.iisc.ac.in/event/cism-iisc-workshop/",
       "eventDate": "2025-07-21T03:30:00.000Z",
-      "updatedAt": "2026-04-08T06:10:54.669Z"
+      "updatedAt": "2026-04-08T06:10:54.669Z",
+      "imageUrl": "https://aero.iisc.ac.in/wp-content/uploads/2025/03/CISM-IISc.jpeg"
     },
     {
       "id": "constructive-role-of-noise-in-oscillator-networks",
@@ -2022,7 +2048,8 @@
       "type": "seminar",
       "registrationUrl": "https://aero.iisc.ac.in/event/constructive-role-of-noise-in-oscillator-networks/",
       "eventDate": "2026-01-05T09:30:00.000Z",
-      "updatedAt": "2026-04-08T06:10:57.684Z"
+      "updatedAt": "2026-04-08T06:10:57.684Z",
+      "imageUrl": "https://aero.iisc.ac.in/wp-content/uploads/2026/01/Balachandran.jpg"
     },
     {
       "id": "cybershm-a-cyberphysical-continuous-monitoring-technology-for-safety-critical-structures",
@@ -2036,7 +2063,8 @@
       "type": "seminar",
       "registrationUrl": "https://aero.iisc.ac.in/event/cybershm-a-cyberphysical-continuous-monitoring-technology-for-safety-critical-structures/",
       "eventDate": "2024-04-05T12:00:00.000Z",
-      "updatedAt": "2026-04-08T06:10:46.424Z"
+      "updatedAt": "2026-04-08T06:10:46.424Z",
+      "imageUrl": "https://aero.iisc.ac.in/wp-content/uploads/2024/04/AE-Seminar.jpg"
     },
     {
       "id": "data-driven-learning-of-feedback-policies-for-robust-model-predictive-control-an-approximation-theoretic-view",
@@ -2050,7 +2078,8 @@
       "type": "seminar",
       "registrationUrl": "https://aero.iisc.ac.in/event/data-driven-learning-of-feedback-policies-for-robust-model-predictive-control-an-approximation-theoretic-view/",
       "eventDate": "2025-12-15T06:30:00.000Z",
-      "updatedAt": "2026-04-08T06:10:56.869Z"
+      "updatedAt": "2026-04-08T06:10:56.869Z",
+      "imageUrl": "https://aero.iisc.ac.in/wp-content/uploads/2025/12/Siddhartha.jpg"
     },
     {
       "id": "deformation-based-topological-lattices-and-their-edge-states",
@@ -2064,7 +2093,8 @@
       "type": "seminar",
       "registrationUrl": "https://aero.iisc.ac.in/event/deformation-based-topological-lattices-and-their-edge-states/",
       "eventDate": "2024-11-08T09:30:00.000Z",
-      "updatedAt": "2026-04-08T06:10:49.365Z"
+      "updatedAt": "2026-04-08T06:10:49.365Z",
+      "imageUrl": "https://aero.iisc.ac.in/wp-content/uploads/2024/11/Udbhav-Vishwakarma1.jpg"
     },
     {
       "id": "design-and-characterization-of-periodic-scatterers-for-noise-insulation",
@@ -2078,7 +2108,8 @@
       "type": "seminar",
       "registrationUrl": "https://aero.iisc.ac.in/event/design-and-characterization-of-periodic-scatterers-for-noise-insulation/",
       "eventDate": "2024-06-14T10:30:00.000Z",
-      "updatedAt": "2026-04-08T06:10:47.043Z"
+      "updatedAt": "2026-04-08T06:10:47.043Z",
+      "imageUrl": "https://aero.iisc.ac.in/wp-content/uploads/2024/04/AE-Seminar.jpg"
     },
     {
       "id": "development-of-control-law-for-male-uav-with-autonomous-take-off-and-landing",
@@ -2092,7 +2123,8 @@
       "type": "seminar",
       "registrationUrl": "https://aero.iisc.ac.in/event/development-of-control-law-for-male-uav-with-autonomous-take-off-and-landing/",
       "eventDate": "2025-08-21T06:30:00.000Z",
-      "updatedAt": "2026-04-08T06:10:54.920Z"
+      "updatedAt": "2026-04-08T06:10:54.920Z",
+      "imageUrl": "https://aero.iisc.ac.in/wp-content/uploads/2025/08/Sahahudden-1.jpg"
     },
     {
       "id": "digital-process-twins-for-automated-manufacturing-of-thermoplastic-composites-challenges-and-opportunities",
@@ -2106,7 +2138,8 @@
       "type": "seminar",
       "registrationUrl": "https://aero.iisc.ac.in/event/digital-process-twins-for-automated-manufacturing-of-thermoplastic-composites-challenges-and-opportunities/",
       "eventDate": "2025-12-22T09:30:00.000Z",
-      "updatedAt": "2026-04-08T06:10:57.273Z"
+      "updatedAt": "2026-04-08T06:10:57.273Z",
+      "imageUrl": "https://aero.iisc.ac.in/wp-content/uploads/2025/12/Paul.jpg"
     },
     {
       "id": "effect-of-interface-roughness-in-adhesively-bonded-cfrp-joints-experimental-and-numerical-studies",
@@ -2120,7 +2153,8 @@
       "type": "seminar",
       "registrationUrl": "https://aero.iisc.ac.in/event/effect-of-interface-roughness-in-adhesively-bonded-cfrp-joints-experimental-and-numerical-studies/",
       "eventDate": "2024-06-24T05:30:00.000Z",
-      "updatedAt": "2026-04-08T06:10:47.202Z"
+      "updatedAt": "2026-04-08T06:10:47.202Z",
+      "imageUrl": "https://aero.iisc.ac.in/wp-content/uploads/2024/04/Thesis-Colloquium-Defence.jpg"
     },
     {
       "id": "electrographic-seizure-detection-and-forecasting-for-people-with-epilepsy",
@@ -2134,7 +2168,8 @@
       "type": "seminar",
       "registrationUrl": "https://aero.iisc.ac.in/event/electrographic-seizure-detection-and-forecasting-for-people-with-epilepsy/",
       "eventDate": "2025-04-30T05:30:00.000Z",
-      "updatedAt": "2026-04-08T06:10:53.752Z"
+      "updatedAt": "2026-04-08T06:10:53.752Z",
+      "imageUrl": "https://aero.iisc.ac.in/wp-content/uploads/2025/04/Poster-distinguished-lecture-1_page-0001.jpg"
     },
     {
       "id": "electrospinning-technology-applications-and-advancements",
@@ -2148,7 +2183,8 @@
       "type": "seminar",
       "registrationUrl": "https://aero.iisc.ac.in/event/electrospinning-technology-applications-and-advancements/",
       "eventDate": "2025-11-21T05:00:00.000Z",
-      "updatedAt": "2026-04-08T06:10:56.249Z"
+      "updatedAt": "2026-04-08T06:10:56.249Z",
+      "imageUrl": "https://aero.iisc.ac.in/wp-content/uploads/2025/11/Barzilay.jpg"
     },
     {
       "id": "eulerian-lagrangian-modeling-of-flash-boiling-injection-processes-in-internal-combustion-engines",
@@ -2162,7 +2198,8 @@
       "type": "seminar",
       "registrationUrl": "https://aero.iisc.ac.in/event/eulerian-lagrangian-modeling-of-flash-boiling-injection-processes-in-internal-combustion-engines/",
       "eventDate": "2025-04-29T11:30:00.000Z",
-      "updatedAt": "2026-04-08T06:10:53.631Z"
+      "updatedAt": "2026-04-08T06:10:53.631Z",
+      "imageUrl": "https://aero.iisc.ac.in/wp-content/uploads/2025/04/Avijit-.jpg"
     },
     {
       "id": "experimental-studies-and-control-of-subsonic-supersonic-flows-strategic-opportunities-for-collaboration-with-florida-state-university",
@@ -2176,7 +2213,8 @@
       "type": "seminar",
       "registrationUrl": "https://aero.iisc.ac.in/event/experimental-studies-and-control-of-subsonic-supersonic-flows-strategic-opportunities-for-collaboration-with-florida-state-university/",
       "eventDate": "2025-10-22T10:30:00.000Z",
-      "updatedAt": "2026-04-08T06:10:55.706Z"
+      "updatedAt": "2026-04-08T06:10:55.706Z",
+      "imageUrl": "https://aero.iisc.ac.in/wp-content/uploads/2025/10/Farrukh.jpg"
     },
     {
       "id": "flow-aware-simulation-technique-fast-for-ai-enabled-physics-integrated-turbulence-computations",
@@ -2190,7 +2228,8 @@
       "type": "seminar",
       "registrationUrl": "https://aero.iisc.ac.in/event/flow-aware-simulation-technique-fast-for-ai-enabled-physics-integrated-turbulence-computations/",
       "eventDate": "2025-12-15T05:30:00.000Z",
-      "updatedAt": "2026-04-08T06:10:56.766Z"
+      "updatedAt": "2026-04-08T06:10:56.766Z",
+      "imageUrl": "https://aero.iisc.ac.in/wp-content/uploads/2025/12/Sharath.jpg"
     },
     {
       "id": "from-flight-control-to-multi-agent-systems",
@@ -2204,7 +2243,8 @@
       "type": "seminar",
       "registrationUrl": "https://aero.iisc.ac.in/event/from-flight-control-to-multi-agent-systems/",
       "eventDate": "2025-11-28T05:30:00.000Z",
-      "updatedAt": "2026-04-08T06:10:56.349Z"
+      "updatedAt": "2026-04-08T06:10:56.349Z",
+      "imageUrl": "https://aero.iisc.ac.in/wp-content/uploads/2025/11/aditya.jpg"
     },
     {
       "id": "from-shock-to-shield-designing-materials-for-space-defense-and-beyond",
@@ -2218,7 +2258,8 @@
       "type": "seminar",
       "registrationUrl": "https://aero.iisc.ac.in/event/from-shock-to-shield-designing-materials-for-space-defense-and-beyond/",
       "eventDate": "2025-11-10T10:30:00.000Z",
-      "updatedAt": "2026-04-08T06:10:56.053Z"
+      "updatedAt": "2026-04-08T06:10:56.053Z",
+      "imageUrl": "https://aero.iisc.ac.in/wp-content/uploads/2025/11/Piyush.jpg"
     },
     {
       "id": "guidance-for-pursuit-and-evasion",
@@ -2232,7 +2273,8 @@
       "type": "seminar",
       "registrationUrl": "https://aero.iisc.ac.in/event/guidance-for-pursuit-and-evasion/",
       "eventDate": "2024-08-26T09:30:00.000Z",
-      "updatedAt": "2026-04-08T06:10:48.571Z"
+      "updatedAt": "2026-04-08T06:10:48.571Z",
+      "imageUrl": "https://aero.iisc.ac.in/wp-content/uploads/2024/04/AE-Seminar.jpg"
     },
     {
       "id": "innovations-in-aerospace-systems-current-research-including-artificial-intelligence-and-future-challenges",
@@ -2246,7 +2288,8 @@
       "type": "seminar",
       "registrationUrl": "https://aero.iisc.ac.in/event/innovations-in-aerospace-systems-current-research-including-artificial-intelligence-and-future-challenges/",
       "eventDate": "2024-02-05T08:30:00.000Z",
-      "updatedAt": "2026-04-08T06:10:46.013Z"
+      "updatedAt": "2026-04-08T06:10:46.013Z",
+      "imageUrl": "https://aero.iisc.ac.in/wp-content/uploads/2024/04/AE-Seminar.jpg"
     },
     {
       "id": "intersection-planning-in-multilane-aerial-corridors-for-uavs",
@@ -2260,7 +2303,8 @@
       "type": "seminar",
       "registrationUrl": "https://aero.iisc.ac.in/event/intersection-planning-in-multilane-aerial-corridors-for-uavs/",
       "eventDate": "2024-10-30T09:30:00.000Z",
-      "updatedAt": "2026-04-08T06:10:49.259Z"
+      "updatedAt": "2026-04-08T06:10:49.259Z",
+      "imageUrl": "https://aero.iisc.ac.in/wp-content/uploads/2024/11/samiksha.jpg"
     },
     {
       "id": "investigation-of-flow-instabilities-in-high-speed-impinging-jets-using-dual-time-velocity-measurements",
@@ -2274,7 +2318,8 @@
       "type": "seminar",
       "registrationUrl": "https://aero.iisc.ac.in/event/investigation-of-flow-instabilities-in-high-speed-impinging-jets-using-dual-time-velocity-measurements/",
       "eventDate": "2025-07-16T05:30:00.000Z",
-      "updatedAt": "2026-04-08T06:10:54.472Z"
+      "updatedAt": "2026-04-08T06:10:54.472Z",
+      "imageUrl": "https://aero.iisc.ac.in/wp-content/uploads/2025/07/Tushar.jpg"
     },
     {
       "id": "koushalya-krushi-tantra-gnyanada-satva-tatva-workshop",
@@ -2288,7 +2333,8 @@
       "type": "event",
       "registrationUrl": "https://aero.iisc.ac.in/event/koushalya-krushi-tantra-gnyanada-satva-tatva-workshop/",
       "eventDate": "2025-06-08T18:30:00.000Z",
-      "updatedAt": "2026-04-08T06:10:54.152Z"
+      "updatedAt": "2026-04-08T06:10:54.152Z",
+      "imageUrl": "https://aero.iisc.ac.in/wp-content/uploads/2025/06/AE-Webiste-agri-tech-workshop.jpg"
     },
     {
       "id": "laser-beam-control-through-atmospheric-turbulence",
@@ -2302,7 +2348,8 @@
       "type": "seminar",
       "registrationUrl": "https://aero.iisc.ac.in/event/laser-beam-control-through-atmospheric-turbulence/",
       "eventDate": "2025-03-27T09:30:00.000Z",
-      "updatedAt": "2026-04-08T06:10:53.033Z"
+      "updatedAt": "2026-04-08T06:10:53.033Z",
+      "imageUrl": "https://aero.iisc.ac.in/wp-content/uploads/2025/03/Amit.jpg"
     },
     {
       "id": "learning-stable-and-accurate-numerical-schemes-for-les-applications",
@@ -2316,7 +2363,8 @@
       "type": "seminar",
       "registrationUrl": "https://aero.iisc.ac.in/event/learning-stable-and-accurate-numerical-schemes-for-les-applications/",
       "eventDate": "2024-10-24T09:30:00.000Z",
-      "updatedAt": "2026-04-08T06:10:49.152Z"
+      "updatedAt": "2026-04-08T06:10:49.152Z",
+      "imageUrl": "https://aero.iisc.ac.in/wp-content/uploads/2024/10/Reconstruction-Era-and-the-Gilded-Age-History-11th-Grade-Red-Variant-by-Slidesgo-1.jpg"
     },
     {
       "id": "miniaturised-technologies-for-potential-applications-in-space-research",
@@ -2330,7 +2378,8 @@
       "type": "seminar",
       "registrationUrl": "https://aero.iisc.ac.in/event/miniaturised-technologies-for-potential-applications-in-space-research/",
       "eventDate": "2025-04-16T10:00:00.000Z",
-      "updatedAt": "2026-04-08T06:10:53.370Z"
+      "updatedAt": "2026-04-08T06:10:53.370Z",
+      "imageUrl": "https://aero.iisc.ac.in/wp-content/uploads/2025/04/Akshay-.jpg"
     },
     {
       "id": "model-based-digital-thread-and-digital-twin-technologies-for-manufacturing-and-industry-4-0-architecture",
@@ -2344,7 +2393,8 @@
       "type": "seminar",
       "registrationUrl": "https://aero.iisc.ac.in/event/model-based-digital-thread-and-digital-twin-technologies-for-manufacturing-and-industry-4-0-architecture/",
       "eventDate": "2025-12-23T05:30:00.000Z",
-      "updatedAt": "2026-04-08T06:10:57.372Z"
+      "updatedAt": "2026-04-08T06:10:57.372Z",
+      "imageUrl": "https://aero.iisc.ac.in/wp-content/uploads/2025/12/Jayendra-.jpg"
     },
     {
       "id": "mtech-res-woven-composite-modeling",
@@ -2358,7 +2408,8 @@
       "type": "seminar",
       "registrationUrl": "https://aero.iisc.ac.in/event/mtech-res-woven-composite-modeling/",
       "eventDate": "2025-02-10T08:30:00.000Z",
-      "updatedAt": "2026-04-08T06:10:51.602Z"
+      "updatedAt": "2026-04-08T06:10:51.602Z",
+      "imageUrl": "https://aero.iisc.ac.in/wp-content/uploads/2025/02/Adhithya.jpg"
     },
     {
       "id": "mtechres-adjoint-based-aerodynamic-shape-and-mesh-optimization-with-high-order-discontinuous-galerkin-methods",
@@ -2372,7 +2423,8 @@
       "type": "seminar",
       "registrationUrl": "https://aero.iisc.ac.in/event/mtechres-adjoint-based-aerodynamic-shape-and-mesh-optimization-with-high-order-discontinuous-galerkin-methods/",
       "eventDate": "2024-11-29T09:30:00.000Z",
-      "updatedAt": "2026-04-08T06:10:49.700Z"
+      "updatedAt": "2026-04-08T06:10:49.700Z",
+      "imageUrl": "https://aero.iisc.ac.in/wp-content/uploads/2024/11/pandya.jpg"
     },
     {
       "id": "mtechres-adjoint-based-aerodynamic-shape-and-mesh-optimization-with-high-order-discontinuous-galerkin-methods-2",
@@ -2386,7 +2438,8 @@
       "type": "seminar",
       "registrationUrl": "https://aero.iisc.ac.in/event/mtechres-adjoint-based-aerodynamic-shape-and-mesh-optimization-with-high-order-discontinuous-galerkin-methods-2/",
       "eventDate": "2025-02-24T10:30:00.000Z",
-      "updatedAt": "2026-04-08T06:10:51.811Z"
+      "updatedAt": "2026-04-08T06:10:51.811Z",
+      "imageUrl": "https://aero.iisc.ac.in/wp-content/uploads/2025/02/Slide3.jpg"
     },
     {
       "id": "mtechres-colloquium-deformation-based-topological-lattices-and-their-edge-states",
@@ -2400,7 +2453,8 @@
       "type": "seminar",
       "registrationUrl": "https://aero.iisc.ac.in/event/mtechres-colloquium-deformation-based-topological-lattices-and-their-edge-states/",
       "eventDate": "2024-07-31T09:30:00.000Z",
-      "updatedAt": "2026-04-08T06:10:48.151Z"
+      "updatedAt": "2026-04-08T06:10:48.151Z",
+      "imageUrl": "https://aero.iisc.ac.in/wp-content/uploads/2024/04/Thesis-Colloquium-Defence.jpg"
     },
     {
       "id": "mtechres-colloquium-inflatable-aerodynamic-decelerators-for-atmospheric-re-entry",
@@ -2414,7 +2468,8 @@
       "type": "seminar",
       "registrationUrl": "https://aero.iisc.ac.in/event/mtechres-colloquium-inflatable-aerodynamic-decelerators-for-atmospheric-re-entry/",
       "eventDate": "2024-06-27T10:00:00.000Z",
-      "updatedAt": "2026-04-08T06:10:47.324Z"
+      "updatedAt": "2026-04-08T06:10:47.324Z",
+      "imageUrl": "https://aero.iisc.ac.in/wp-content/uploads/2024/04/Thesis-Colloquium-Defence.jpg"
     },
     {
       "id": "mtechres-colloquium-sub-mesoscale-modeling-of-woven-fabrics-using-vam-based-geometrically-exact-beam-model",
@@ -2428,7 +2483,8 @@
       "type": "seminar",
       "registrationUrl": "https://aero.iisc.ac.in/event/mtechres-colloquium-sub-mesoscale-modeling-of-woven-fabrics-using-vam-based-geometrically-exact-beam-model/",
       "eventDate": "2024-06-27T10:00:00.000Z",
-      "updatedAt": "2026-04-08T06:10:47.460Z"
+      "updatedAt": "2026-04-08T06:10:47.460Z",
+      "imageUrl": "https://aero.iisc.ac.in/wp-content/uploads/2024/04/Thesis-Colloquium-Defence.jpg"
     },
     {
       "id": "mtechres-elastic-wave-dispersion-analysis-and-mode-shape-investigation-of-higher-order-beam-theory-for-thick-beams",
@@ -2442,7 +2498,8 @@
       "type": "seminar",
       "registrationUrl": "https://aero.iisc.ac.in/event/mtechres-elastic-wave-dispersion-analysis-and-mode-shape-investigation-of-higher-order-beam-theory-for-thick-beams/",
       "eventDate": "2025-03-19T09:30:00.000Z",
-      "updatedAt": "2026-04-08T06:10:52.815Z"
+      "updatedAt": "2026-04-08T06:10:52.815Z",
+      "imageUrl": "https://aero.iisc.ac.in/wp-content/uploads/2025/03/Kratika-1-1.jpg"
     },
     {
       "id": "multi-fuel-combustion-for-sustainable-aviation",
@@ -2456,7 +2513,8 @@
       "type": "seminar",
       "registrationUrl": "https://aero.iisc.ac.in/event/multi-fuel-combustion-for-sustainable-aviation/",
       "eventDate": "2025-03-05T10:00:00.000Z",
-      "updatedAt": "2026-04-08T06:10:52.052Z"
+      "updatedAt": "2026-04-08T06:10:52.052Z",
+      "imageUrl": "https://aero.iisc.ac.in/wp-content/uploads/2025/03/Arvind.jpg"
     },
     {
       "id": "nature-of-phase-kinetics-and-memory-in-shape-memory-alloys",
@@ -2470,7 +2528,8 @@
       "type": "seminar",
       "registrationUrl": "https://aero.iisc.ac.in/event/nature-of-phase-kinetics-and-memory-in-shape-memory-alloys/",
       "eventDate": "2025-06-30T10:30:00.000Z",
-      "updatedAt": "2026-04-08T06:10:54.370Z"
+      "updatedAt": "2026-04-08T06:10:54.370Z",
+      "imageUrl": "https://aero.iisc.ac.in/wp-content/uploads/2025/06/Vidyashankar.jpg"
     },
     {
       "id": "nonequilibrium-reacting-flows-first-principles-based-modeling-for-chemical-kinetics-and-hydrodynamics",
@@ -2484,7 +2543,8 @@
       "type": "seminar",
       "registrationUrl": "https://aero.iisc.ac.in/event/nonequilibrium-reacting-flows-first-principles-based-modeling-for-chemical-kinetics-and-hydrodynamics/",
       "eventDate": "2024-03-04T14:30:00.000Z",
-      "updatedAt": "2026-04-08T06:10:46.147Z"
+      "updatedAt": "2026-04-08T06:10:46.147Z",
+      "imageUrl": "https://aero.iisc.ac.in/wp-content/uploads/2024/04/AE-Seminar.jpg"
     },
     {
       "id": "nonlinear-saturation-of-mack-modes-in-a-hypersonic-boundary-layer",
@@ -2498,7 +2558,8 @@
       "type": "seminar",
       "registrationUrl": "https://aero.iisc.ac.in/event/nonlinear-saturation-of-mack-modes-in-a-hypersonic-boundary-layer/",
       "eventDate": "2025-05-20T05:00:00.000Z",
-      "updatedAt": "2026-04-08T06:10:53.844Z"
+      "updatedAt": "2026-04-08T06:10:53.844Z",
+      "imageUrl": "https://aero.iisc.ac.in/wp-content/uploads/2025/05/AE-Seminar.jpg"
     },
     {
       "id": "normal-modes-and-manoeuvre-analysis-in-a-closed-form-aircraft-dynamic-model",
@@ -2512,7 +2573,8 @@
       "type": "seminar",
       "registrationUrl": "https://aero.iisc.ac.in/event/normal-modes-and-manoeuvre-analysis-in-a-closed-form-aircraft-dynamic-model/",
       "eventDate": "2025-12-10T21:30:00.000Z",
-      "updatedAt": "2026-04-08T06:10:56.687Z"
+      "updatedAt": "2026-04-08T06:10:56.687Z",
+      "imageUrl": "https://aero.iisc.ac.in/wp-content/uploads/2025/12/Shayak.jpg"
     },
     {
       "id": "on-mathematical-analysis-of-biomembrane-structures",
@@ -2526,7 +2588,8 @@
       "type": "seminar",
       "registrationUrl": "https://aero.iisc.ac.in/event/on-mathematical-analysis-of-biomembrane-structures/",
       "eventDate": "2024-07-19T05:00:00.000Z",
-      "updatedAt": "2026-04-08T06:10:48.028Z"
+      "updatedAt": "2026-04-08T06:10:48.028Z",
+      "imageUrl": "https://aero.iisc.ac.in/wp-content/uploads/2024/04/AE-Seminar.jpg"
     },
     {
       "id": "on-the-nature-of-transonic-buffet-in-a-finite-span-wing",
@@ -2540,7 +2603,8 @@
       "type": "seminar",
       "registrationUrl": "https://aero.iisc.ac.in/event/on-the-nature-of-transonic-buffet-in-a-finite-span-wing/",
       "eventDate": "2024-05-27T10:00:00.000Z",
-      "updatedAt": "2026-04-08T06:10:46.716Z"
+      "updatedAt": "2026-04-08T06:10:46.716Z",
+      "imageUrl": "https://aero.iisc.ac.in/wp-content/uploads/2024/04/Thesis-Colloquium-Defence.jpg"
     },
     {
       "id": "onboard-trajectory-optimization-for-system-autonomy-on-saturday",
@@ -2554,7 +2618,8 @@
       "type": "seminar",
       "registrationUrl": "https://aero.iisc.ac.in/event/onboard-trajectory-optimization-for-system-autonomy-on-saturday/",
       "eventDate": "2025-06-07T03:30:00.000Z",
-      "updatedAt": "2026-04-08T06:10:54.053Z"
+      "updatedAt": "2026-04-08T06:10:54.053Z",
+      "imageUrl": "https://aero.iisc.ac.in/wp-content/uploads/2025/06/slide_for_display-2.jpg"
     },
     {
       "id": "ph-d-engg-aeroacoustic-sources-in-twin-turbulent-jets",
@@ -2568,7 +2633,8 @@
       "type": "seminar",
       "registrationUrl": "https://aero.iisc.ac.in/event/ph-d-engg-aeroacoustic-sources-in-twin-turbulent-jets/",
       "eventDate": "2024-12-03T05:30:00.000Z",
-      "updatedAt": "2026-04-08T06:10:49.913Z"
+      "updatedAt": "2026-04-08T06:10:49.913Z",
+      "imageUrl": "https://aero.iisc.ac.in/wp-content/uploads/2024/11/nishant.jpg"
     },
     {
       "id": "ph-d-engg-aerodynamic-shape-optimization-of-low-observable-air-intake-duct-a-gerlach-inspiration",
@@ -2582,7 +2648,8 @@
       "type": "seminar",
       "registrationUrl": "https://aero.iisc.ac.in/event/ph-d-engg-aerodynamic-shape-optimization-of-low-observable-air-intake-duct-a-gerlach-inspiration/",
       "eventDate": "2025-11-13T05:30:00.000Z",
-      "updatedAt": "2026-04-08T06:10:56.150Z"
+      "updatedAt": "2026-04-08T06:10:56.150Z",
+      "imageUrl": "https://aero.iisc.ac.in/wp-content/uploads/2025/11/v.jpg"
     },
     {
       "id": "ph-d-engg-autorotation-of-single-winged-spinning-samaras",
@@ -2596,7 +2663,8 @@
       "type": "seminar",
       "registrationUrl": "https://aero.iisc.ac.in/event/ph-d-engg-autorotation-of-single-winged-spinning-samaras/",
       "eventDate": "2025-12-01T05:30:00.000Z",
-      "updatedAt": "2026-04-08T06:10:56.466Z"
+      "updatedAt": "2026-04-08T06:10:56.466Z",
+      "imageUrl": "https://aero.iisc.ac.in/wp-content/uploads/2025/12/YOGESHWARAN.jpg"
     },
     {
       "id": "ph-d-engg-behaviour-modelling-of-non-cooperative-space-objects-and-strategies-for-decision-support-in-space-situational-awareness",
@@ -2610,7 +2678,8 @@
       "type": "seminar",
       "registrationUrl": "https://aero.iisc.ac.in/event/ph-d-engg-behaviour-modelling-of-non-cooperative-space-objects-and-strategies-for-decision-support-in-space-situational-awareness/",
       "eventDate": "2025-04-16T09:30:00.000Z",
-      "updatedAt": "2026-04-08T06:10:53.266Z"
+      "updatedAt": "2026-04-08T06:10:53.266Z",
+      "imageUrl": "https://aero.iisc.ac.in/wp-content/uploads/2025/04/SHIV-.jpg"
     },
     {
       "id": "ph-d-engg-characterization-of-time-frequency-behavior-of-flow-intermittency-in-transitional-boundary-layers",
@@ -2624,7 +2693,8 @@
       "type": "seminar",
       "registrationUrl": "https://aero.iisc.ac.in/event/ph-d-engg-characterization-of-time-frequency-behavior-of-flow-intermittency-in-transitional-boundary-layers/",
       "eventDate": "2025-12-22T09:30:00.000Z",
-      "updatedAt": "2026-04-08T06:10:57.166Z"
+      "updatedAt": "2026-04-08T06:10:57.166Z",
+      "imageUrl": "https://aero.iisc.ac.in/wp-content/uploads/2025/12/Satyajit.jpg"
     },
     {
       "id": "ph-d-engg-compression-lvi-of-closed-cell-metallic-foam",
@@ -2638,7 +2708,8 @@
       "type": "seminar",
       "registrationUrl": "https://aero.iisc.ac.in/event/ph-d-engg-compression-lvi-of-closed-cell-metallic-foam/",
       "eventDate": "2026-01-12T10:30:00.000Z",
-      "updatedAt": "2026-04-08T06:10:57.791Z"
+      "updatedAt": "2026-04-08T06:10:57.791Z",
+      "imageUrl": "https://aero.iisc.ac.in/wp-content/uploads/2026/01/Thim.jpg"
     },
     {
       "id": "ph-d-engg-compressive-behavior-of-continuous-fiber-polymer-composites-in-the-presence-of-process-induced-defects",
@@ -2652,7 +2723,8 @@
       "type": "seminar",
       "registrationUrl": "https://aero.iisc.ac.in/event/ph-d-engg-compressive-behavior-of-continuous-fiber-polymer-composites-in-the-presence-of-process-induced-defects/",
       "eventDate": "2025-06-19T09:30:00.000Z",
-      "updatedAt": "2026-04-08T06:10:54.254Z"
+      "updatedAt": "2026-04-08T06:10:54.254Z",
+      "imageUrl": "https://aero.iisc.ac.in/wp-content/uploads/2025/06/Shashidhar-.jpg"
     },
     {
       "id": "ph-d-engg-control-of-alternating-flow-phenomena-in-transonic-shock-wave-boundary-layer-interactions-over-payload-region-of-a-generic-launch-vehicle-model",
@@ -2666,7 +2738,8 @@
       "type": "seminar",
       "registrationUrl": "https://aero.iisc.ac.in/event/ph-d-engg-control-of-alternating-flow-phenomena-in-transonic-shock-wave-boundary-layer-interactions-over-payload-region-of-a-generic-launch-vehicle-model/",
       "eventDate": "2024-12-05T05:30:00.000Z",
-      "updatedAt": "2026-04-08T06:10:50.168Z"
+      "updatedAt": "2026-04-08T06:10:50.168Z",
+      "imageUrl": "https://aero.iisc.ac.in/wp-content/uploads/2024/12/Dheerendra-.jpg"
     },
     {
       "id": "ph-d-engg-control-of-alternating-flow-phenomena-in-transonic-shock-wave-boundary-layer-interactions-over-payload-region-of-a-generic-launch-vehicle-model-2",
@@ -2680,7 +2753,8 @@
       "type": "seminar",
       "registrationUrl": "https://aero.iisc.ac.in/event/ph-d-engg-control-of-alternating-flow-phenomena-in-transonic-shock-wave-boundary-layer-interactions-over-payload-region-of-a-generic-launch-vehicle-model-2/",
       "eventDate": "2025-04-04T05:30:00.000Z",
-      "updatedAt": "2026-04-08T06:10:53.149Z"
+      "updatedAt": "2026-04-08T06:10:53.149Z",
+      "imageUrl": "https://aero.iisc.ac.in/wp-content/uploads/2025/04/Dheerendra-.jpg"
     },
     {
       "id": "ph-d-engg-design-and-development-of-novel-quadcopters-for-reliable-operations-in-cluttered-environments",
@@ -2694,7 +2768,8 @@
       "type": "seminar",
       "registrationUrl": "https://aero.iisc.ac.in/event/ph-d-engg-design-and-development-of-novel-quadcopters-for-reliable-operations-in-cluttered-environments/",
       "eventDate": "2024-12-09T05:00:00.000Z",
-      "updatedAt": "2026-04-08T06:10:50.401Z"
+      "updatedAt": "2026-04-08T06:10:50.401Z",
+      "imageUrl": "https://aero.iisc.ac.in/wp-content/uploads/2024/12/Eeshan.jpg"
     },
     {
       "id": "ph-d-engg-development-of-an-ultra-miniature-wall-shear-stress-sensor",
@@ -2708,7 +2783,8 @@
       "type": "seminar",
       "registrationUrl": "https://aero.iisc.ac.in/event/ph-d-engg-development-of-an-ultra-miniature-wall-shear-stress-sensor/",
       "eventDate": "2026-01-16T10:30:00.000Z",
-      "updatedAt": "2026-04-08T06:10:57.912Z"
+      "updatedAt": "2026-04-08T06:10:57.912Z",
+      "imageUrl": "https://aero.iisc.ac.in/wp-content/uploads/2026/01/Keshanja.jpg"
     },
     {
       "id": "ph-d-engg-development-of-approaches-for-optimal-shared-utilization-of-spatially-distributed-resources-under-sparse-connectivity-in-energy-internet",
@@ -2722,7 +2798,8 @@
       "type": "seminar",
       "registrationUrl": "https://aero.iisc.ac.in/event/ph-d-engg-development-of-approaches-for-optimal-shared-utilization-of-spatially-distributed-resources-under-sparse-connectivity-in-energy-internet/",
       "eventDate": "2025-07-23T05:30:00.000Z",
-      "updatedAt": "2026-04-08T06:10:54.788Z"
+      "updatedAt": "2026-04-08T06:10:54.788Z",
+      "imageUrl": "https://aero.iisc.ac.in/wp-content/uploads/2025/07/Neethu-M.jpg"
     },
     {
       "id": "ph-d-engg-development-of-scalable-uav-swarm-based-cooperative-search-and-mitigation-approaches-for-wildfire-management",
@@ -2736,7 +2813,8 @@
       "type": "seminar",
       "registrationUrl": "https://aero.iisc.ac.in/event/ph-d-engg-development-of-scalable-uav-swarm-based-cooperative-search-and-mitigation-approaches-for-wildfire-management/",
       "eventDate": "2024-12-05T05:00:00.000Z",
-      "updatedAt": "2026-04-08T06:10:50.033Z"
+      "updatedAt": "2026-04-08T06:10:50.033Z",
+      "imageUrl": "https://aero.iisc.ac.in/wp-content/uploads/2024/11/john.jpg"
     },
     {
       "id": "ph-d-engg-effect-of-laser-shock-peening-on-residual-stress-and-mechanical-behaviour-of-aluminium-alloy-aa2219-friction-stir-weld",
@@ -2750,7 +2828,8 @@
       "type": "seminar",
       "registrationUrl": "https://aero.iisc.ac.in/event/ph-d-engg-effect-of-laser-shock-peening-on-residual-stress-and-mechanical-behaviour-of-aluminium-alloy-aa2219-friction-stir-weld/",
       "eventDate": "2025-03-13T09:30:00.000Z",
-      "updatedAt": "2026-04-08T06:10:52.390Z"
+      "updatedAt": "2026-04-08T06:10:52.390Z",
+      "imageUrl": "https://aero.iisc.ac.in/wp-content/uploads/2025/03/Dhanasekaran.jpg"
     },
     {
       "id": "ph-d-engg-effect-of-surface-roughness-on-mechanical-strength-of-adhesively-bonded-cfrp-joints-experimental-and-numerical-studies",
@@ -2764,7 +2843,8 @@
       "type": "seminar",
       "registrationUrl": "https://aero.iisc.ac.in/event/ph-d-engg-effect-of-surface-roughness-on-mechanical-strength-of-adhesively-bonded-cfrp-joints-experimental-and-numerical-studies/",
       "eventDate": "2024-12-27T05:30:00.000Z",
-      "updatedAt": "2026-04-08T06:10:50.969Z"
+      "updatedAt": "2026-04-08T06:10:50.969Z",
+      "imageUrl": "https://aero.iisc.ac.in/wp-content/uploads/2024/12/Laxmikant-.jpg"
     },
     {
       "id": "ph-d-engg-enhancing-precise-label-prediction-and-imbalance-robustness-in-multi-label-learning",
@@ -2778,7 +2858,8 @@
       "type": "seminar",
       "registrationUrl": "https://aero.iisc.ac.in/event/ph-d-engg-enhancing-precise-label-prediction-and-imbalance-robustness-in-multi-label-learning/",
       "eventDate": "2025-12-30T05:00:00.000Z",
-      "updatedAt": "2026-04-08T06:10:57.471Z"
+      "updatedAt": "2026-04-08T06:10:57.471Z",
+      "imageUrl": "https://aero.iisc.ac.in/wp-content/uploads/2025/12/Sourav.jpg"
     },
     {
       "id": "ph-d-engg-experimental-investigation-of-autoignition-pathways-and-shock-train-dynamics-during-mode-transition-in-a-dual-mode-supersonic-cavity-combustor",
@@ -2792,7 +2873,8 @@
       "type": "seminar",
       "registrationUrl": "https://aero.iisc.ac.in/event/ph-d-engg-experimental-investigation-of-autoignition-pathways-and-shock-train-dynamics-during-mode-transition-in-a-dual-mode-supersonic-cavity-combustor/",
       "eventDate": "2026-02-17T05:30:00.000Z",
-      "updatedAt": "2026-04-08T06:10:58.341Z"
+      "updatedAt": "2026-04-08T06:10:58.341Z",
+      "imageUrl": "https://aero.iisc.ac.in/wp-content/uploads/2026/02/SUMIT.jpg"
     },
     {
       "id": "ph-d-engg-experimental-study-of-isolator-shock-trains-in-confined-co-flowing-supersonic-streams",
@@ -2806,7 +2888,8 @@
       "type": "seminar",
       "registrationUrl": "https://aero.iisc.ac.in/event/ph-d-engg-experimental-study-of-isolator-shock-trains-in-confined-co-flowing-supersonic-streams/",
       "eventDate": "2024-12-02T05:00:00.000Z",
-      "updatedAt": "2026-04-08T06:10:49.814Z"
+      "updatedAt": "2026-04-08T06:10:49.814Z",
+      "imageUrl": "https://aero.iisc.ac.in/wp-content/uploads/2024/11/Balaji-.jpg"
     },
     {
       "id": "ph-d-engg-investigations-on-elastic-deformation-of-ferromagnetic-rods-and-ribbons",
@@ -2820,7 +2903,8 @@
       "type": "seminar",
       "registrationUrl": "https://aero.iisc.ac.in/event/ph-d-engg-investigations-on-elastic-deformation-of-ferromagnetic-rods-and-ribbons/",
       "eventDate": "2025-12-19T05:30:00.000Z",
-      "updatedAt": "2026-04-08T06:10:57.074Z"
+      "updatedAt": "2026-04-08T06:10:57.074Z",
+      "imageUrl": "https://aero.iisc.ac.in/wp-content/uploads/2025/12/Krishna.jpg"
     },
     {
       "id": "ph-d-engg-investigations-on-hypersonic-laminar-to-turbulent-boundary-layer-transition-in-a-shock-tunnel",
@@ -2834,7 +2918,8 @@
       "type": "seminar",
       "registrationUrl": "https://aero.iisc.ac.in/event/ph-d-engg-investigations-on-hypersonic-laminar-to-turbulent-boundary-layer-transition-in-a-shock-tunnel/",
       "eventDate": "2025-03-18T05:30:00.000Z",
-      "updatedAt": "2026-04-08T06:10:52.708Z"
+      "updatedAt": "2026-04-08T06:10:52.708Z",
+      "imageUrl": "https://aero.iisc.ac.in/wp-content/uploads/2025/03/Ankit-.jpg"
     },
     {
       "id": "ph-d-engg-multi-agent-coordination-using-convex-formations-and-binary-tree-structures",
@@ -2848,7 +2933,8 @@
       "type": "seminar",
       "registrationUrl": "https://aero.iisc.ac.in/event/ph-d-engg-multi-agent-coordination-using-convex-formations-and-binary-tree-structures/",
       "eventDate": "2026-02-09T05:45:00.000Z",
-      "updatedAt": "2026-04-08T06:10:58.111Z"
+      "updatedAt": "2026-04-08T06:10:58.111Z",
+      "imageUrl": "https://aero.iisc.ac.in/wp-content/uploads/2026/02/Gautam.jpg"
     },
     {
       "id": "ph-d-engg-multi-agent-pursuit-evasion-and-coverage-strategies",
@@ -2862,7 +2948,8 @@
       "type": "seminar",
       "registrationUrl": "https://aero.iisc.ac.in/event/ph-d-engg-multi-agent-pursuit-evasion-and-coverage-strategies/",
       "eventDate": "2025-03-12T09:30:00.000Z",
-      "updatedAt": "2026-04-08T06:10:52.276Z"
+      "updatedAt": "2026-04-08T06:10:52.276Z",
+      "imageUrl": "https://aero.iisc.ac.in/wp-content/uploads/2025/03/SURYADEEP-.jpg"
     },
     {
       "id": "ph-d-engg-multiscale-modelling-and-design-of-multifunctional-composites-for-microwave-absorption-applications",
@@ -2876,7 +2963,8 @@
       "type": "seminar",
       "registrationUrl": "https://aero.iisc.ac.in/event/ph-d-engg-multiscale-modelling-and-design-of-multifunctional-composites-for-microwave-absorption-applications/",
       "eventDate": "2024-12-06T08:30:00.000Z",
-      "updatedAt": "2026-04-08T06:10:50.276Z"
+      "updatedAt": "2026-04-08T06:10:50.276Z",
+      "imageUrl": "https://aero.iisc.ac.in/wp-content/uploads/2024/12/Attada-.jpg"
     },
     {
       "id": "ph-d-engg-navigation-of-autonomous-vehicles-using-event-cameras-and-modified-rrt-methods",
@@ -2890,7 +2978,8 @@
       "type": "seminar",
       "registrationUrl": "https://aero.iisc.ac.in/event/ph-d-engg-navigation-of-autonomous-vehicles-using-event-cameras-and-modified-rrt-methods/",
       "eventDate": "2025-04-23T04:30:00.000Z",
-      "updatedAt": "2026-04-08T06:10:53.501Z"
+      "updatedAt": "2026-04-08T06:10:53.501Z",
+      "imageUrl": "https://aero.iisc.ac.in/wp-content/uploads/2025/04/Ankit-.jpg"
     },
     {
       "id": "ph-d-engg-on-high-speed-curved-compression-ramp-air-intakes",
@@ -2904,7 +2993,8 @@
       "type": "seminar",
       "registrationUrl": "https://aero.iisc.ac.in/event/ph-d-engg-on-high-speed-curved-compression-ramp-air-intakes/",
       "eventDate": "2025-07-18T09:30:00.000Z",
-      "updatedAt": "2026-04-08T06:10:54.575Z"
+      "updatedAt": "2026-04-08T06:10:54.575Z",
+      "imageUrl": "https://aero.iisc.ac.in/wp-content/uploads/2025/07/Sushmitha-.jpg"
     },
     {
       "id": "ph-d-engg-on-the-nature-of-transonic-buffet-in-a-finite-span-wing",
@@ -2918,7 +3008,8 @@
       "type": "seminar",
       "registrationUrl": "https://aero.iisc.ac.in/event/ph-d-engg-on-the-nature-of-transonic-buffet-in-a-finite-span-wing/",
       "eventDate": "2024-11-27T05:30:00.000Z",
-      "updatedAt": "2026-04-08T06:10:49.589Z"
+      "updatedAt": "2026-04-08T06:10:49.589Z",
+      "imageUrl": "https://aero.iisc.ac.in/wp-content/uploads/2024/11/magan.jpg"
     },
     {
       "id": "ph-d-engg-passive-control-and-intermittent-dynamics-of-the-precessing-vortex-core-oscillation-in-swirl-flows",
@@ -2932,7 +3023,8 @@
       "type": "seminar",
       "registrationUrl": "https://aero.iisc.ac.in/event/ph-d-engg-passive-control-and-intermittent-dynamics-of-the-precessing-vortex-core-oscillation-in-swirl-flows/",
       "eventDate": "2025-02-18T10:30:00.000Z",
-      "updatedAt": "2026-04-08T06:10:51.719Z"
+      "updatedAt": "2026-04-08T06:10:51.719Z",
+      "imageUrl": "https://aero.iisc.ac.in/wp-content/uploads/2025/02/Saarthak-.jpg"
     },
     {
       "id": "ph-d-engg-studies-on-fluid-structure-interactions-in-hypersonic-flow",
@@ -2946,7 +3038,8 @@
       "type": "seminar",
       "registrationUrl": "https://aero.iisc.ac.in/event/ph-d-engg-studies-on-fluid-structure-interactions-in-hypersonic-flow/",
       "eventDate": "2025-03-07T05:30:00.000Z",
-      "updatedAt": "2026-04-08T06:10:52.152Z"
+      "updatedAt": "2026-04-08T06:10:52.152Z",
+      "imageUrl": "https://aero.iisc.ac.in/wp-content/uploads/2025/03/Kartika.jpg"
     },
     {
       "id": "ph-d-engg-studies-on-the-mixing-layer-between-supersonic-supersonic-co-flows",
@@ -2960,7 +3053,8 @@
       "type": "seminar",
       "registrationUrl": "https://aero.iisc.ac.in/event/ph-d-engg-studies-on-the-mixing-layer-between-supersonic-supersonic-co-flows/",
       "eventDate": "2026-01-05T05:30:00.000Z",
-      "updatedAt": "2026-04-08T06:10:57.587Z"
+      "updatedAt": "2026-04-08T06:10:57.587Z",
+      "imageUrl": "https://aero.iisc.ac.in/wp-content/uploads/2026/01/PANCHABUDHE-.jpg"
     },
     {
       "id": "ph-d-engg-transonic-shock-buffet-in-an-axial-flow-fan",
@@ -2974,7 +3068,8 @@
       "type": "seminar",
       "registrationUrl": "https://aero.iisc.ac.in/event/ph-d-engg-transonic-shock-buffet-in-an-axial-flow-fan/",
       "eventDate": "2025-01-16T05:30:00.000Z",
-      "updatedAt": "2026-04-08T06:10:51.235Z"
+      "updatedAt": "2026-04-08T06:10:51.235Z",
+      "imageUrl": "https://aero.iisc.ac.in/wp-content/uploads/2025/01/Jyoti-.jpg"
     },
     {
       "id": "ph-d-engg-turbulence-energy-cascade-in-physical-space-in-a-turbulent-channel-flow",
@@ -2988,7 +3083,8 @@
       "type": "seminar",
       "registrationUrl": "https://aero.iisc.ac.in/event/ph-d-engg-turbulence-energy-cascade-in-physical-space-in-a-turbulent-channel-flow/",
       "eventDate": "2026-01-19T09:30:00.000Z",
-      "updatedAt": "2026-04-08T06:10:58.013Z"
+      "updatedAt": "2026-04-08T06:10:58.013Z",
+      "imageUrl": "https://aero.iisc.ac.in/wp-content/uploads/2026/01/Aditya123.jpg"
     },
     {
       "id": "ph-d-engg-ultrasonic-guided-wave-based-inspection-of-additively-manufactured-components",
@@ -3002,7 +3098,8 @@
       "type": "seminar",
       "registrationUrl": "https://aero.iisc.ac.in/event/ph-d-engg-ultrasonic-guided-wave-based-inspection-of-additively-manufactured-components/",
       "eventDate": "2025-02-03T10:00:00.000Z",
-      "updatedAt": "2026-04-08T06:10:51.500Z"
+      "updatedAt": "2026-04-08T06:10:51.500Z",
+      "imageUrl": "https://aero.iisc.ac.in/wp-content/uploads/2025/01/Anoop-.jpg"
     },
     {
       "id": "ph-d-enggelastic-wave-propagation-in-textured-polycrystalline-media",
@@ -3016,7 +3113,8 @@
       "type": "seminar",
       "registrationUrl": "https://aero.iisc.ac.in/event/ph-d-enggelastic-wave-propagation-in-textured-polycrystalline-media/",
       "eventDate": "2025-10-22T10:00:00.000Z",
-      "updatedAt": "2026-04-08T06:10:55.594Z"
+      "updatedAt": "2026-04-08T06:10:55.594Z",
+      "imageUrl": "https://aero.iisc.ac.in/wp-content/uploads/2025/10/Himanshu.jpg"
     },
     {
       "id": "ph-dengg-numerical-studies-on-the-effect-of-core-metal-type-and-thickness-on-the-mechanical-behaviour-of-fiber-metal-laminates",
@@ -3030,7 +3128,8 @@
       "type": "seminar",
       "registrationUrl": "https://aero.iisc.ac.in/event/ph-dengg-numerical-studies-on-the-effect-of-core-metal-type-and-thickness-on-the-mechanical-behaviour-of-fiber-metal-laminates/",
       "eventDate": "2025-03-05T08:30:00.000Z",
-      "updatedAt": "2026-04-08T06:10:51.934Z"
+      "updatedAt": "2026-04-08T06:10:51.934Z",
+      "imageUrl": "https://aero.iisc.ac.in/wp-content/uploads/2025/03/SADANANDA.jpg"
     },
     {
       "id": "phase-transformations-in-multifunctional-materials",
@@ -3044,7 +3143,8 @@
       "type": "seminar",
       "registrationUrl": "https://aero.iisc.ac.in/event/phase-transformations-in-multifunctional-materials/",
       "eventDate": "2024-12-18T05:30:00.000Z",
-      "updatedAt": "2026-04-08T06:10:50.733Z"
+      "updatedAt": "2026-04-08T06:10:50.733Z",
+      "imageUrl": "https://aero.iisc.ac.in/wp-content/uploads/2024/12/Ananya-.jpg"
     },
     {
       "id": "phd-colloquium-development-of-generalizable-spiking-neural-network-based-learning-frameworks-for-solving-perimeter-defense-problem",
@@ -3058,7 +3158,8 @@
       "type": "seminar",
       "registrationUrl": "https://aero.iisc.ac.in/event/phd-colloquium-development-of-generalizable-spiking-neural-network-based-learning-frameworks-for-solving-perimeter-defense-problem/",
       "eventDate": "2024-08-01T05:00:00.000Z",
-      "updatedAt": "2026-04-08T06:10:48.277Z"
+      "updatedAt": "2026-04-08T06:10:48.277Z",
+      "imageUrl": "https://aero.iisc.ac.in/wp-content/uploads/2024/04/Thesis-Colloquium-Defence.jpg"
     },
     {
       "id": "phd-defense-bearings-only-quadrotor-guidance-in-gap-traversal-scenarios",
@@ -3072,7 +3173,8 @@
       "type": "seminar",
       "registrationUrl": "https://aero.iisc.ac.in/event/phd-defense-bearings-only-quadrotor-guidance-in-gap-traversal-scenarios/",
       "eventDate": "2024-07-16T10:30:00.000Z",
-      "updatedAt": "2026-04-08T06:10:47.897Z"
+      "updatedAt": "2026-04-08T06:10:47.897Z",
+      "imageUrl": "https://aero.iisc.ac.in/wp-content/uploads/2024/04/Thesis-Colloquium-Defence.jpg"
     },
     {
       "id": "phd-defense-wave-propagation-in-bio-inspired-inhomogeneous-waveguides-for-impact-mitigation-applications",
@@ -3086,7 +3188,8 @@
       "type": "seminar",
       "registrationUrl": "https://aero.iisc.ac.in/event/phd-defense-wave-propagation-in-bio-inspired-inhomogeneous-waveguides-for-impact-mitigation-applications/",
       "eventDate": "2024-07-05T11:00:00.000Z",
-      "updatedAt": "2026-04-08T06:10:47.622Z"
+      "updatedAt": "2026-04-08T06:10:47.622Z",
+      "imageUrl": "https://aero.iisc.ac.in/wp-content/uploads/2024/04/Thesis-Colloquium-Defence.jpg"
     },
     {
       "id": "phononic-materials-an-avenue-for-passive-flow-control",
@@ -3100,7 +3203,8 @@
       "type": "seminar",
       "registrationUrl": "https://aero.iisc.ac.in/event/phononic-materials-an-avenue-for-passive-flow-control/",
       "eventDate": "2025-01-10T09:30:00.000Z",
-      "updatedAt": "2026-04-08T06:10:51.109Z"
+      "updatedAt": "2026-04-08T06:10:51.109Z",
+      "imageUrl": "https://aero.iisc.ac.in/wp-content/uploads/2024/12/Vinod-.jpg"
     },
     {
       "id": "re-scaling-of-properties-in-wall-bounded-turbulent-flows",
@@ -3114,7 +3218,8 @@
       "type": "seminar",
       "registrationUrl": "https://aero.iisc.ac.in/event/re-scaling-of-properties-in-wall-bounded-turbulent-flows/",
       "eventDate": "2024-05-31T10:00:00.000Z",
-      "updatedAt": "2026-04-08T06:10:46.907Z"
+      "updatedAt": "2026-04-08T06:10:46.907Z",
+      "imageUrl": "https://aero.iisc.ac.in/wp-content/uploads/2024/04/AE-Seminar.jpg"
     },
     {
       "id": "recent-advancements-in-machine-learning-approaches-for-solid-body-mechanics",
@@ -3128,7 +3233,8 @@
       "type": "seminar",
       "registrationUrl": "https://aero.iisc.ac.in/event/recent-advancements-in-machine-learning-approaches-for-solid-body-mechanics/",
       "eventDate": "2025-10-06T09:30:00.000Z",
-      "updatedAt": "2026-04-08T06:10:55.010Z"
+      "updatedAt": "2026-04-08T06:10:55.010Z",
+      "imageUrl": "https://aero.iisc.ac.in/wp-content/uploads/2025/10/Stefan.jpg"
     },
     {
       "id": "recent-advances-in-infrared-optics-from-metalenses-to-upconversion-imaging",
@@ -3142,7 +3248,8 @@
       "type": "seminar",
       "registrationUrl": "https://aero.iisc.ac.in/event/recent-advances-in-infrared-optics-from-metalenses-to-upconversion-imaging/",
       "eventDate": "2024-08-23T10:30:00.000Z",
-      "updatedAt": "2026-04-08T06:10:48.443Z"
+      "updatedAt": "2026-04-08T06:10:48.443Z",
+      "imageUrl": "https://aero.iisc.ac.in/wp-content/uploads/2024/04/AE-Seminar.jpg"
     },
     {
       "id": "shape-control-and-programmable-morphing-applications-to-biological-and-bio-inspired-motility",
@@ -3156,7 +3263,8 @@
       "type": "seminar",
       "registrationUrl": "https://aero.iisc.ac.in/event/shape-control-and-programmable-morphing-applications-to-biological-and-bio-inspired-motility/",
       "eventDate": "2024-10-01T10:00:00.000Z",
-      "updatedAt": "2026-04-08T06:10:48.931Z"
+      "updatedAt": "2026-04-08T06:10:48.931Z",
+      "imageUrl": "https://aero.iisc.ac.in/wp-content/uploads/2024/04/AE-Seminar.jpg"
     },
     {
       "id": "solutions-for-reducing-severity-in-aircraft-flat-spin-recovery",
@@ -3170,7 +3278,8 @@
       "type": "seminar",
       "registrationUrl": "https://aero.iisc.ac.in/event/solutions-for-reducing-severity-in-aircraft-flat-spin-recovery/",
       "eventDate": "2024-09-10T10:00:00.000Z",
-      "updatedAt": "2026-04-08T06:10:48.702Z"
+      "updatedAt": "2026-04-08T06:10:48.702Z",
+      "imageUrl": "https://aero.iisc.ac.in/wp-content/uploads/2024/04/AE-Seminar.jpg"
     },
     {
       "id": "space-domain-awareness-in-the-artemis-era",
@@ -3184,7 +3293,8 @@
       "type": "seminar",
       "registrationUrl": "https://aero.iisc.ac.in/event/space-domain-awareness-in-the-artemis-era/",
       "eventDate": "2025-06-03T06:00:00.000Z",
-      "updatedAt": "2026-04-08T06:10:53.931Z"
+      "updatedAt": "2026-04-08T06:10:53.931Z",
+      "imageUrl": "https://aero.iisc.ac.in/wp-content/uploads/2025/05/Puneet-.jpg"
     },
     {
       "id": "state-estimation-strategies-for-space-object-tracking-in-the-context-of-space-situational-awareness",
@@ -3198,7 +3308,8 @@
       "type": "seminar",
       "registrationUrl": "https://aero.iisc.ac.in/event/state-estimation-strategies-for-space-object-tracking-in-the-context-of-space-situational-awareness/",
       "eventDate": "2024-07-12T06:00:00.000Z",
-      "updatedAt": "2026-04-08T06:10:47.778Z"
+      "updatedAt": "2026-04-08T06:10:47.778Z",
+      "imageUrl": "https://aero.iisc.ac.in/wp-content/uploads/2024/04/AE-Seminar.jpg"
     },
     {
       "id": "statistical-discovery-for-engineering-and-science-a-hands-on-workshop-using-jmp",
@@ -3212,7 +3323,8 @@
       "type": "event",
       "registrationUrl": "https://aero.iisc.ac.in/event/statistical-discovery-for-engineering-and-science-a-hands-on-workshop-using-jmp/",
       "eventDate": "2026-03-09T04:00:00.000Z",
-      "updatedAt": "2026-04-08T06:10:58.623Z"
+      "updatedAt": "2026-04-08T06:10:58.623Z",
+      "imageUrl": "https://aero.iisc.ac.in/wp-content/uploads/2026/03/deptment-of-aerospace-engineering-indian-institute-of-science-bangaluru-2.png"
     },
     {
       "id": "taming-waves-through-non-hermiticity-from-invisible-tunneling-to-unidirectional-nonlinear-pulses",
@@ -3226,7 +3338,8 @@
       "type": "seminar",
       "registrationUrl": "https://aero.iisc.ac.in/event/taming-waves-through-non-hermiticity-from-invisible-tunneling-to-unidirectional-nonlinear-pulses/",
       "eventDate": "2025-10-27T05:30:00.000Z",
-      "updatedAt": "2026-04-08T06:10:55.947Z"
+      "updatedAt": "2026-04-08T06:10:55.947Z",
+      "imageUrl": "https://aero.iisc.ac.in/wp-content/uploads/2025/10/Sayan.jpg"
     },
     {
       "id": "the-41st-annual-symposium-on-space-science-and-technology",
@@ -3240,7 +3353,8 @@
       "type": "event",
       "registrationUrl": "https://aero.iisc.ac.in/event/the-41st-annual-symposium-on-space-science-and-technology/",
       "eventDate": "2025-01-22T03:30:00.000Z",
-      "updatedAt": "2026-04-08T06:10:51.326Z"
+      "updatedAt": "2026-04-08T06:10:51.326Z",
+      "imageUrl": "https://aero.iisc.ac.in/wp-content/uploads/2025/01/Imtiaz-.jpg"
     },
     {
       "id": "the-dual-mesh-control-domain-method-a-marriage-of-the-finite-element-and-finite-volume-methods",
@@ -3254,7 +3368,8 @@
       "type": "seminar",
       "registrationUrl": "https://aero.iisc.ac.in/event/the-dual-mesh-control-domain-method-a-marriage-of-the-finite-element-and-finite-volume-methods/",
       "eventDate": "2024-12-09T05:30:00.000Z",
-      "updatedAt": "2026-04-08T06:10:50.638Z"
+      "updatedAt": "2026-04-08T06:10:50.638Z",
+      "imageUrl": "https://aero.iisc.ac.in/wp-content/uploads/2024/12/reddy1.jpg"
     },
     {
       "id": "the-longest-known-insect-migration-fusing-biology-with-aerospace-engineering-for-innovative-solutions",
@@ -3268,7 +3383,8 @@
       "type": "seminar",
       "registrationUrl": "https://aero.iisc.ac.in/event/the-longest-known-insect-migration-fusing-biology-with-aerospace-engineering-for-innovative-solutions/",
       "eventDate": "2025-03-17T05:30:00.000Z",
-      "updatedAt": "2026-04-08T06:10:52.609Z"
+      "updatedAt": "2026-04-08T06:10:52.609Z",
+      "imageUrl": "https://aero.iisc.ac.in/wp-content/uploads/2025/03/Sandeep.jpg"
     },
     {
       "id": "towards-collaborative-autonomy-in-multi-robot-systems-from-swarm-defense-to-human-robot-collaboration",
@@ -3282,7 +3398,8 @@
       "type": "seminar",
       "registrationUrl": "https://aero.iisc.ac.in/event/towards-collaborative-autonomy-in-multi-robot-systems-from-swarm-defense-to-human-robot-collaboration/",
       "eventDate": "2025-12-04T06:30:00.000Z",
-      "updatedAt": "2026-04-08T06:10:56.579Z"
+      "updatedAt": "2026-04-08T06:10:56.579Z",
+      "imageUrl": "https://aero.iisc.ac.in/wp-content/uploads/2025/12/Vishnu.png"
     },
     {
       "id": "two-day-short-course-on-mathematics-and-computing-of-risk-reliability-and-resilience-in-network-and-enterprise-systems",
@@ -3296,7 +3413,8 @@
       "type": "event",
       "registrationUrl": "https://aero.iisc.ac.in/event/two-day-short-course-on-mathematics-and-computing-of-risk-reliability-and-resilience-in-network-and-enterprise-systems/",
       "eventDate": "2024-12-19T03:30:00.000Z",
-      "updatedAt": "2026-04-08T06:10:50.875Z"
+      "updatedAt": "2026-04-08T06:10:50.875Z",
+      "imageUrl": "https://aero.iisc.ac.in/wp-content/uploads/2024/12/TwoDay.jpg"
     },
     {
       "id": "workshop-on-ideation-envisioning-the-future-in-aerospace",
@@ -3310,7 +3428,8 @@
       "type": "event",
       "registrationUrl": "https://aero.iisc.ac.in/event/workshop-on-ideation-envisioning-the-future-in-aerospace/",
       "eventDate": "2025-12-15T09:00:00.000Z",
-      "updatedAt": "2026-04-08T06:10:56.973Z"
+      "updatedAt": "2026-04-08T06:10:56.973Z",
+      "imageUrl": "https://aero.iisc.ac.in/wp-content/uploads/2025/12/image.jpg"
     },
     {
       "id": "workshop-on-sustainability",
@@ -3324,7 +3443,8 @@
       "type": "event",
       "registrationUrl": "https://aero.iisc.ac.in/event/workshop-on-sustainability/",
       "eventDate": "2025-03-17T03:30:00.000Z",
-      "updatedAt": "2026-04-08T06:10:52.485Z"
+      "updatedAt": "2026-04-08T06:10:52.485Z",
+      "imageUrl": "https://aero.iisc.ac.in/wp-content/uploads/2025/02/WorkshopSustainability.jpg"
     }
   ],
   "applications": [
