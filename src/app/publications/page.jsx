@@ -215,10 +215,10 @@ const BADGE_VARIANT = {
 
 function StatCard({ label, value }) {
     return (
-        <Card className="rounded border border-gray-200 shadow-none bg-white">
-            <CardContent className="p-4">
-                <p className="text-xs uppercase tracking-widest text-gray-500">{label}</p>
-                <p className="text-3xl font-semibold text-gray-900 mt-1">{value}</p>
+        <Card className="rounded-lg border border-slate-200 shadow-sm hover:shadow-md transition-shadow bg-white">
+            <CardContent className="p-5">
+                <p className="text-xs font-semibold uppercase tracking-widest text-slate-500">{label}</p>
+                <p className="text-3xl font-bold text-blue-950 mt-1.5">{value}</p>
             </CardContent>
         </Card>
     );
@@ -229,13 +229,13 @@ function StatCard({ label, value }) {
 function SidebarYears({ years, selectedYear, onSelect }) {
     return (
         <aside className="hidden md:block w-40 shrink-0">
-            <p className="text-xs uppercase tracking-widest text-gray-500 mb-3 px-1">Filter by Year</p>
-            <ul className="space-y-0.5">
+            <p className="text-xs font-semibold uppercase tracking-widest text-slate-500 mb-4 px-1">Filter by Year</p>
+            <ul className="space-y-1">
                 <li>
                     <Button
                         variant={selectedYear === null ? "default" : "ghost"}
                         size="sm"
-                        className="w-full justify-start text-sm"
+                        className={`w-full justify-start text-sm ${selectedYear === null ? "bg-blue-900 text-white hover:bg-blue-800" : "text-slate-600 hover:text-slate-900 hover:bg-slate-100"}`}
                         onClick={() => onSelect(null)}
                     >
                         All Years
@@ -246,7 +246,7 @@ function SidebarYears({ years, selectedYear, onSelect }) {
                         <Button
                             variant={selectedYear === y ? "default" : "ghost"}
                             size="sm"
-                            className="w-full justify-start text-sm"
+                            className={`w-full justify-start text-sm ${selectedYear === y ? "bg-blue-900 text-white hover:bg-blue-800" : "text-slate-600 hover:text-slate-900 hover:bg-slate-100"}`}
                             onClick={() => onSelect(y)}
                         >
                             {y}
@@ -264,24 +264,24 @@ function PublicationCard({ pub }) {
     const [open, setOpen] = useState(false);
 
     return (
-        <Card className="rounded border border-gray-200 shadow-none bg-white">
-            <CardHeader className="p-5 pb-3">
-                <div className="flex flex-wrap items-center gap-2 mb-2">
-                    <Badge variant={BADGE_VARIANT[pub.category] || "secondary"} className="text-xs">
+        <Card className="rounded-xl border border-slate-200 border-l-4 border-l-blue-900 shadow-sm hover:shadow-md transition-all duration-200 bg-gradient-to-r from-white to-slate-50/50">
+            <CardHeader className="p-6 pb-4">
+                <div className="flex flex-wrap items-center gap-3 mb-3">
+                    <Badge variant={BADGE_VARIANT[pub.category] || "secondary"} className="text-xs font-medium px-2.5 py-0.5">
                         {pub.category}
                     </Badge>
-                    <span className="text-xs text-gray-500">{pub.year}</span>
+                    <span className="text-xs font-semibold text-slate-500 bg-white border border-slate-200 px-2 py-0.5 rounded-full">{pub.year}</span>
                 </div>
-                <h3 className="text-base font-semibold text-gray-900 leading-snug">{pub.title}</h3>
-                <p className="text-sm text-gray-600 mt-1">{pub.authors}</p>
-                <p className="text-xs text-gray-500 italic mt-0.5">{pub.venue}</p>
+                <h3 className="text-[1.05rem] font-bold text-slate-900 leading-snug">{pub.title}</h3>
+                <p className="text-sm font-medium text-slate-700 mt-2">{pub.authors}</p>
+                <p className="text-sm text-slate-500 italic mt-1">{pub.venue}</p>
             </CardHeader>
 
-            <CardContent className="px-5 pb-4 pt-0 space-y-3">
+            <CardContent className="px-6 pb-6 pt-0 space-y-4">
                 {/* Action buttons */}
-                <div className="flex flex-wrap gap-2">
+                <div className="flex flex-wrap gap-2.5">
                     {pub.link && (
-                        <Button asChild variant="outline" size="sm" className="text-xs gap-1.5">
+                        <Button asChild variant="outline" size="sm" className="text-xs gap-1.5 border-slate-300 text-slate-700 hover:bg-slate-100 hover:text-slate-900">
                             <a href={pub.link} target="_blank" rel="noreferrer">
                                 <ExternalLink className="h-3.5 w-3.5" />
                                 View Paper
@@ -289,7 +289,7 @@ function PublicationCard({ pub }) {
                         </Button>
                     )}
                     {pub.doi && (
-                        <Button asChild variant="outline" size="sm" className="text-xs gap-1.5">
+                        <Button asChild variant="outline" size="sm" className="text-xs gap-1.5 border-slate-300 text-slate-700 hover:bg-slate-100 hover:text-slate-900">
                             <a href={`https://doi.org/${pub.doi}`} target="_blank" rel="noreferrer">
                                 <Hash className="h-3.5 w-3.5" />
                                 DOI
@@ -297,7 +297,7 @@ function PublicationCard({ pub }) {
                         </Button>
                     )}
                     {pub.pdf && (
-                        <Button asChild variant="outline" size="sm" className="text-xs gap-1.5">
+                        <Button asChild variant="outline" size="sm" className="text-xs gap-1.5 border-slate-300 text-slate-700 hover:bg-slate-100 hover:text-slate-900">
                             <a href={pub.pdf} target="_blank" rel="noreferrer">
                                 <Download className="h-3.5 w-3.5" />
                                 PDF
@@ -309,25 +309,25 @@ function PublicationCard({ pub }) {
                 {/* Expandable section */}
                 <Collapsible open={open} onOpenChange={setOpen}>
                     <CollapsibleTrigger asChild>
-                        <Button variant="ghost" size="sm" className="text-xs gap-1.5 px-0 h-auto text-gray-500 hover:text-gray-800">
+                        <Button variant="ghost" size="sm" className="text-xs gap-1.5 px-0 h-auto text-blue-800 hover:text-blue-950 hover:bg-transparent font-medium">
                             <ChevronDown
-                                className={`h-3.5 w-3.5 transition-transform duration-200 ${open ? "rotate-180" : ""}`}
+                                className={`h-4 w-4 transition-transform duration-200 ${open ? "rotate-180" : ""}`}
                             />
                             {open ? "Hide details" : "Show abstract & citation"}
                         </Button>
                     </CollapsibleTrigger>
                     <CollapsibleContent className="overflow-hidden data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0">
-                        <div className="pt-3 space-y-4">
+                        <div className="pt-4 space-y-5">
                             <div>
-                                <p className="text-xs uppercase tracking-widest text-gray-400 mb-1.5">Abstract</p>
-                                <p className="text-sm text-gray-700 leading-relaxed">{pub.abstract}</p>
+                                <p className="text-xs font-semibold uppercase tracking-widest text-slate-500 mb-2">Abstract</p>
+                                <p className="text-sm text-slate-700 leading-relaxed">{pub.abstract}</p>
                             </div>
-                            <Separator />
+                            <Separator className="bg-slate-200" />
                             <div>
-                                <p className="text-xs uppercase tracking-widest text-gray-400 mb-1.5 flex items-center gap-1.5">
-                                    <BookOpen className="h-3 w-3" /> Citation
+                                <p className="text-xs font-semibold uppercase tracking-widest text-slate-500 mb-2 flex items-center gap-1.5">
+                                    <BookOpen className="h-3.5 w-3.5" /> Citation
                                 </p>
-                                <p className="text-xs text-gray-600 leading-relaxed font-mono bg-gray-50 rounded p-3 border border-gray-200">
+                                <p className="text-xs text-slate-700 leading-relaxed font-mono bg-white rounded-md p-3.5 border border-slate-200 shadow-sm">
                                     {pub.citation}
                                 </p>
                             </div>
@@ -346,10 +346,10 @@ function PublicationsList({ publications, showAll }) {
 
     if (displayed.length === 0) {
         return (
-            <div className="py-16 text-center">
-                <FileText className="h-10 w-10 text-gray-300 mx-auto mb-3" />
-                <p className="text-sm text-gray-500">No publications match your search criteria.</p>
-                <p className="text-xs text-gray-400 mt-1">Try adjusting your filters or search term.</p>
+            <div className="py-20 text-center bg-slate-50 border border-slate-200 rounded-xl border-dashed">
+                <FileText className="h-10 w-10 text-slate-300 mx-auto mb-4" />
+                <p className="text-sm font-medium text-slate-600">No publications match your search criteria.</p>
+                <p className="text-xs text-slate-500 mt-1">Try adjusting your filters or search term.</p>
             </div>
         );
     }
@@ -363,17 +363,17 @@ function PublicationsList({ publications, showAll }) {
     const sortedYears = Object.keys(byYear).sort((a, b) => b - a);
 
     return (
-        <div className="space-y-8">
+        <div className="space-y-10">
             {sortedYears.map((year) => (
                 <section key={year}>
-                    <div className="flex items-center gap-3 mb-4">
-                        <h2 className="text-sm font-semibold text-gray-800 uppercase tracking-widest">{year}</h2>
-                        <div className="flex-1 border-t border-gray-200" />
-                        <Badge variant="secondary" className="text-xs tabular-nums">
-                            {byYear[year].length}
+                    <div className="flex items-center gap-4 mb-5">
+                        <h2 className="text-lg font-bold text-slate-900">{year}</h2>
+                        <div className="flex-1 border-t border-slate-200" />
+                        <Badge variant="outline" className="text-xs tabular-nums text-slate-500 border-slate-200 bg-white">
+                            {byYear[year].length} items
                         </Badge>
                     </div>
-                    <div className="space-y-3">
+                    <div className="space-y-4">
                         {byYear[year].map((pub) => (
                             <PublicationCard key={pub.id} pub={pub} />
                         ))}
@@ -388,18 +388,18 @@ function PublicationsList({ publications, showAll }) {
 
 function FiltersBar({ query, onQuery, sortOrder, onSort, mobileYear, onMobileYear, years }) {
     return (
-        <div className="flex flex-col sm:flex-row gap-3 items-stretch sm:items-center">
+        <div className="flex flex-col sm:flex-row gap-4 items-stretch sm:items-center">
             <div className="relative flex-1">
-                <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-gray-400 pointer-events-none" />
+                <Search className="absolute left-3.5 top-1/2 -translate-y-1/2 h-4 w-4 text-slate-400 pointer-events-none" />
                 <Input
                     placeholder="Search by title, author, or keyword…"
                     value={query}
                     onChange={(e) => onQuery(e.target.value)}
-                    className="pl-9 text-sm border-gray-200"
+                    className="pl-10 text-sm border-slate-300 bg-slate-50 text-slate-900 placeholder:text-slate-500 hover:bg-slate-100 focus-visible:bg-white focus-visible:ring-1 focus-visible:ring-blue-800 transition-all shadow-sm"
                 />
             </div>
             <Select value={sortOrder} onValueChange={onSort}>
-                <SelectTrigger className="w-full sm:w-44 text-sm border-gray-200">
+                <SelectTrigger className="w-full sm:w-48 text-sm bg-blue-900 text-white border-transparent hover:bg-blue-800 focus:ring-blue-800 transition-colors shadow-sm font-medium">
                     <SelectValue placeholder="Sort" />
                 </SelectTrigger>
                 <SelectContent>
@@ -411,9 +411,8 @@ function FiltersBar({ query, onQuery, sortOrder, onSort, mobileYear, onMobileYea
             <Select
                 value={mobileYear === null ? "all" : String(mobileYear)}
                 onValueChange={(v) => onMobileYear(v === "all" ? null : Number(v))}
-                className="md:hidden"
             >
-                <SelectTrigger className="w-full sm:w-36 text-sm border-gray-200 md:hidden">
+                <SelectTrigger className="w-full sm:w-36 text-sm border-slate-300 bg-white text-slate-900 md:hidden shadow-sm">
                     <SelectValue placeholder="Year" />
                 </SelectTrigger>
                 <SelectContent>
@@ -478,48 +477,46 @@ export default function PublicationsPage() {
     const showToggle = !showAll && filtered.length > 5;
 
     return (
-        <main className="page-shell">
-            <div className="section-shell max-w-5xl">
+        <main className="page-shell bg-slate-50/30 min-h-screen pb-16">
+            <div className="section-shell max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 pt-8">
 
                 {/* ── Header Card ── */}
-                <Card className="rounded border border-gray-200 shadow-none bg-white mb-6 reveal-up overflow-hidden">
-                    <CardContent className="p-6 md:p-8">
-                        <p className="text-xs uppercase tracking-widest text-gray-500">Publication Archive</p>
-                        <h1 className="text-3xl md:text-4xl font-semibold text-gray-900 mt-2">Selected Publications</h1>
-                        <p className="mt-2 text-sm text-gray-600">
+                <Card className="rounded-xl border border-slate-200 shadow-sm bg-white mb-8 overflow-hidden">
+                    <CardContent className="p-8 md:p-10">
+                        <p className="text-xs font-semibold uppercase tracking-widest text-blue-800">Publication Archive</p>
+                        <h1 className="text-3xl md:text-4xl font-bold text-slate-900 mt-3 tracking-tight">Selected Publications</h1>
+                        <p className="mt-3 text-base text-slate-600 max-w-3xl">
                             Peer-reviewed publications and technical outputs grouped by year.
                         </p>
 
                         {/* Stats */}
-                        <div className="mt-6 grid grid-cols-2 md:grid-cols-4 gap-3">
+                        <div className="mt-8 grid grid-cols-2 md:grid-cols-4 gap-4">
                             {STATS.map((s) => (
                                 <StatCard key={s.label} label={s.label} value={s.value} />
                             ))}
                         </div>
 
                         {/* Profile links */}
-                        <div className="mt-5 p-4 md:p-5 rounded border border-gray-200 bg-gray-50">
-                            <div className="flex flex-col sm:flex-row sm:items-center gap-3">
-                                <span className="text-sm text-gray-500 shrink-0">
-                                    Citations: <span className="font-semibold text-gray-800">2,036</span>
-                                </span>
-                                <div className="flex flex-wrap gap-2">
-                                    {PROFILE_LINKS.map((l) => (
-                                        <Button key={l.label} asChild variant="outline" size="sm" className="text-xs gap-1.5">
-                                            <a href={l.href} target="_blank" rel="noreferrer">
-                                                <ExternalLink className="h-3 w-3" />
-                                                {l.label}
-                                            </a>
-                                        </Button>
-                                    ))}
-                                </div>
+                        <div className="mt-8 p-5 md:p-6 rounded-lg border border-slate-200 bg-slate-50 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+                            <span className="text-sm text-slate-600 shrink-0">
+                                Total Citations: <span className="font-bold text-slate-900 text-base">2,036</span>
+                            </span>
+                            <div className="flex flex-wrap gap-2.5">
+                                {PROFILE_LINKS.map((l) => (
+                                    <Button key={l.label} asChild variant="outline" size="sm" className="text-xs gap-1.5 border-slate-300 text-slate-700 bg-white hover:bg-slate-100 hover:text-slate-900">
+                                        <a href={l.href} target="_blank" rel="noreferrer">
+                                            <ExternalLink className="h-3.5 w-3.5" />
+                                            {l.label}
+                                        </a>
+                                    </Button>
+                                ))}
                             </div>
                         </div>
                     </CardContent>
                 </Card>
 
                 {/* ── Filters + Tabs ── */}
-                <div className="space-y-4 mb-6">
+                <div className="space-y-6 mb-8">
                     <FiltersBar
                         query={query}
                         onQuery={handleQuery}
@@ -530,9 +527,9 @@ export default function PublicationsPage() {
                         years={years}
                     />
                     <Tabs value={activeTab} onValueChange={handleTab}>
-                        <TabsList className="bg-gray-100">
+                        <TabsList className="bg-slate-100 p-1 border border-slate-200">
                             {Object.keys(CATEGORY_MAP).map((k) => (
-                                <TabsTrigger key={k} value={k} className="text-xs px-4">
+                                <TabsTrigger key={k} value={k} className="text-sm px-5 font-medium data-[state=active]:bg-white data-[state=active]:text-blue-900 data-[state=active]:shadow-sm">
                                     {k}
                                 </TabsTrigger>
                             ))}
@@ -541,26 +538,26 @@ export default function PublicationsPage() {
                 </div>
 
                 {/* ── Main content: sidebar + list ── */}
-                <div className="flex gap-8 items-start">
+                <div className="flex gap-10 items-start">
                     <SidebarYears
                         years={years}
                         selectedYear={selectedYear}
                         onSelect={handleYear}
                     />
 
-                    <div className="flex-1 min-w-0 space-y-6">
-                        <div className="flex items-center justify-between">
-                            <p className="text-xs text-gray-500">
-                                Showing <span className="font-medium text-gray-700">{Math.min(showAll ? filtered.length : 5, filtered.length)}</span> of{" "}
-                                <span className="font-medium text-gray-700">{filtered.length}</span> results
+                    <div className="flex-1 min-w-0 space-y-8">
+                        <div className="flex items-center justify-between border-b border-slate-200 pb-3">
+                            <p className="text-sm text-slate-500 font-medium">
+                                Showing <span className="font-bold text-slate-900">{Math.min(showAll ? filtered.length : 5, filtered.length)}</span> of{" "}
+                                <span className="font-bold text-slate-900">{filtered.length}</span> results
                             </p>
                         </div>
 
                         <PublicationsList publications={filtered} showAll={showAll} />
 
                         {showToggle && (
-                            <div className="flex justify-center pt-2">
-                                <Button variant="outline" onClick={() => setShowAll(true)} className="text-sm gap-2">
+                            <div className="flex justify-center pt-6 pb-8">
+                                <Button variant="outline" onClick={() => setShowAll(true)} className="text-sm gap-2 border-slate-300 text-slate-700 hover:bg-slate-50 font-medium px-6 py-5 rounded-full shadow-sm">
                                     <FileText className="h-4 w-4" />
                                     See Complete List ({filtered.length - 5} more)
                                 </Button>
