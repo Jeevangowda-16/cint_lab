@@ -10,9 +10,9 @@
 	--ink-soft: #4b5563;
 	--accent: oklch(0.97 0 0);
 	--accent-deep: #1e40af;
-	--background: oklch(1 0 0);
+	--background: #f3f6fb;
 	--foreground: oklch(0.145 0 0);
-	--card: oklch(1 0 0);
+	--card: #ffffff;
 	--card-foreground: oklch(0.145 0 0);
 	--popover: oklch(1 0 0);
 	--popover-foreground: oklch(0.145 0 0);
@@ -49,7 +49,6 @@ html {
 
 body {
 	color: var(--ink);
-    background: var(--paper);
 }
 
 h1,
@@ -65,7 +64,7 @@ h6 {
 .page-shell {
 	min-height: 100vh;
 	padding: 2rem;
-	background: var(--paper);
+	background: transparent;
 
 	.hero-glow-blue,
 	.hero-glow-gold {
@@ -84,8 +83,10 @@ h6 {
 }
 
 .section-shell {
-	max-width: 72rem;
+	max-width: 90rem;
+	/* or 96rem */
 	margin-inline: auto;
+	background: transparent;
 }
 
 .paper-card {
@@ -248,13 +249,65 @@ h6 {
 }
 
 @layer base {
-  * {
-    @apply border-border outline-ring/50;
+	* {
+		@apply border-border outline-ring/50;
 	}
-  body {
-    @apply bg-background text-foreground;
+
+	body {
+		@apply text-foreground;
+		background: #f3f6fb;
+		/* 🔥 THIS FORCES NEW COLOR */
 	}
-  html {
-    @apply font-sans;
+
+	html {
+		@apply font-sans;
 	}
+}
+
+/* ========================= */
+/* 🔥 UI POLISH ADDITIONS */
+/* ========================= */
+
+/* Smooth fade-in animation (used in page.jsx) */
+.fade-in {
+	opacity: 0;
+	transform: translateY(24px);
+	animation: fadeInUp 0.6s ease forwards;
+}
+
+.fade-in-delay {
+	animation-delay: 0.2s;
+}
+
+.fade-in-delay-2 {
+	animation-delay: 0.4s;
+}
+
+/* Animation keyframes */
+@keyframes fadeInUp {
+	to {
+		opacity: 1;
+		transform: translateY(0);
+	}
+}
+
+/* Subtle hover polish for cards (optional global enhancement) */
+.card-hover {
+	transition: all 0.3s ease;
+}
+
+.card-hover:hover {
+	transform: translateY(-4px);
+}
+
+/* 🔥 Premium card styling */
+.card-premium {
+	background: #ffffff;
+	border: 1px solid #e5e7eb;
+	border-radius: 12px;
+	transition: all 0.25s ease;
+}
+
+.card-premium:hover {
+	box-shadow: 0 8px 24px rgba(0, 0, 0, 0.06);
 }

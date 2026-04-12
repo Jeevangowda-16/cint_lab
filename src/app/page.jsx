@@ -1,10 +1,19 @@
 "use client";
 
-import { useCallback, useMemo } from "react";
+import { useCallback, useMemo, useState } from "react";
 import Image from "next/image";
+import Link from "next/link";
 import { useAsyncData } from "@/hooks/useAsyncData";
 import { getEvents } from "@/services/eventService";
 import { getLabOverview } from "@/services/labService";
+import { Button } from "@/components/ui/button";
+import { Badge } from "@/components/ui/badge";
+import {
+  Card,
+  CardContent,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
 
 function formatDate(value) {
   return new Date(value).toLocaleString(undefined, {
@@ -26,93 +35,199 @@ export default function HomePage() {
   const fetchEvents = useCallback(() => getEvents(), []);
   const { data: eventData } = useAsyncData(fetchEvents);
 
-  const latestEvents = useMemo(() => (eventData || []).slice(0, 3), [eventData]);
+  const allEvents = useMemo(() => eventData || [], [eventData]);
+
+  const [pubIndex, setPubIndex] = useState(0);
+  const visibleEvents = useMemo(
+    () => allEvents.slice(pubIndex, pubIndex + 3),
+    [allEvents, pubIndex]
+  );
+
+  const canGoPrev = pubIndex > 0;
+  const canGoNext = pubIndex + 3 < allEvents.length;
 
   return (
-    <main className="page-shell text-slate-800">
-      <div className="section-shell space-y-12">
+    <main className="page-shell text-slate-800 px-4 md:px-6 lg:px-10">
+      <div className="section-shell space-y-20 md:space-y-24">
+
         {loading && <p className="text-gray-600">Loading homepage...</p>}
         {error && <p className="text-red-600">{error}</p>}
 
         {!loading && !error && (
           <>
-            <section className="rounded border border-gray-300 bg-white p-6 md:p-10">
-              <div className="grid grid-cols-1 lg:grid-cols-[1.15fr_0.85fr] gap-8 items-center">
-                <div className="text-left">
-                  <p className="text-xs uppercase tracking-[0.18em] text-gray-600">Department of Aerospace Engineering, IISc</p>
-                  <h1 className="mt-3 text-4xl md:text-5xl lg:text-6xl font-semibold text-gray-900 leading-[1.15]">
-                    {overview?.title || "CINT Lab"}
-                  </h1>
-                  <p className="mt-5 max-w-2xl text-base md:text-lg leading-7 text-gray-700">
-                    {overview?.mission || "Computing Intelligence and Networked Technologies research in autonomy, control, and aerospace systems."}
-                  </p>
+
+            {/* HERO */}
+            <Card className="rounded-2xl border border-gray-200/70 bg-white/60 backdrop-blur-sm shadow-sm">
+              <CardContent className="px-8 md:px-12 py-12 md:py-14 flex flex-col items-start gap-6 max-w-4xl">
+
+                <p className="text-xs uppercase tracking-widest text-gray-500 font-medium">
+                  Department of Aerospace Engineering · IISc Bengaluru
+                </p>
+
+                <h1 className="text-3xl md:text-4xl font-semibold text-gray-900 leading-tight tracking-tight">
+                  {overview?.title || "CINT Lab"}
+                </h1>
+
+                <p className="max-w-2xl text-base md:text-lg text-gray-600 leading-relaxed">
+                  {overview?.mission}
+                </p>
+
+                {/* 🔥 ADD THIS BLOCK HERE */}
+                <div className="flex gap-2 flex-wrap pt-2">
+                  <Badge variant="secondary">AI</Badge>
+                  <Badge variant="secondary">Autonomous Systems</Badge>
+                  <Badge variant="secondary">UAV</Badge>
                 </div>
 
-                <div className="lg:justify-self-end w-full max-w-md">
-                  <div className="overflow-hidden rounded border border-gray-300 bg-gray-100">
+                <div className="flex gap-4 pt-2">
+                  <Button className="transition hover:scale-[1.03] active:scale-[0.97]" asChild>
+                    <Link href="/projects">Explore Projects</Link>
+                  </Button>
+                  <Button variant="outline" asChild>
+                    <Link href="/team">Teams</Link>
+                  </Button>
+                </div>
+
+              </CardContent>
+            </Card>
+
+            {/* AIRPLANE */}
+            <Card className="fade-in fade-in-delay card-premium">
+              <CardContent className="p-0">
+                <div className="w-full h-[320px] md:h-[420px] rounded-2xl overflow-hidden">
+                  <Image
+                    src="/headshots/airplane.jpg"
+                    alt="CINT Lab Aircraft"
+                    fill
+                    className="object-cover"
+                  />
+                </div>
+              </CardContent>
+            </Card>
+
+            {/* PROFESSOR */}
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-8 fade-in fade-in-delay-2">
+
+              {/* IMAGE */}
+              <Card className="card-premium hover:-translate-y-1">
+                <CardContent className="p-6 flex flex-col items-center gap-3">
+                  <div className="w-full max-w-xs aspect-[4/5] overflow-hidden rounded-xl border border-gray-200">
                     <Image
-                      src="/headshots/sn-omkar.jpg"
-                      alt="SN Omkar"
-                      width={720}
-                      height={900}
-                      priority
-                      className="h-auto w-full object-cover"
+                      src="/headshots/director.jpg"
+                      alt="Prof. SN Omkar"
+                      width={480}
+                      height={600}
+                      className="w-full h-full object-cover"
                     />
                   </div>
-                  <p className="mt-3 text-center text-sm text-gray-600">SN Omkar</p>
+                  <p className="text-sm font-semibold text-gray-800">
+                    Prof. SN Omkar
+                  </p>
+                  <p className="text-xs text-gray-500">
+                    Chief Research Scientist & Head of CINT Lab
+                  </p>
+                </CardContent>
+              </Card>
+
+              {/* TEXT */}
+              <Card className="card-premium hover:-translate-y-1">
+                <CardContent className="p-8 flex flex-col gap-5 max-w-xl">
+
+                  <h2 className="text-2xl font-semibold text-gray-900 tracking-tight">
+                    Dr. S. N. Omkar
+                  </h2>
+
+                  <p className="text-sm font-medium text-blue-700">
+                    Chief Research Scientist & Head of CINT Lab
+                  </p>
+                  <div className="pt-1">
+                    <Badge variant="secondary">Aerospace AI</Badge>
+                  </div>
+
+                  <p className="text-sm text-gray-600 leading-relaxed">
+                    Dr. S. N. Omkar is a Chief Research Scientist in the Department of Aerospace Engineering at the Indian Institute of Science (IISc), Bangalore. His research spans multiple domains within aerospace engineering, with a particular focus on unmanned air vehicles, autonomous navigation systems, and intelligent control mechanisms.
+                  </p>
+
+                  <p className="text-sm text-gray-600 leading-relaxed">
+                    His research interests include helicopter dynamics, satellite image processing, biomechanics, and composite design optimization. His pioneering work in UAV technology and autonomous navigation has contributed significantly to advancing aerial robotics and intelligent aerospace systems.
+                  </p>
+
+                  <p className="text-sm text-gray-600 leading-relaxed">
+                    He also leads research in structural health monitoring, applying advanced computational methods to ensure the safety and reliability of aerospace structures. Dr. Omkar actively contributes to interdisciplinary innovation and mentoring future researchers.
+                  </p>
+
+                </CardContent>
+              </Card>
+
+            </div>
+
+            {/* DIVIDER */}
+            <div className="h-px bg-gray-200 w-full" />
+
+            {/* PUBLICATIONS */}
+            <section className="space-y-6 fade-in">
+
+              <div className="flex items-center justify-between gap-4">
+                <h2 className="text-2xl md:text-3xl font-semibold text-gray-900 tracking-tight">
+                  Recent Publications & News
+                </h2>
+
+                <div className="flex gap-2">
+                  <Button
+                    variant="outline"
+                    size="icon"
+                    onClick={() => setPubIndex((i) => Math.max(0, i - 3))}
+                    disabled={!canGoPrev}
+                  >
+                    ←
+                  </Button>
+                  <Button
+                    variant="outline"
+                    size="icon"
+                    onClick={() =>
+                      setPubIndex((i) =>
+                        Math.min(allEvents.length - 3, i + 3)
+                      )
+                    }
+                    disabled={!canGoNext}
+                  >
+                    →
+                  </Button>
                 </div>
               </div>
-            </section>
 
-            <section className="rounded border border-gray-300 bg-white p-6 md:p-8">
-              <div className="flex items-end justify-between gap-4 flex-wrap">
-                <div>
-                  <p className="text-xs uppercase tracking-[0.18em] text-gray-600">Latest events</p>
-                  <h2 className="mt-2 text-2xl md:text-3xl font-semibold text-gray-900">Latest Top 3 Events</h2>
-                </div>
-              </div>
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-10">
+                {visibleEvents.map((eventItem) => (
+                  <Card
+                    key={eventItem.id}
+                    className="card-premium hover:-translate-y-[3px]"
+                  >
+                    <CardHeader>
+                      <CardTitle className="text-sm font-semibold">
+                        {eventItem.title}
+                      </CardTitle>
+                    </CardHeader>
 
-              {latestEvents.length > 0 ? (
-                <div className="mt-6 space-y-4">
-                  {latestEvents.map((eventItem) => (
-                    <article key={eventItem.id} className="rounded border bg-gray-50 p-4 md:p-6 border border-gray-300">
-                      <div className="flex items-start justify-between gap-3 flex-wrap">
-                        <div>
-                          <p className="text-xs uppercase tracking-[0.15em] text-gray-600">{eventItem.type}</p>
-                          <h3 className="mt-2 text-xl md:text-2xl font-semibold text-gray-900 leading-tight">{eventItem.title}</h3>
-                        </div>
-                        <p className="text-sm text-gray-600">
-                          {eventItem.eventEndDate
-                            ? `${formatDate(eventItem.eventDate)} - ${formatDate(eventItem.eventEndDate)}`
-                            : formatDate(eventItem.eventDate)}
-                        </p>
-                      </div>
-
-                      <p className="mt-4 max-w-3xl text-sm md:text-[15px] leading-7 text-gray-700">
-                        {previewText(eventItem.description)}
+                    <CardContent className="text-sm text-gray-600 space-y-3">
+                      <p>{previewText(eventItem.description)}</p>
+                      <p className="text-xs text-gray-400">
+                        {formatDate(eventItem.eventDate)}
                       </p>
 
-                      <div className="mt-5 flex flex-wrap items-center gap-3 text-sm text-gray-700">
-                        <p>Speaker: {eventItem.speaker || "TBA"}</p>
-                        <p>Location: {eventItem.location || "IISc Aerospace Engineering"}</p>
-                        {eventItem.registrationUrl && (
-                          <a
-                            href={eventItem.registrationUrl}
-                            target="_blank"
-                            rel="noreferrer"
-                            className="inline-flex items-center rounded border border-blue-800 bg-blue-700 px-4 py-2 text-sm font-semibold text-white hover:bg-blue-800"
-                          >
+                      {eventItem.registrationUrl && (
+                        <Button size="sm" variant="outline" asChild>
+                          <a href={eventItem.registrationUrl}>
                             Open Event
                           </a>
-                        )}
-                      </div>
-                    </article>
-                  ))}
-                </div>
-              ) : (
-                <p className="mt-5 text-sm text-gray-700">No events available.</p>
-              )}
+                        </Button>
+                      )}
+                    </CardContent>
+                  </Card>
+                ))}
+              </div>
+
             </section>
+
           </>
         )}
       </div>
