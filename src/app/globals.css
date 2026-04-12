@@ -10,9 +10,7 @@
 	--ink-soft: #4b5563;
 	--accent: oklch(0.97 0 0);
 	--accent-deep: #1e40af;
-	--background: #f3f6fb;
-	--foreground: oklch(0.145 0 0);
-	--card: #ffffff;
+	--card: oklch(1 0 0);
 	--card-foreground: oklch(0.145 0 0);
 	--popover: oklch(1 0 0);
 	--popover-foreground: oklch(0.145 0 0);
@@ -41,6 +39,8 @@
 	--sidebar-accent-foreground: oklch(0.205 0 0);
 	--sidebar-border: oklch(0.922 0 0);
 	--sidebar-ring: oklch(0.708 0 0);
+	--background: oklch(1 0 0);
+	--foreground: oklch(0.145 0 0);
 }
 
 html {
@@ -254,7 +254,7 @@ h6 {
 	}
 
 	body {
-		@apply text-foreground;
+		@apply bg-background text-foreground;
 		background: #f3f6fb;
 		/* 🔥 THIS FORCES NEW COLOR */
 	}
