@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { useAdminAuth } from "@/hooks/useAdminAuth";
 import { Button } from "@/components/ui/button";
+import Image from "next/image";
 
 export default function Navbar() {
     const { isAuthenticated, isAdmin } = useAdminAuth();
@@ -22,12 +23,17 @@ export default function Navbar() {
     ">
 
                     {/* Logo */}
-                    <Link href="/" className="group leading-tight">
-                        <span className="text-2xl md:text-[1.85rem] font-bold text-gray-900 tracking-tight group-hover:text-blue-800 transition-colors">
+                    <Link href="/" className="flex items-center gap-3">
+                        <Image
+                            src="/headshots/aerologo.svg"
+                            alt="CINT Lab Logo"
+                            width={28}
+                            height={28}
+                        />
+                        <span className="text-xl md:text-2xl font-semibold text-gray-900 tracking-tight">
                             CINT Lab
                         </span>
                     </Link>
-
                     {/* Nav links */}
                     <div className="flex flex-wrap md:flex-nowrap items-center gap-1">
 
