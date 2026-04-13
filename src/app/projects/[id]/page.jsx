@@ -6,6 +6,8 @@ import { useParams } from "next/navigation";
 import { useAsyncData } from "@/hooks/useAsyncData";
 import { getInterns } from "@/services/internService";
 import { getProjectById, getProjects } from "@/services/projectService";
+import { Card } from "@/components/ui/card";
+import { Button } from "@/components/ui/button";
 
 function renderParagraphs(paragraphs = []) {
   return paragraphs.map((paragraph) => (
@@ -52,7 +54,7 @@ function renderTable(table) {
 
 function SectionBlock({ section }) {
   return (
-    <section className="paper-card rounded p-6 md:p-8">
+    <Card className="paper-card rounded p-6 md:p-8">
       <p className="text-xs uppercase tracking-[0.12em] text-blue-700 font-semibold">Section</p>
       <h2 className="text-2xl md:text-3xl text-gray-900 mt-2">{section.title}</h2>
       {renderParagraphs(section.paragraphs || [])}
@@ -69,13 +71,13 @@ function SectionBlock({ section }) {
       )}
 
       {renderTable(section.table)}
-    </section>
+    </Card>
   );
 }
 
 function InternCard({ intern, projectTitle }) {
   return (
-    <article className="paper-card rounded p-5 md:p-6">
+    <Card className="paper-card rounded p-5 md:p-6">
       <div className="flex items-center justify-between gap-3 flex-wrap">
         <span className="chip">{intern.status || "active"}</span>
         <p className="text-xs uppercase tracking-[0.1em] text-gray-600">{intern.cohort ? `Cohort ${intern.cohort}` : "Intern"}</p>
@@ -103,7 +105,7 @@ function InternCard({ intern, projectTitle }) {
           </a>
         )}
       </div>
-    </article>
+    </Card>
   );
 }
 
@@ -164,9 +166,9 @@ export default function ProjectDetailPage() {
       <main className="page-shell text-gray-800">
         <section className="section-shell py-10 space-y-4">
           <p className="text-red-600">{projectError || "Project not found."}</p>
-          <Link href="/projects" className="text-blue-700 font-semibold hover:underline">
-            Back to Projects
-          </Link>
+          <Button variant="link" className="px-0" asChild>
+            <Link href="/projects">Back to Projects</Link>
+          </Button>
         </section>
       </main>
     );
@@ -226,17 +228,17 @@ export default function ProjectDetailPage() {
         ) : null}
 
         {!internsLoading && !internsError && interns.length === 0 ? (
-          <div className="paper-card rounded p-6 text-gray-700">
+          <Card className="paper-card rounded p-6 text-gray-700">
             No interns are linked to this project yet.
-          </div>
+          </Card>
         ) : null}
       </section>
 
       <section className="section-shell mt-10 mb-6 flex flex-wrap items-center justify-between gap-4">
         <p className="text-sm text-gray-700">Project ID: {project.id}</p>
-        <Link href="/projects" className="text-blue-700 font-semibold hover:underline">
-          Back to Projects
-        </Link>
+        <Button variant="link" className="px-0" asChild>
+          <Link href="/projects">Back to Projects</Link>
+        </Button>
       </section>
     </main>
   );

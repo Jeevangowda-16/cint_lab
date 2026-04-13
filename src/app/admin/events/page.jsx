@@ -3,6 +3,12 @@
 import { useCallback, useState } from "react";
 import { useAsyncData } from "@/hooks/useAsyncData";
 import { addEvent, deleteEvent, getEvents, updateEvent } from "@/services/eventService";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Input } from "@/components/ui/input";
+import { Textarea } from "@/components/ui/textarea";
+import { Button } from "@/components/ui/button";
+import { Checkbox } from "@/components/ui/checkbox";
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 
 const initialForm = {
   title: "",
@@ -75,38 +81,51 @@ export default function AdminEventsPage() {
       <div className="max-w-6xl mx-auto">
         <h1 className="text-3xl font-semibold text-gray-900 mb-6">Admin: Events</h1>
 
-        <form onSubmit={onSubmit} className="bg-white border border-gray-300 rounded p-6 space-y-4 mb-8">
+        <Card className="mb-8">
+          <CardContent className="pt-6">
+        <form onSubmit={onSubmit} className="space-y-4">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-            <input name="title" value={form.title} onChange={onChange} placeholder="Title" className="bg-white border border-gray-300 p-3 rounded" />
-            <select name="type" value={form.type} onChange={onChange} className="bg-white border border-gray-300 p-3 rounded">
-              <option value="seminar">seminar</option>
-              <option value="event">event</option>
-            </select>
+            <Input name="title" value={form.title} onChange={onChange} placeholder="Title" />
+            <Select value={form.type} onValueChange={(value) => setForm((previous) => ({ ...previous, type: value }))}>
+              <SelectTrigger className="w-full h-10">
+                <SelectValue placeholder="Select type" />
+              </SelectTrigger>
+              <SelectContent>
+                <SelectItem value="seminar">seminar</SelectItem>
+                <SelectItem value="event">event</SelectItem>
+              </SelectContent>
+            </Select>
           </div>
-          <textarea name="description" value={form.description} onChange={onChange} placeholder="Description" className="w-full bg-white border border-gray-300 p-3 rounded" />
+          <Textarea name="description" value={form.description} onChange={onChange} placeholder="Description" />
           <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-            <input name="speaker" value={form.speaker} onChange={onChange} placeholder="Speaker" className="bg-white border border-gray-300 p-3 rounded" />
-            <input name="location" value={form.location} onChange={onChange} placeholder="Location" className="bg-white border border-gray-300 p-3 rounded" />
-            <input name="eventDate" type="datetime-local" value={form.eventDate} onChange={onChange} className="bg-white border border-gray-300 p-3 rounded" />
+            <Input name="speaker" value={form.speaker} onChange={onChange} placeholder="Speaker" />
+            <Input name="location" value={form.location} onChange={onChange} placeholder="Location" />
+            <Input name="eventDate" type="datetime-local" value={form.eventDate} onChange={onChange} />
           </div>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-            <input name="eventEndDate" type="datetime-local" value={form.eventEndDate} onChange={onChange} className="bg-white border border-gray-300 p-3 rounded" />
-            <input name="registrationUrl" value={form.registrationUrl} onChange={onChange} placeholder="Event URL" className="bg-white border border-gray-300 p-3 rounded" />
+            <Input name="eventEndDate" type="datetime-local" value={form.eventEndDate} onChange={onChange} />
+            <Input name="registrationUrl" value={form.registrationUrl} onChange={onChange} placeholder="Event URL" />
           </div>
-          <input name="imageUrl" value={form.imageUrl} onChange={onChange} placeholder="Photo URL" className="w-full bg-white border border-gray-300 p-3 rounded" />
-          <label className="text-sm text-gray-700 flex items-center gap-2"><input type="checkbox" name="isFeatured" checked={form.isFeatured} onChange={onChange} />Featured</label>
+          <Input name="imageUrl" value={form.imageUrl} onChange={onChange} placeholder="Photo URL" />
+          <label className="text-sm text-gray-700 flex items-center gap-2"><Checkbox name="isFeatured" checked={form.isFeatured} onChange={onChange} />Featured</label>
           <div className="flex gap-3">
-            <button type="submit" className="bg-blue-700 text-white px-6 py-2 rounded border border-blue-800 font-semibold hover:bg-blue-800">{editingId ? "Update" : "Add"} Event</button>
-            {editingId && <button type="button" onClick={() => { setEditingId(""); setForm(initialForm); }} className="bg-white border border-gray-300 text-gray-900 px-6 py-2 rounded font-semibold hover:bg-gray-100">Cancel</button>}
+            <Button type="submit">{editingId ? "Update" : "Add"} Event</Button>
+            {editingId && <Button type="button" variant="outline" onClick={() => { setEditingId(""); setForm(initialForm); }}>Cancel</Button>}
           </div>
         </form>
+          </CardContent>
+        </Card>
 
         {loading && <p className="text-gray-600">Loading events...</p>}
         {error && <p className="text-red-600">{error}</p>}
 
         <div className="space-y-4">
           {events.map((eventItem) => (
-            <article key={eventItem.id} className="bg-white border border-gray-300 rounded p-4">
+            <Card key={eventItem.id}>
+              <CardHeader className="pb-2">
+                <CardTitle className="text-xl">{eventItem.title}</CardTitle>
+              </CardHeader>
+              <CardContent>
               {eventItem.imageUrl && (
                 <div className="mb-4 h-40 w-full overflow-hidden rounded border border-gray-300 bg-white md:w-72">
                   <img
@@ -117,7 +136,6 @@ export default function AdminEventsPage() {
                   />
                 </div>
               )}
-              <h2 className="text-xl font-semibold text-gray-900">{eventItem.title}</h2>
               <p className="text-sm text-gray-700">
                 {eventItem.type}
                 {eventItem.isFeatured ? " • featured" : ""}
@@ -140,10 +158,11 @@ export default function AdminEventsPage() {
                 </a>
               )}
               <div className="mt-3 flex gap-3">
-                <button type="button" onClick={() => startEdit(eventItem)} className="text-blue-700 font-semibold hover:text-blue-800">Edit</button>
-                <button type="button" onClick={() => remove(eventItem.id)} className="text-gray-700 font-semibold hover:text-gray-900">Delete</button>
+                <Button type="button" variant="outline" onClick={() => startEdit(eventItem)}>Edit</Button>
+                <Button type="button" variant="outline" onClick={() => remove(eventItem.id)}>Delete</Button>
               </div>
-            </article>
+              </CardContent>
+            </Card>
           ))}
         </div>
       </div>

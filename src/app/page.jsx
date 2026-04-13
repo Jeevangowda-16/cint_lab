@@ -166,20 +166,24 @@ export default function HomePage() {
                   </div>
 
                   {/* LEFT BUTTON */}
-                  <button
+                  <Button
                     onClick={() => setPubIndex((prev) => (prev - 1 + 4) % 4)}
-                    className="absolute left-3 top-1/2 -translate-y-1/2 bg-white/80 hover:bg-white rounded-full px-3 py-2 shadow"
+                    variant="outline"
+                    size="icon"
+                    className="absolute left-3 top-1/2 -translate-y-1/2 rounded-full bg-white/80 hover:bg-white shadow"
                   >
                     ←
-                  </button>
+                  </Button>
 
                   {/* RIGHT BUTTON */}
-                  <button
+                  <Button
                     onClick={() => setPubIndex((prev) => (prev + 1) % 4)}
-                    className="absolute right-3 top-1/2 -translate-y-1/2 bg-white/80 hover:bg-white rounded-full px-3 py-2 shadow"
+                    variant="outline"
+                    size="icon"
+                    className="absolute right-3 top-1/2 -translate-y-1/2 rounded-full bg-white/80 hover:bg-white shadow"
                   >
                     →
-                  </button>
+                  </Button>
 
                 </div>
 

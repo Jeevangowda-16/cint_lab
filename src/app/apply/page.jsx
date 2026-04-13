@@ -3,6 +3,11 @@
 import { useCallback, useEffect, useMemo, useState } from "react";
 import { useAsyncData } from "@/hooks/useAsyncData";
 import { getFormConfig } from "@/services/formConfigService";
+import { Input } from "@/components/ui/input";
+import { Textarea } from "@/components/ui/textarea";
+import { Button } from "@/components/ui/button";
+import { Checkbox } from "@/components/ui/checkbox";
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 
 const initialApplicationForm = {
   fullName: "",
@@ -124,23 +129,23 @@ export default function ApplyPage() {
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           <div>
             <label className="text-sm font-semibold text-gray-700" htmlFor="fullName">Full Name *</label>
-            <input
+            <Input
               id="fullName"
               name="fullName"
               value={form.fullName}
               onChange={onInputChange}
-              className="mt-2 w-full bg-white border border-gray-300 p-3 rounded focus:ring-1 focus:ring-blue-600 focus:border-blue-600 outline-none"
+              className="mt-2"
             />
           </div>
           <div>
             <label className="text-sm font-semibold text-gray-700" htmlFor="email">Email *</label>
-            <input
+            <Input
               id="email"
               type="email"
               name="email"
               value={form.email}
               onChange={onInputChange}
-              className="mt-2 w-full bg-white border border-gray-300 p-3 rounded focus:ring-1 focus:ring-blue-600 focus:border-blue-600 outline-none"
+              className="mt-2"
             />
           </div>
         </div>
@@ -148,27 +153,26 @@ export default function ApplyPage() {
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           <div>
             <label className="text-sm font-semibold text-gray-700" htmlFor="institution">Institution *</label>
-            <input
+            <Input
               id="institution"
               name="institution"
               value={form.institution}
               onChange={onInputChange}
-              className="mt-2 w-full bg-white border border-gray-300 p-3 rounded focus:ring-1 focus:ring-blue-600 focus:border-blue-600 outline-none"
+              className="mt-2"
             />
           </div>
           <div>
             <label className="text-sm font-semibold text-gray-700" htmlFor="programLevel">Program Level</label>
-            <select
-              id="programLevel"
-              name="programLevel"
-              value={form.programLevel}
-              onChange={onInputChange}
-              className="mt-2 w-full bg-white border border-gray-300 p-3 rounded focus:ring-1 focus:ring-blue-600 focus:border-blue-600 outline-none"
-            >
-              <option>Undergraduate</option>
-              <option>Masters</option>
-              <option>PhD</option>
-            </select>
+            <Select value={form.programLevel} onValueChange={(value) => setForm((previous) => ({ ...previous, programLevel: value }))}>
+              <SelectTrigger id="programLevel" className="mt-2 w-full h-11">
+                <SelectValue placeholder="Select program level" />
+              </SelectTrigger>
+              <SelectContent>
+                <SelectItem value="Undergraduate">Undergraduate</SelectItem>
+                <SelectItem value="Masters">Masters</SelectItem>
+                <SelectItem value="PhD">PhD</SelectItem>
+              </SelectContent>
+            </Select>
           </div>
         </div>
 
@@ -178,8 +182,7 @@ export default function ApplyPage() {
             {optionsLoading && <p className="text-sm text-gray-600">Loading interests...</p>}
             {internshipInterestOptions.map((topic) => (
               <label key={topic} className="flex items-center gap-2 text-sm text-gray-700 bg-white border border-gray-300 px-3 py-2 rounded">
-                <input
-                  type="checkbox"
+                <Checkbox
                   checked={form.interests.includes(topic)}
                   onChange={() => onInterestToggle(topic)}
                 />
@@ -191,35 +194,35 @@ export default function ApplyPage() {
 
         <div>
           <label className="text-sm font-semibold text-gray-700" htmlFor="statement">Statement of Purpose *</label>
-          <textarea
+          <Textarea
             id="statement"
             name="statement"
             rows={5}
             value={form.statement}
             onChange={onInputChange}
-            className="mt-2 w-full bg-white border border-gray-300 p-3 rounded focus:ring-1 focus:ring-blue-600 focus:border-blue-600 outline-none"
+            className="mt-2"
           />
         </div>
 
         <div>
           <label className="text-sm font-semibold text-gray-700" htmlFor="resumeUrl">Resume URL</label>
-          <input
+          <Input
             id="resumeUrl"
             name="resumeUrl"
             value={form.resumeUrl}
             onChange={onInputChange}
-            className="mt-2 w-full bg-white border border-gray-300 p-3 rounded focus:ring-1 focus:ring-blue-600 focus:border-blue-600 outline-none"
+            className="mt-2"
             placeholder="https://"
           />
         </div>
 
-        <button
+        <Button
           type="submit"
           disabled={submitting}
-          className="bg-blue-700 text-white px-8 py-3 rounded border border-blue-800 font-semibold hover:bg-blue-800 disabled:opacity-60"
+          className="px-8 py-3 bg-blue-700 hover:bg-blue-800"
         >
           {submitting ? "Submitting..." : "Submit Application"}
-        </button>
+        </Button>
 
         {feedback && <p className="text-sm text-gray-700">{feedback}</p>}
       </form>

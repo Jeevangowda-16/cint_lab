@@ -5,6 +5,7 @@ const nextConfig = {
       {
         protocol: "https",
         hostname: "aero.iisc.ac.in",
+        pathname: "/wp-content/uploads/**",
       },
     ],
   },

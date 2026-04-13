@@ -6,6 +6,9 @@ import { useAsyncData } from "@/hooks/useAsyncData";
 import { getInterns } from "@/services/internService";
 import { getProjects } from "@/services/projectService";
 import { getTeamMembers } from "@/services/teamService";
+import { Button } from "@/components/ui/button";
+import { Checkbox } from "@/components/ui/checkbox";
+import { Card } from "@/components/ui/card";
 
 const TEAM_FILTERS = [{ label: "All", value: "all" }];
 
@@ -103,60 +106,61 @@ export default function PeopleDirectory() {
       <section className="section-shell mb-10 glass-card relative overflow-hidden rounded p-6 md:p-10 reveal-up">
         <div className="absolute -top-14 -right-12 h-48 w-48 hero-glow-blue" />
         <div className="absolute -bottom-14 -left-10 h-40 w-40 hero-glow-gold" />
-        <p className="text-xs uppercase tracking-[0.12em] text-gray-600">Team at CINT Lab</p>
-        <h1 className="text-4xl md:text-5xl text-gray-900 mt-2">Team</h1>
-        <p className="mt-4 text-lg text-gray-700 max-w-3xl leading-relaxed">
+        <p className="text-xs uppercase tracking-[0.2em] text-slate-500 font-semibold">Team at CINT Lab</p>
+        <h1 className="text-4xl md:text-5xl font-semibold text-slate-900 tracking-tight leading-tight mt-2">Team</h1>
+        <p className="mt-4 text-lg md:text-xl text-slate-600 max-w-3xl leading-relaxed">
           Meet our faculty, associates, alumni, and interns contributing across intelligent systems and aerospace research.
         </p>
       </section>
 
       <section className="section-shell mb-12">
-        <div className="flex flex-wrap gap-3 items-center mb-6">
-          {TEAM_FILTERS.map((filter) => (
-            <button
-              key={filter.value}
-              type="button"
-              onClick={() => setRoleFilter(filter.value)}
-              className={`px-4 py-2 rounded font-semibold border ${
-                roleFilter === filter.value
-                  ? "bg-blue-700 text-white border-blue-800"
-                  : "bg-white text-gray-700 border-gray-300 hover:bg-gray-100"
+        <div className="mb-6 flex flex-col gap-3 md:flex-row md:items-center md:justify-between">
+          <div className="segmented-tabs">
+            {TEAM_FILTERS.map((filter) => (
+              <Button
+                key={filter.value}
+                onClick={() => setRoleFilter(filter.value)}
+                variant="ghost"
+                className={`segmented-tab-btn ${
+                  roleFilter === filter.value
+                    ? "segmented-tab-btn-active"
+                    : ""
+                }`}
+              >
+                {filter.label}
+              </Button>
+            ))}
+
+            {designationFilters.map((designation) => (
+              <Button
+                key={designation}
+                onClick={() => setRoleFilter(designation)}
+                variant="ghost"
+                className={`segmented-tab-btn ${
+                  roleFilter === designation
+                    ? "segmented-tab-btn-active"
+                    : ""
+                }`}
+              >
+                {designation}
+              </Button>
+            ))}
+
+            <Button
+              onClick={() => setRoleFilter("interns")}
+              variant="ghost"
+              className={`segmented-tab-btn ${
+                roleFilter === "interns"
+                  ? "segmented-tab-btn-active"
+                  : ""
               }`}
             >
-              {filter.label}
-            </button>
-          ))}
+              Interns
+            </Button>
+          </div>
 
-          {designationFilters.map((designation) => (
-            <button
-              key={designation}
-              type="button"
-              onClick={() => setRoleFilter(designation)}
-              className={`px-4 py-2 rounded font-semibold border ${
-                roleFilter === designation
-                  ? "bg-blue-700 text-white border-blue-800"
-                  : "bg-white text-gray-700 border-gray-300 hover:bg-gray-100"
-              }`}
-            >
-              {designation}
-            </button>
-          ))}
-
-          <button
-            type="button"
-            onClick={() => setRoleFilter("interns")}
-            className={`px-4 py-2 rounded font-semibold border ${
-              roleFilter === "interns"
-                ? "bg-blue-700 text-white border-blue-800"
-                : "bg-white text-gray-700 border-gray-300 hover:bg-gray-100"
-            }`}
-          >
-            Interns
-          </button>
-
-          {!isInternView && <label className="ml-auto text-sm text-gray-700 flex items-center gap-2">
-            <input
-              type="checkbox"
+          {!isInternView && <label className="text-sm text-gray-700 flex items-center gap-2 md:ml-auto">
+            <Checkbox
               checked={activeOnly}
               onChange={(event) => setActiveOnly(event.target.checked)}
             />
@@ -173,7 +177,7 @@ export default function PeopleDirectory() {
         {!teamLoading && !teamError && (
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 items-stretch">
             {visibleTeamMembers.map((member) => (
-              <article
+              <Card
                 key={member.id}
                 className="paper-card p-4 rounded-xl h-full flex flex-col overflow-hidden"
               >
@@ -183,6 +187,7 @@ export default function PeopleDirectory() {
                       src={member.imageUrl}
                       alt={`${member.name} portrait`}
                       fill
+                      unoptimized
                       sizes="(max-width: 768px) 100vw, 50vw"
                       className="object-cover object-center"
                     />
@@ -215,7 +220,7 @@ export default function PeopleDirectory() {
                     <p className="text-gray-400">No profile link</p>
                   )}
                 </div>
-              </article>
+              </Card>
             ))}
           </div>
         )}
@@ -231,7 +236,7 @@ export default function PeopleDirectory() {
         {!internLoading && !internError && (
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             {interns.map((intern) => (
-                <article key={intern.id} className="paper-card rounded p-6">
+                <Card key={intern.id} className="paper-card rounded p-6">
                   <h3 className="text-2xl text-gray-900">{intern.name}</h3>
                   <p className="text-sm font-semibold text-blue-700 mt-1">
                     {projectTitleById.get(String(intern.projectId || "")) || intern.program || intern.project}
@@ -256,7 +261,7 @@ export default function PeopleDirectory() {
                       </a>
                     )}
                   </div>
-              </article>
+              </Card>
             ))}
           </div>
         )}

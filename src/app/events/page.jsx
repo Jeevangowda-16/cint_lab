@@ -3,6 +3,8 @@
 import { useCallback, useMemo, useState } from "react";
 import { useAsyncData } from "@/hooks/useAsyncData";
 import { getEvents } from "@/services/eventService";
+import { Card, CardContent } from "@/components/ui/card";
+import { Button } from "@/components/ui/button";
 
 function formatDate(date) {
   return new Date(date).toLocaleString(undefined, {
@@ -141,9 +143,9 @@ export default function EventsPage() {
       <div className="section-shell max-w-5xl mb-10 glass-card relative overflow-hidden rounded p-6 md:p-10 reveal-up">
         <div className="absolute -top-12 -right-8 h-44 w-44 hero-glow-blue" />
         <div className="absolute -bottom-14 -left-8 h-36 w-36 hero-glow-gold" />
-        <p className="text-xs uppercase tracking-[0.12em] text-gray-600">Events and Academic Sessions</p>
-        <h1 className="text-4xl md:text-5xl text-gray-900 mt-2">Seminars and Events</h1>
-        <p className="mt-4 text-lg text-gray-700">
+        <p className="text-xs uppercase tracking-[0.2em] text-slate-500 font-semibold">Events and Academic Sessions</p>
+        <h1 className="text-4xl md:text-5xl font-semibold text-slate-900 tracking-tight leading-tight mt-2">Seminars and Events</h1>
+        <p className="mt-4 text-lg md:text-xl text-slate-600 leading-relaxed max-w-3xl">
           Upcoming and recent interactions loaded directly from the local events feed.
         </p>
       </div>
@@ -158,57 +160,63 @@ export default function EventsPage() {
               <p className="text-sm text-gray-700">Showing events for {monthLabel(selectedMonth)}.</p>
 
               <div className="flex items-center gap-2 flex-wrap">
-                <button
+                <Button
                   type="button"
                   onClick={() => shiftSelectedMonth(-1)}
-                  className="rounded border border-gray-300 px-3 py-2 text-sm font-semibold text-gray-700 hover:bg-gray-100"
+                  variant="outline"
+                  className="px-3 py-2 text-sm"
                   aria-label="Previous month"
                 >
                   &lt;
-                </button>
-                <button
+                </Button>
+                <Button
                   type="button"
                   onClick={setToToday}
-                  className="rounded border border-gray-300 px-4 py-2 text-sm font-semibold text-gray-700 hover:bg-gray-100"
+                  variant="outline"
+                  className="px-4 py-2 text-sm"
                 >
                   Today
-                </button>
-                <button
+                </Button>
+                <Button
                   type="button"
                   onClick={() => setShowCalendar((previous) => !previous)}
-                  className="rounded border border-gray-300 px-4 py-2 text-sm font-semibold text-gray-900 hover:bg-gray-100"
+                  variant="outline"
+                  className="px-4 py-2 text-sm text-gray-900"
                 >
                   {monthLabel(selectedMonth)}
-                </button>
-                <button
+                </Button>
+                <Button
                   type="button"
                   onClick={() => shiftSelectedMonth(1)}
-                  className="rounded border border-gray-300 px-3 py-2 text-sm font-semibold text-gray-700 hover:bg-gray-100"
+                  variant="outline"
+                  className="px-3 py-2 text-sm"
                   aria-label="Next month"
                 >
                   &gt;
-                </button>
+                </Button>
               </div>
             </div>
 
             {showCalendar && (
               <div className="z-20 absolute right-0 top-16 rounded border border-gray-300 bg-white p-4 w-[320px]">
                 <div className="flex items-center justify-between mb-3">
-                  <button
+                  <Button
                     type="button"
                     onClick={() => setCalendarMonth((previous) => new Date(previous.getFullYear(), previous.getMonth() - 1, 1))}
-                    className="rounded px-2 py-1 text-gray-700 hover:bg-gray-100"
+                    variant="ghost"
+                    className="px-2 py-1 text-gray-700"
                   >
                     &lt;
-                  </button>
+                  </Button>
                   <p className="font-semibold text-gray-900">{monthLabel(calendarMonth)}</p>
-                  <button
+                  <Button
                     type="button"
                     onClick={() => setCalendarMonth((previous) => new Date(previous.getFullYear(), previous.getMonth() + 1, 1))}
-                    className="rounded px-2 py-1 text-gray-700 hover:bg-gray-100"
+                    variant="ghost"
+                    className="px-2 py-1 text-gray-700"
                   >
                     &gt;
-                  </button>
+                  </Button>
                 </div>
 
                 <div className="grid grid-cols-7 gap-1 text-center text-xs uppercase tracking-[0.1em] text-gray-600 mb-2">
@@ -219,7 +227,7 @@ export default function EventsPage() {
 
                 <div className="grid grid-cols-7 gap-1">
                   {calendarDays.map((item) => (
-                    <button
+                    <Button
                       key={`${item.date.toISOString()}-${item.isCurrentMonth}`}
                       type="button"
                       onClick={() => {
@@ -227,6 +235,7 @@ export default function EventsPage() {
                         setCalendarMonth(startOfMonth(item.date));
                         setShowCalendar(false);
                       }}
+                      variant="ghost"
                       className={`h-9 rounded text-sm ${
                         isSameDay(item.date, selectedMonth)
                           ? "bg-blue-700 text-white font-semibold"
@@ -236,31 +245,34 @@ export default function EventsPage() {
                       }`}
                     >
                       {item.date.getDate()}
-                    </button>
+                    </Button>
                   ))}
                 </div>
               </div>
             )}
 
-            <div className="mb-4 flex flex-wrap items-center gap-2">
+            <div className="mb-4">
+              <div className="segmented-tabs">
               {[
                 { value: "current", label: "Current Events" },
                 { value: "future", label: "Future Events" },
                 { value: "past", label: "Past Events" },
               ].map((option) => (
-                <button
+                <Button
                   key={option.value}
                   type="button"
                   onClick={() => setTimingFilter(option.value)}
-                  className={`rounded border px-3 py-2 text-sm font-semibold ${
+                  variant="ghost"
+                  className={`segmented-tab-btn ${
                     timingFilter === option.value
-                      ? "border-blue-800 bg-blue-700 text-white"
-                      : "border-gray-300 text-gray-700 hover:bg-gray-100"
+                      ? "segmented-tab-btn-active"
+                      : ""
                   }`}
                 >
                   {option.label}
-                </button>
+                </Button>
               ))}
+              </div>
             </div>
 
             <p className="text-sm text-gray-700 mb-4 capitalize">
@@ -282,7 +294,8 @@ export default function EventsPage() {
             ) : (
               <div className="space-y-4">
                 {displayedEvents.map((eventItem) => (
-                  <article key={`month-${eventItem.id}`} className="paper-card rounded p-4">
+                  <Card key={`month-${eventItem.id}`} className="paper-card rounded p-4">
+                    <CardContent className="p-0">
                     <div className="flex flex-col gap-4 md:flex-row md:items-start md:justify-between">
                       <div className="min-w-0 flex-1">
                         <h3 className="text-lg text-gray-900">{eventItem.title}</h3>
@@ -292,14 +305,11 @@ export default function EventsPage() {
                             : formatDate(eventItem.eventDate)}
                         </p>
                         {eventItem.registrationUrl && (
-                          <a
-                            className="inline-flex mt-3 items-center rounded border border-blue-800 bg-blue-700 px-4 py-2 text-sm font-semibold text-white hover:bg-blue-800"
-                            href={eventItem.registrationUrl}
-                            target="_blank"
-                            rel="noreferrer"
-                          >
-                            Open Event
-                          </a>
+                          <Button className="mt-3 bg-blue-700 hover:bg-blue-800" asChild>
+                            <a href={eventItem.registrationUrl} target="_blank" rel="noreferrer">
+                              Open Event
+                            </a>
+                          </Button>
                         )}
                       </div>
 
@@ -314,7 +324,8 @@ export default function EventsPage() {
                         </div>
                       )}
                     </div>
-                  </article>
+                    </CardContent>
+                  </Card>
                 ))}
               </div>
             )}
@@ -324,7 +335,8 @@ export default function EventsPage() {
             <>
               <h2 className="text-2xl md:text-3xl text-gray-900">Latest Top 3 Events</h2>
               {latestTop3.map((eventItem) => (
-                <article key={eventItem.id} className="paper-card rounded p-6">
+                <Card key={eventItem.id} className="paper-card rounded p-6">
+                  <CardContent className="p-0">
                   <div className="flex flex-col gap-5 md:flex-row md:items-start md:justify-between">
                     <div className="min-w-0 flex-1">
                       <div className="flex items-start justify-between gap-3 flex-wrap">
@@ -347,14 +359,11 @@ export default function EventsPage() {
                       <p className="mt-3 text-sm text-gray-700">Speaker: {eventItem.speaker}</p>
                       <p className="text-sm text-gray-700">Location: {eventItem.location}</p>
                       {eventItem.registrationUrl && (
-                        <a
-                          className="inline-flex mt-4 items-center rounded border border-blue-800 bg-blue-700 px-4 py-2 text-sm font-semibold text-white hover:bg-blue-800"
-                          href={eventItem.registrationUrl}
-                          target="_blank"
-                          rel="noreferrer"
-                        >
-                          Open Event
-                        </a>
+                        <Button className="mt-4 bg-blue-700 hover:bg-blue-800" asChild>
+                          <a href={eventItem.registrationUrl} target="_blank" rel="noreferrer">
+                            Open Event
+                          </a>
+                        </Button>
                       )}
                     </div>
 
@@ -369,7 +378,8 @@ export default function EventsPage() {
                       </div>
                     )}
                   </div>
-                </article>
+                  </CardContent>
+                </Card>
               ))}
             </>
           )}
