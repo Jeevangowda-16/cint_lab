@@ -57,7 +57,7 @@ export default function HomePage() {
         {!loading && !error && (
           <>
 
-            <Card className="rounded-2xl border border-gray-200/70 bg-white/60 backdrop-blur-sm shadow-sm">
+            <Card className="fade-in fade-in-delay rounded-2xl border border-gray-200/70 bg-white/60 backdrop-blur-sm shadow-sm">
               <CardContent className="px-8 md:px-12 py-12 md:py-14">
 
                 {/* 🔥 GRID START */}
