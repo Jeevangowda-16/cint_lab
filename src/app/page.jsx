@@ -145,7 +145,7 @@ export default function HomePage() {
                     ].map((item, index) => (
                       <div
                         key={index}
-                        className="w-full min-w-full flex-shrink-0 relative h-[420px] md:h-[520px]"
+                        className="w-full min-w-full flex-shrink-5 relative h-[520px] md:h-[520px]"
                       >
                         <Image
                           src={item.src}
@@ -155,7 +155,7 @@ export default function HomePage() {
                         />
 
                         {/* TITLE */}
-                        <div className="absolute bottom-4 left-4">
+                        <div className="absolute bottom-6 left-6">
                           <Badge className="bg-black/60 text-white backdrop-blur-sm">
                             {item.title}
                           </Badge>
