@@ -5,37 +5,18 @@ import { createContext, useCallback, useContext, useEffect, useMemo, useState } 
 const AuthContext = createContext(null);
 const ADMIN_EMAIL = (process.env.NEXT_PUBLIC_ADMIN_EMAIL || "").trim().toLowerCase();
 const ADMIN_PASSWORD = process.env.NEXT_PUBLIC_ADMIN_PASSWORD || "";
-const STORAGE_KEY = "cint-admin-auth";
 
 export function AuthProvider({ children }) {
   const [user, setUser] = useState(null);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    if (!ADMIN_EMAIL || !ADMIN_PASSWORD) {
-      setLoading(false);
-      return;
-    }
-
     try {
-      const persisted = window.localStorage.getItem(STORAGE_KEY);
-
-      if (persisted) {
-        const parsed = JSON.parse(persisted);
-
-        if (parsed?.email === ADMIN_EMAIL) {
-          setUser({
-            uid: "local-admin",
-            email: ADMIN_EMAIL,
-            displayName: "Local Admin",
-          });
-        }
-      }
+      window.localStorage.removeItem("cint-admin-auth");
     } catch {
-      window.localStorage.removeItem(STORAGE_KEY);
-    } finally {
-      setLoading(false);
     }
+
+    setLoading(false);
   }, []);
 
   const login = useCallback(async (email, password) => {
@@ -56,7 +37,6 @@ export function AuthProvider({ children }) {
       };
 
       setUser(nextUser);
-      window.localStorage.setItem(STORAGE_KEY, JSON.stringify({ email: ADMIN_EMAIL }));
       return { success: true };
     }
 
@@ -68,7 +48,6 @@ export function AuthProvider({ children }) {
 
   const logout = useCallback(async () => {
     setUser(null);
-    window.localStorage.removeItem(STORAGE_KEY);
   }, []);
 
   const contextValue = useMemo(() => {
