@@ -527,9 +527,9 @@ export default function PublicationsPage() {
                         years={years}
                     />
                     <Tabs value={activeTab} onValueChange={handleTab}>
-                        <TabsList className="bg-slate-100 p-1 border border-slate-200">
+                        <TabsList className="segmented-tabs">
                             {Object.keys(CATEGORY_MAP).map((k) => (
-                                <TabsTrigger key={k} value={k} className="text-sm px-5 font-medium data-[state=active]:bg-white data-[state=active]:text-blue-900 data-[state=active]:shadow-sm">
+                                <TabsTrigger key={k} value={k} className="segmented-tab-btn px-5 font-medium data-[state=active]:bg-white data-[state=active]:text-blue-800 data-[state=active]:shadow-sm">
                                     {k}
                                 </TabsTrigger>
                             ))}

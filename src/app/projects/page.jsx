@@ -4,6 +4,8 @@ import { useCallback, useMemo, useState } from "react";
 import Link from "next/link";
 import { useAsyncData } from "@/hooks/useAsyncData";
 import { getProjects } from "@/services/projectService";
+import { Button } from "@/components/ui/button";
+import { Card, CardContent } from "@/components/ui/card";
 
 const statusFilters = ["all", "ongoing", "review", "completed"];
 
@@ -25,29 +27,32 @@ export default function ProjectsPage() {
         <div className="absolute -top-20 right-0 h-60 w-60 hero-glow-blue" />
         <div className="absolute bottom-0 left-0 h-44 w-44 hero-glow-gold" />
         <div className="relative">
-          <p className="text-xs uppercase tracking-[0.15em] text-gray-600">Project Portfolio</p>
-          <h1 className="section-title mt-2">Projects</h1>
-          <p className="mt-4 text-lg text-gray-700 max-w-3xl">
+          <p className="text-xs uppercase tracking-[0.2em] text-slate-500 font-semibold">Project Portfolio</p>
+          <h1 className="text-4xl md:text-5xl font-semibold text-slate-900 tracking-tight leading-tight mt-2">Projects</h1>
+          <p className="mt-4 text-lg md:text-xl text-slate-600 max-w-3xl leading-relaxed">
             Explore active and recently reviewed initiatives in autonomy, biomechanics, sensing, and data-driven aerospace systems.
           </p>
         </div>
       </section>
 
-      <div className="section-shell mb-8 flex gap-3 flex-wrap">
-        {statusFilters.map((filter) => (
-          <button
-            key={filter}
-            type="button"
-            onClick={() => setStatusFilter(filter)}
-            className={`px-4 py-2.5 rounded text-sm font-semibold border ${
-              statusFilter === filter
-                ? "bg-blue-700 text-white border-blue-800"
-                : "bg-white text-gray-700 border-gray-300 hover:bg-gray-100 hover:text-blue-800"
-            }`}
-          >
-            {filter}
-          </button>
-        ))}
+      <div className="section-shell mb-8">
+        <div className="segmented-tabs">
+          {statusFilters.map((filter) => (
+            <Button
+              key={filter}
+              type="button"
+              onClick={() => setStatusFilter(filter)}
+              variant="ghost"
+              className={`segmented-tab-btn capitalize ${
+                statusFilter === filter
+                  ? "segmented-tab-btn-active"
+                  : ""
+              }`}
+            >
+              {filter}
+            </Button>
+          ))}
+        </div>
       </div>
 
       {loading && <p className="section-shell text-gray-600">Loading projects...</p>}
@@ -56,10 +61,11 @@ export default function ProjectsPage() {
       {!loading && !error && (
         <div className="section-shell grid grid-cols-1 md:grid-cols-2 gap-8">
           {projects.map((project) => (
-            <article
+            <Card
               key={project.id}
               className="paper-card rounded p-7 md:p-8 flex flex-col justify-between"
             >
+              <CardContent className="p-0 h-full flex flex-col justify-between">
               <div>
                 <div className="flex items-center justify-between gap-3">
                   <span className="chip">{project.status || "ongoing"}</span>
@@ -87,7 +93,8 @@ export default function ProjectsPage() {
                   Get More Info
                 </Link>
               </div>
-            </article>
+              </CardContent>
+            </Card>
           ))}
         </div>
       )}

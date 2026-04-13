@@ -2,13 +2,11 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { useAdminAuth } from "@/hooks/useAdminAuth";
 import { Button } from "@/components/ui/button";
 import Image from "next/image";
 import { AnimatedBackground } from "@/components/ui/animated-background";
 
 export default function Navbar() {
-    const { isAuthenticated, isAdmin } = useAdminAuth();
     const pathname = usePathname();
 
     const navItems = [
@@ -80,25 +78,6 @@ export default function Navbar() {
                         <Button variant="default" size="sm" asChild>
                             <Link href="/apply">Apply for Internship</Link>
                         </Button>
-
-                        {/* Admin */}
-                        {isAdmin && (
-                            <Button
-                                variant="ghost"
-                                size="sm"
-                                asChild
-                                className="text-amber-600 hover:text-amber-700"
-                            >
-                                <Link href="/admin">Admin</Link>
-                            </Button>
-                        )}
-
-                        {/* Login */}
-                        {!isAuthenticated && (
-                            <Button variant="outline" size="sm" asChild>
-                                <Link href="/login">Login</Link>
-                            </Button>
-                        )}
 
                     </div>
                 </div>

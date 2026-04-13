@@ -5,15 +5,21 @@ import { useAsyncData } from "@/hooks/useAsyncData";
 import { addIntern, deleteIntern, getInterns, updateIntern } from "@/services/internService";
 import { getProjects } from "@/services/projectService";
 import { addTeamMember, deleteTeamMember, getTeamMembers, updateTeamMember } from "@/services/teamService";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Input } from "@/components/ui/input";
+import { Button } from "@/components/ui/button";
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 
 const initialInternForm = {
   name: "",
   program: "",
   cohort: "",
-  mentorId: "",
-  focusArea: "",
   projectId: "",
-  status: "active",
+  college: "",
+  email: "",
+  phone: "",
+  github: "",
+  linkedin: "",
 };
 
 const initialTeamForm = {
@@ -21,6 +27,7 @@ const initialTeamForm = {
   designation: "",
   email: "",
   profileUrl: "",
+  imageUrl: "",
 };
 
 function deriveRoleCategory(designation) {
@@ -76,6 +83,7 @@ export default function AdminPeoplePage() {
       designation: teamForm.designation,
       email: teamForm.email,
       profileUrl: teamForm.profileUrl,
+      imageUrl: teamForm.imageUrl,
       roleCategory: deriveRoleCategory(teamForm.designation),
       active: true,
     };
@@ -100,6 +108,7 @@ export default function AdminPeoplePage() {
       designation: member.designation || "",
       email: member.email || "",
       profileUrl: member.profileUrl || "",
+      imageUrl: member.imageUrl || "",
     });
     setActiveTab("team");
   };
@@ -119,6 +128,7 @@ export default function AdminPeoplePage() {
     const payload = {
       ...internForm,
       project: internForm.program,
+      status: "active",
     };
 
     if (editingInternId) {
@@ -137,10 +147,12 @@ export default function AdminPeoplePage() {
       name: intern.name || "",
       program: intern.program || intern.project || "",
       cohort: intern.cohort || "",
-      mentorId: intern.mentorId || "",
-      focusArea: intern.focusArea || "",
       projectId: intern.projectId || "",
-      status: intern.status || "active",
+      college: intern.college || "",
+      email: intern.email || "",
+      phone: intern.phone || "",
+      github: intern.github || "",
+      linkedin: intern.linkedin || "",
     });
     setActiveTab("interns");
   };
@@ -155,60 +167,90 @@ export default function AdminPeoplePage() {
       <div className="max-w-6xl mx-auto">
         <h1 className="text-3xl font-semibold text-gray-900 mb-6">Admin: People</h1>
 
-        <div className="mb-6 flex flex-wrap gap-3">
-          <button
-            type="button"
-            onClick={() => setActiveTab("team")}
-            className={`px-5 py-2 rounded font-semibold border ${
-              activeTab === "team" ? "bg-blue-700 text-white border-blue-800" : "bg-white border-gray-300 text-gray-700 hover:bg-gray-100"
-            }`}
-          >
-            Team
-          </button>
-          <button
-            type="button"
-            onClick={() => setActiveTab("interns")}
-            className={`px-5 py-2 rounded font-semibold border ${
-              activeTab === "interns" ? "bg-blue-700 text-white border-blue-800" : "bg-white border-gray-300 text-gray-700 hover:bg-gray-100"
-            }`}
-          >
-            Interns
-          </button>
+        <div className="mb-6">
+          <div className="segmented-tabs">
+            <Button
+              type="button"
+              onClick={() => setActiveTab("team")}
+              variant="ghost"
+              className={`segmented-tab-btn ${
+                activeTab === "team"
+                  ? "segmented-tab-btn-active"
+                  : ""
+              }`}
+            >
+              Team
+            </Button>
+            <Button
+              type="button"
+              onClick={() => setActiveTab("interns")}
+              variant="ghost"
+              className={`segmented-tab-btn ${
+                activeTab === "interns"
+                  ? "segmented-tab-btn-active"
+                  : ""
+              }`}
+            >
+              Interns
+            </Button>
+          </div>
         </div>
 
         {activeTab === "team" && (
           <section>
-            <form onSubmit={onTeamSubmit} className="bg-white border border-gray-300 rounded p-6 space-y-4 mb-8">
+            <Card className="mb-8">
+              <CardHeader>
+                <CardTitle>{editingTeamId ? "Edit Team Member" : "Add Team Member"}</CardTitle>
+              </CardHeader>
+              <CardContent>
+                <form onSubmit={onTeamSubmit} className="space-y-4">
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                <input name="name" value={teamForm.name} onChange={onTeamChange} placeholder="Name" className="bg-white border border-gray-300 p-3 rounded" />
-                <input name="designation" value={teamForm.designation} onChange={onTeamChange} placeholder="Designation" className="bg-white border border-gray-300 p-3 rounded" />
+                <Input name="name" value={teamForm.name} onChange={onTeamChange} placeholder="Name" />
+                <Input name="designation" value={teamForm.designation} onChange={onTeamChange} placeholder="Designation" />
               </div>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                <input name="email" value={teamForm.email} onChange={onTeamChange} placeholder="Email" className="bg-white border border-gray-300 p-3 rounded" />
-                <input name="profileUrl" value={teamForm.profileUrl} onChange={onTeamChange} placeholder="Profile URL" className="bg-white border border-gray-300 p-3 rounded" />
+                <Input name="email" value={teamForm.email} onChange={onTeamChange} placeholder="Email" />
+                <Input name="profileUrl" value={teamForm.profileUrl} onChange={onTeamChange} placeholder="Profile URL" />
               </div>
+              <Input
+                name="imageUrl"
+                value={teamForm.imageUrl}
+                onChange={onTeamChange}
+                placeholder="Photo URL"
+              />
               <div className="flex gap-3">
-                <button type="submit" className="bg-blue-700 text-white px-6 py-2 rounded border border-blue-800 font-semibold hover:bg-blue-800">{editingTeamId ? "Update" : "Add"} Member</button>
-                {editingTeamId && <button type="button" onClick={() => { setEditingTeamId(""); setTeamForm(initialTeamForm); }} className="bg-white border border-gray-300 text-gray-900 px-6 py-2 rounded font-semibold hover:bg-gray-100">Cancel</button>}
+                <Button type="submit">{editingTeamId ? "Update" : "Add"} Member</Button>
+                {editingTeamId && <Button type="button" variant="outline" onClick={() => { setEditingTeamId(""); setTeamForm(initialTeamForm); }}>Cancel</Button>}
               </div>
               {teamFeedback && <p className="text-sm text-gray-700">{teamFeedback}</p>}
-            </form>
+                </form>
+              </CardContent>
+            </Card>
 
             {teamLoading && <p className="text-gray-600">Loading team...</p>}
             {teamError && <p className="text-red-600">{teamError}</p>}
 
             <div className="space-y-4">
               {members.map((member) => (
-                <article key={member.id} className="bg-white border border-gray-300 rounded p-4">
-                  <h2 className="text-xl font-semibold text-gray-900">{member.name}</h2>
-                  <p className="text-sm text-gray-700">{member.designation}</p>
-                  {member.email && <p className="text-sm text-gray-700">{member.email}</p>}
-                  {member.profileUrl && <p className="text-sm text-gray-700">{member.profileUrl}</p>}
-                  <div className="mt-3 flex gap-3">
-                    <button type="button" onClick={() => startEditTeam(member)} className="text-blue-700 font-semibold hover:text-blue-800">Edit</button>
-                    <button type="button" onClick={() => removeTeam(member.id)} className="text-gray-700 font-semibold hover:text-gray-900">Delete</button>
-                  </div>
-                </article>
+                <Card key={member.id}>
+                  <CardContent className="p-4">
+                    {member.imageUrl && (
+                      <img
+                        src={member.imageUrl}
+                        alt={member.name}
+                        className="mb-3 h-24 w-24 rounded border border-gray-300 object-cover"
+                      />
+                    )}
+                    <h2 className="text-xl font-semibold text-gray-900">{member.name}</h2>
+                    <p className="text-sm text-gray-700">{member.designation}</p>
+                    {member.email && <p className="text-sm text-gray-700">{member.email}</p>}
+                    {member.profileUrl && <p className="text-sm text-gray-700">{member.profileUrl}</p>}
+                    <div className="mt-3 flex gap-3">
+                      <Button type="button" variant="link" className="px-0" onClick={() => startEditTeam(member)}>Edit</Button>
+                      <Button type="button" variant="link" className="px-0 text-gray-700" onClick={() => removeTeam(member.id)}>Delete</Button>
+                    </div>
+                  </CardContent>
+                </Card>
               ))}
             </div>
           </section>
@@ -216,47 +258,69 @@ export default function AdminPeoplePage() {
 
         {activeTab === "interns" && (
           <section>
-            <form onSubmit={onInternSubmit} className="bg-white border border-gray-300 rounded p-6 space-y-4 mb-8">
+            <Card className="mb-8">
+              <CardHeader>
+                <CardTitle>{editingInternId ? "Edit Intern" : "Add Intern"}</CardTitle>
+              </CardHeader>
+              <CardContent>
+                <form onSubmit={onInternSubmit} className="space-y-4">
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                <input name="name" value={internForm.name} onChange={onInternChange} placeholder="Name" className="bg-white border border-gray-300 p-3 rounded" />
-                <input name="program" value={internForm.program} onChange={onInternChange} placeholder="Program" className="bg-white border border-gray-300 p-3 rounded" />
+                <Input name="name" value={internForm.name} onChange={onInternChange} placeholder="Name" />
+                <Input name="program" value={internForm.program} onChange={onInternChange} placeholder="Program" />
               </div>
               <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-                <input name="cohort" value={internForm.cohort} onChange={onInternChange} placeholder="Cohort" className="bg-white border border-gray-300 p-3 rounded" />
-                <input name="mentorId" value={internForm.mentorId} onChange={onInternChange} placeholder="Mentor ID" className="bg-white border border-gray-300 p-3 rounded" />
-                <select name="status" value={internForm.status} onChange={onInternChange} className="bg-white border border-gray-300 p-3 rounded">
-                  <option value="active">active</option>
-                  <option value="completed">completed</option>
-                </select>
+                <Input name="cohort" value={internForm.cohort} onChange={onInternChange} placeholder="Cohort" />
               </div>
-              <select name="projectId" value={internForm.projectId} onChange={onInternChange} className="w-full bg-white border border-gray-300 p-3 rounded">
-                <option value="">Select project</option>
-                {projects.map((project) => (
-                  <option key={project.id} value={project.id}>
-                    {project.title}
-                  </option>
-                ))}
-              </select>
-              <textarea name="focusArea" value={internForm.focusArea} onChange={onInternChange} placeholder="Focus area" className="w-full bg-white border border-gray-300 p-3 rounded" />
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <Input name="college" value={internForm.college} onChange={onInternChange} placeholder="College" />
+                <Input name="email" value={internForm.email} onChange={onInternChange} placeholder="Email" />
+              </div>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <Input name="phone" value={internForm.phone} onChange={onInternChange} placeholder="Phone" />
+                <Input name="github" value={internForm.github} onChange={onInternChange} placeholder="GitHub URL" />
+              </div>
+              <Input name="linkedin" value={internForm.linkedin} onChange={onInternChange} placeholder="LinkedIn URL" />
+              <Select value={internForm.projectId || "none"} onValueChange={(value) => setInternForm((previous) => ({ ...previous, projectId: value === "none" ? "" : value }))}>
+                <SelectTrigger className="w-full h-10">
+                  <SelectValue placeholder="Select project" />
+                </SelectTrigger>
+                <SelectContent>
+                  <SelectItem value="none">Select project</SelectItem>
+                  {projects.map((project) => (
+                    <SelectItem key={project.id} value={project.id}>
+                      {project.title}
+                    </SelectItem>
+                  ))}
+                </SelectContent>
+              </Select>
               <div className="flex gap-3">
-                <button type="submit" className="bg-blue-700 text-white px-6 py-2 rounded border border-blue-800 font-semibold hover:bg-blue-800">{editingInternId ? "Update" : "Add"} Intern</button>
-                {editingInternId && <button type="button" onClick={() => { setEditingInternId(""); setInternForm(initialInternForm); }} className="bg-white border border-gray-300 text-gray-900 px-6 py-2 rounded font-semibold hover:bg-gray-100">Cancel</button>}
+                <Button type="submit">{editingInternId ? "Update" : "Add"} Intern</Button>
+                {editingInternId && <Button type="button" variant="outline" onClick={() => { setEditingInternId(""); setInternForm(initialInternForm); }}>Cancel</Button>}
               </div>
-            </form>
+                </form>
+              </CardContent>
+            </Card>
 
             {internLoading && <p className="text-gray-600">Loading interns...</p>}
             {internError && <p className="text-red-600">{internError}</p>}
 
             <div className="space-y-4">
               {interns.map((intern) => (
-                <article key={intern.id} className="bg-white border border-gray-300 rounded p-4">
-                  <h2 className="text-xl font-semibold text-gray-900">{intern.name}</h2>
-                  <p className="text-sm text-gray-700">{intern.program} • {intern.cohort}</p>
-                  <div className="mt-3 flex gap-3">
-                    <button type="button" onClick={() => startEditIntern(intern)} className="text-blue-700 font-semibold hover:text-blue-800">Edit</button>
-                    <button type="button" onClick={() => removeIntern(intern.id)} className="text-gray-700 font-semibold hover:text-gray-900">Delete</button>
-                  </div>
-                </article>
+                <Card key={intern.id}>
+                  <CardContent className="p-4">
+                    <h2 className="text-xl font-semibold text-gray-900">{intern.name}</h2>
+                    <p className="text-sm text-gray-700">{intern.program} • {intern.cohort}</p>
+                    {intern.college && <p className="text-sm text-gray-700">{intern.college}</p>}
+                    {intern.email && <p className="text-sm text-gray-700">{intern.email}</p>}
+                    {intern.phone && <p className="text-sm text-gray-700">{intern.phone}</p>}
+                    {intern.github && <p className="text-sm text-gray-700">{intern.github}</p>}
+                    {intern.linkedin && <p className="text-sm text-gray-700">{intern.linkedin}</p>}
+                    <div className="mt-3 flex gap-3">
+                      <Button type="button" variant="link" className="px-0" onClick={() => startEditIntern(intern)}>Edit</Button>
+                      <Button type="button" variant="link" className="px-0 text-gray-700" onClick={() => removeIntern(intern.id)}>Delete</Button>
+                    </div>
+                  </CardContent>
+                </Card>
               ))}
             </div>
           </section>
