@@ -1,20 +1,14 @@
 "use client";
 
+import Image from "next/image";
 import { useCallback, useMemo, useState } from "react";
-import { Inter } from "next/font/google";
 import { useAsyncData } from "@/hooks/useAsyncData";
 import { getInterns } from "@/services/internService";
 import { getProjects } from "@/services/projectService";
 import { getTeamMembers } from "@/services/teamService";
-
-// shadcn/ui imports
 import { Button } from "@/components/ui/button";
-import { Card, CardContent } from "@/components/ui/card";
-import { Avatar, AvatarImage, AvatarFallback } from "@/components/ui/avatar";
-import { Badge } from "@/components/ui/badge";
-
-// Initialize the Inter font
-const inter = Inter({ subsets: ["latin"] });
+import { Checkbox } from "@/components/ui/checkbox";
+import { Card } from "@/components/ui/card";
 
 const TEAM_FILTERS = [{ label: "All", value: "all" }];
 
@@ -25,312 +19,197 @@ function toAbsoluteUrl(value) {
 }
 
 function getInitials(name) {
-  if (!name) return "?";
-  const parts = name.trim().split(/\s+/);
-  if (parts.length > 1) return (parts[0][0] + parts[parts.length - 1][0]).toUpperCase();
-  return parts[0][0].toUpperCase();
+  return (name || "")
+    .split(/\s+/)
+    .filter(Boolean)
+    .slice(0, 2)
+    .map((part) => part[0]?.toUpperCase())
+    .join("");
 }
 
 export default function PeopleDirectory() {
   const [roleFilter, setRoleFilter] = useState("all");
-  const isInternView = roleFilter === "interns";
+  const [activeOnly, setActiveOnly] = useState(false);
 
+  // Data Fetching
   const fetchTeamMembers = useCallback(
-    () =>
-      getTeamMembers({
-        roleCategory: "all",
-      }),
-    []
+    () => getTeamMembers({ roleCategory: "all", activeOnly }),
+    [activeOnly]
   );
-
   const fetchInterns = useCallback(() => getInterns({ status: "all", cohort: "all" }), []);
   const fetchProjects = useCallback(() => getProjects(), []);
 
-  const {
-    data: teamData,
-    loading: teamLoading,
-    error: teamError,
-  } = useAsyncData(fetchTeamMembers);
-
-  const {
-    data: internData,
-    loading: internLoading,
-    error: internError,
-  } = useAsyncData(fetchInterns);
-
+  const { data: teamData, loading: teamLoading, error: teamError } = useAsyncData(fetchTeamMembers);
+  const { data: internData, loading: internLoading, error: internError } = useAsyncData(fetchInterns);
   const { data: projectData } = useAsyncData(fetchProjects);
 
+  // Memoized Data Processing
   const teamMembers = useMemo(() => teamData || [], [teamData]);
+
   const interns = useMemo(() => {
     const list = [...(internData || [])];
-    const harshIndex = list.findIndex(
-      (intern) => (intern.name || "").trim().toLowerCase() === "harshavardhan k"
-    );
-    const jeevanIndex = list.findIndex(
-      (intern) => (intern.name || "").trim().toLowerCase() === "jeevan d"
-    );
+    const harshIndex = list.findIndex(i => (i.name || "").trim().toLowerCase() === "harshavardhan k");
+    const jeevanIndex = list.findIndex(i => (i.name || "").trim().toLowerCase() === "jeevan d");
 
     if (harshIndex !== -1 && jeevanIndex !== -1 && jeevanIndex !== harshIndex + 1) {
       const [jeevan] = list.splice(jeevanIndex, 1);
-      const insertAt = harshIndex < jeevanIndex ? harshIndex + 1 : harshIndex + 1;
-      list.splice(insertAt, 0, jeevan);
+      list.splice(harshIndex + 1, 0, jeevan);
     }
-
     return list;
   }, [internData]);
 
-  const designationFilters = useMemo(() => {
-    const values = new Set(
-      teamMembers
-        .map((member) => (member.designation || "").trim())
-        .filter(Boolean)
-    );
-
-    return [...values].sort((a, b) => a.localeCompare(b));
-  }, [teamMembers]);
-
-  const visibleTeamMembers = useMemo(() => {
-    if (roleFilter === "all" || roleFilter === "interns") return teamMembers;
-    return teamMembers.filter((member) => (member.designation || "").trim() === roleFilter);
-  }, [teamMembers, roleFilter]);
-
   const projectTitleById = useMemo(() => {
     const map = new Map();
-    (projectData || []).forEach((project) => {
-      if (project?.id) {
-        map.set(String(project.id), project.title || "");
-      }
-    });
+    (projectData || []).forEach((p) => { if (p?.id) map.set(String(p.id), p.title || ""); });
     return map;
   }, [projectData]);
 
+  const designationFilters = useMemo(() => {
+    const values = new Set(teamMembers.map((m) => (m.designation || "").trim()).filter(Boolean));
+    return [...values].sort((a, b) => a.localeCompare(b));
+  }, [teamMembers]);
+
+  // Unified Filtering Logic
+  const visibleMembers = useMemo(() => {
+    if (roleFilter === "all") {
+      return [...teamMembers, ...interns];
+    }
+    if (roleFilter === "interns") {
+      return interns;
+    }
+    return teamMembers.filter((m) => (m.designation || "").trim() === roleFilter);
+  }, [teamMembers, interns, roleFilter]);
+
+  const isLoading = teamLoading || internLoading;
+  const hasError = teamError || internError;
+
+  // Exact styling constant based on your requirements
+  const getButtonClass = (isActive) =>
+    isActive
+      ? "bg-blue-900 text-white border-transparent hover:bg-blue-800 focus:ring-blue-800 shadow-sm font-medium transition-colors"
+      : "bg-gray-100 text-gray-700 border-transparent hover:bg-gray-200 font-medium transition-colors";
+
   return (
-    <main className={`min-h-screen bg-gradient-to-br from-[#eef2f8] via-[#f4f7fb] to-[#e6eaf3] text-slate-800 p-4 md:p-8 ${inter.className}`}>
-      <div className="max-w-5xl mx-auto">
-        <section className="relative mb-10 p-10 md:p-16 rounded-3xl shadow-sm flex flex-col items-center text-center overflow-hidden border border-slate-200/50 animate-fade-up">
-          <div
-            className="absolute inset-0 z-0 animate-bg-zoom origin-center"
-            style={{
-              backgroundImage:
-                "url('https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&w=2070&q=80')",
-              backgroundSize: "cover",
-              backgroundPosition: "center",
-            }}
-          />
-          <div className="absolute inset-0 bg-slate-900/60 backdrop-blur-[2px] z-0"></div>
+    <main className="page-shell text-gray-800">
+      {/* UPDATE 1: Changed to rounded-2xl */}
+      <section className="section-shell mb-10 glass-card relative overflow-hidden rounded-2xl p-6 md:p-10 reveal-up">
+        <div className="absolute -top-14 -right-12 h-48 w-48 hero-glow-blue" />
+        <div className="absolute -bottom-14 -left-10 h-40 w-40 hero-glow-gold" />
+        <p className="text-xs uppercase tracking-[0.2em] text-slate-500 font-semibold">Team at CINT Lab</p>
+        <h1 className="text-4xl md:text-5xl font-semibold text-slate-900 tracking-tight leading-tight mt-2">People</h1>
+        <p className="mt-4 text-lg md:text-xl text-slate-600 max-w-3xl leading-relaxed">
+          Meet our faculty, associates, alumni, and interns contributing across intelligent systems and aerospace research.
+        </p>
+      </section>
 
-          <div className="relative z-10 transition-transform duration-700 ease-out hover:scale-[1.02]">
-            <p
-              className="text-sm font-bold uppercase tracking-widest text-slate-300 mb-3 drop-shadow-sm animate-fade-up"
-              style={{ animationDelay: "0.2s", animationFillMode: "both" }}
-            >
-              Team at CINT Lab
-            </p>
-            <h1
-              className="text-4xl md:text-5xl font-extrabold text-white drop-shadow-lg tracking-tight animate-fade-up"
-              style={{ animationDelay: "0.3s", animationFillMode: "both" }}
-            >
-              People
-            </h1>
-            <p
-              className="mt-5 text-lg md:text-xl text-slate-200 max-w-3xl leading-relaxed drop-shadow-md font-medium animate-fade-in"
-              style={{ animationDelay: "0.5s", animationFillMode: "both" }}
-            >
-              Meet our faculty, associates, alumni, and interns contributing across intelligent
-              systems and aerospace research.
-            </p>
-          </div>
-        </section>
-
-        <section className="mb-12">
-          <div className="flex flex-wrap gap-2 md:gap-3 items-center justify-center mb-10">
-            {TEAM_FILTERS.map((filter) => (
+      <section className="section-shell mb-12">
+        <div className="mb-6 flex flex-col gap-3 md:flex-row md:items-center md:justify-between">
+          <div className="flex flex-wrap gap-2">
+            {TEAM_FILTERS.map((f) => (
               <Button
-                key={filter.value}
-                variant={roleFilter === filter.value ? "default" : "outline"}
-                onClick={() => setRoleFilter(filter.value)}
-                className={`rounded-full h-9 px-4 md:h-10 md:px-5 font-medium text-xs md:text-sm transition-all duration-300 active:scale-95 ${roleFilter === filter.value
-                  ? "bg-slate-900 text-white shadow-md transform scale-105"
-                  : "bg-white text-slate-600 border-slate-200 hover:bg-slate-50 hover:text-slate-900 hover:scale-105 hover:shadow-md hover:-translate-y-0.5"
-                  }`}
+                key={f.value}
+                onClick={() => setRoleFilter(f.value)}
+                className={getButtonClass(roleFilter === f.value)}
               >
-                {filter.label}
+                {f.label}
               </Button>
             ))}
 
-            {designationFilters.map((designation) => (
+            {designationFilters.map((d) => (
               <Button
-                key={designation}
-                variant={roleFilter === designation ? "default" : "outline"}
-                onClick={() => setRoleFilter(designation)}
-                className={`rounded-full h-9 px-4 md:h-10 md:px-5 font-medium text-xs md:text-sm transition-all duration-300 active:scale-95 ${roleFilter === designation
-                  ? "bg-slate-900 text-white shadow-md transform scale-105"
-                  : "bg-white text-slate-600 border-slate-200 hover:bg-slate-50 hover:text-slate-900 hover:scale-105 hover:shadow-md hover:-translate-y-0.5"
-                  }`}
+                key={d}
+                onClick={() => setRoleFilter(d)}
+                className={getButtonClass(roleFilter === d)}
               >
-                {designation}
+                {d}
               </Button>
             ))}
 
             <Button
-              variant={roleFilter === "interns" ? "default" : "outline"}
               onClick={() => setRoleFilter("interns")}
-              className={`rounded-full h-9 px-4 md:h-10 md:px-5 font-medium text-xs md:text-sm transition-all duration-300 active:scale-95 ${roleFilter === "interns"
-                ? "bg-slate-900 text-white shadow-md transform scale-105"
-                : "bg-white text-slate-600 border-slate-200 hover:bg-slate-50 hover:text-slate-900 hover:scale-105 hover:shadow-md hover:-translate-y-0.5"
-                }`}
+              className={getButtonClass(roleFilter === "interns")}
             >
               Interns
             </Button>
           </div>
+        </div>
 
-          {!isInternView && (
-            <>
-              {teamLoading && <p className="text-center text-slate-500 py-10">Loading team data...</p>}
-              {teamError && <p className="text-center text-red-500 py-10">{teamError}</p>}
+        <h2 className="text-3xl text-gray-900 mb-5 capitalize">
+          {roleFilter === "all" ? "Our Team" : roleFilter}
+        </h2>
 
-              {!teamLoading && !teamError && (
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-6 items-stretch">
-                  {visibleTeamMembers.map((member, index) => (
-                    <Card
-                      key={member.id}
-                      className="rounded-2xl p-6 flex flex-row gap-5 items-center shadow-sm hover:shadow-lg hover:scale-[1.02] hover:-translate-y-1 transition-all duration-300 animate-fade-up border-slate-200 bg-white"
-                      style={{
-                        animationDelay: `${Math.min(index * 0.1, 1)}s`,
-                        animationFillMode: "both",
-                      }}
-                    >
-                      <Avatar className="flex-shrink-0 w-28 h-28 sm:w-32 sm:h-32 rounded-2xl border border-slate-100 shadow-sm relative">
-                        {member.imageUrl && (
-                          <AvatarImage src={member.imageUrl} alt={member.name} className="object-cover rounded-2xl" />
-                        )}
-                        <AvatarFallback className="text-2xl sm:text-3xl font-bold text-slate-400 bg-slate-50 rounded-2xl">
-                          {getInitials(member.name)}
-                        </AvatarFallback>
-                      </Avatar>
+        {isLoading && <p className="text-gray-600">Loading directory...</p>}
+        {hasError && <p className="text-red-600">Error loading data.</p>}
 
-                      <CardContent className="p-0 flex-1 min-w-0 flex flex-col justify-center border-none shadow-none">
-                        <h3 className="text-[1.15rem] font-bold text-slate-900 tracking-tight truncate">{member.name}</h3>
-                        <p className="text-sm font-medium text-slate-500 mt-0.5">
-                          {member.designation || "Faculty"}
-                        </p>
+        {!isLoading && !hasError && (
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 items-stretch">
+            {visibleMembers.map((member) => {
+              const isInternRecord = !member.designation && (member.projectId || member.program);
 
-                        {member.email ? (
-                          <a
-                            className="block mt-2 text-xs text-slate-500 hover:text-slate-800 hover:underline truncate transition-colors duration-200"
-                            href={`mailto:${member.email}`}
-                          >
-                            {member.email}
-                          </a>
-                        ) : (
-                          <p className="block mt-2 text-xs text-slate-400">No public email</p>
-                        )}
+              // UPDATE 2: Added hover shadow effects matching the publications page
+              return (
+                <Card key={member.id} className="bg-white border border-slate-200 rounded-2xl shadow-sm hover:shadow-md transition-all duration-200 p-4 h-full flex flex-col overflow-hidden">
+                  <div className="relative mb-4 overflow-hidden rounded-lg border border-gray-200 bg-gray-100 aspect-[1/1.05]">
+                    {member.imageUrl ? (
+                      <Image
+                        src={member.imageUrl}
+                        alt={`${member.name} portrait`}
+                        fill
+                        unoptimized
+                        sizes="(max-width: 768px) 100vw, 50vw"
+                        className="object-cover object-center"
+                      />
+                    ) : (
+                      <div className="flex h-full w-full items-center justify-center bg-gradient-to-br from-blue-100 to-gray-100 text-2xl font-semibold text-blue-900">
+                        {getInitials(member.name)}
+                      </div>
+                    )}
+                  </div>
 
-                        {member.profileUrl && (
-                          <div className="mt-3 flex items-center gap-3 text-sm text-slate-300">
-                            <a
-                              className="text-slate-600 hover:text-slate-900 hover:underline font-medium transition-colors duration-200"
-                              href={toAbsoluteUrl(member.profileUrl)}
-                              target="_blank"
-                              rel="noreferrer"
-                            >
-                              Profile
-                            </a>
-                          </div>
-                        )}
-                      </CardContent>
-                    </Card>
-                  ))}
-                </div>
-              )}
-            </>
-          )}
+                  {/* Decreased spacing between Name and Role/Project */}
+                  <h3 className="text-xl text-gray-900 leading-tight">{member.name}</h3>
 
-          {isInternView && (
-            <>
-              {internLoading && <p className="text-center text-slate-500 py-10">Loading interns...</p>}
-              {internError && <p className="text-center text-red-500 py-10">{internError}</p>}
+                  <p className="text-xs font-semibold uppercase tracking-[0.08em] text-gray-600 mt-1">
+                    {isInternRecord
+                      ? (projectTitleById.get(String(member.projectId || "")) || member.program || "Intern")
+                      : (member.designation || "Faculty")
+                    }
+                  </p>
 
-              {!internLoading && !internError && (
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-6 items-stretch">
-                  {interns.map((intern, index) => (
-                    <Card
-                      key={intern.id}
-                      className="rounded-2xl p-6 flex flex-row gap-5 items-center shadow-sm hover:shadow-lg hover:scale-[1.02] hover:-translate-y-1 transition-all duration-300 animate-fade-up border-slate-200 bg-white"
-                      style={{
-                        animationDelay: `${Math.min(index * 0.1, 1)}s`,
-                        animationFillMode: "both",
-                      }}
-                    >
-                      <Avatar className="flex-shrink-0 w-28 h-28 sm:w-32 sm:h-32 rounded-2xl border border-slate-100 shadow-sm relative">
-                        {intern.imageUrl && (
-                          <AvatarImage src={intern.imageUrl} alt={intern.name} className="object-cover rounded-2xl" />
-                        )}
-                        <AvatarFallback className="text-2xl sm:text-3xl font-bold text-slate-400 bg-slate-50 rounded-2xl">
-                          {getInitials(intern.name)}
-                        </AvatarFallback>
-                      </Avatar>
+                  {/* Compact spacing for Email and Links */}
+                  <div className="mt-auto pt-3 space-y-1 text-sm">
+                    {member.email ? (
+                      <a className="block text-blue-900 font-semibold hover:underline" href={`mailto:${member.email}`}>
+                        {member.email}
+                      </a>
+                    ) : (
+                      <p className="text-gray-400 italic">Private Email</p>
+                    )}
 
-                      <CardContent className="p-0 flex-1 min-w-0 flex flex-col justify-center border-none shadow-none">
-                        <div className="flex items-center gap-2 mb-2 flex-wrap">
-                          <Badge variant="default" className="text-[10px] font-semibold uppercase tracking-wide bg-slate-900 text-white hover:bg-slate-800 rounded-md px-2.5 py-0.5">
-                            {intern.status || "active"}
-                          </Badge>
-                        </div>
-                        <h3 className="text-[1.15rem] font-bold text-slate-900 tracking-tight truncate">{intern.name}</h3>
-                        <p className="text-sm font-medium text-slate-500 mt-0.5 line-clamp-2 leading-relaxed">
-                          {projectTitleById.get(String(intern.projectId || "")) ||
-                            intern.program ||
-                            intern.project}
-                        </p>
-
-                        {intern.email && (
-                          <a
-                            className="block mt-2 text-xs text-slate-500 hover:text-slate-800 hover:underline truncate transition-colors duration-200"
-                            href={`mailto:${intern.email}`}
-                          >
-                            {intern.email}
-                          </a>
-                        )}
-
-                        {intern.github || intern.linkedin ? (
-                          <div className="mt-3 flex items-center gap-3 text-sm text-slate-300">
-                            {intern.github && (
-                              <a
-                                className="text-slate-600 hover:text-slate-900 hover:underline font-medium transition-colors duration-200"
-                                href={toAbsoluteUrl(intern.github)}
-                                target="_blank"
-                                rel="noreferrer"
-                              >
-                                GitHub
-                              </a>
-                            )}
-                            {intern.github && intern.linkedin && <span>|</span>}
-                            {intern.linkedin && (
-                              <a
-                                className="text-slate-600 hover:text-slate-900 hover:underline font-medium transition-colors duration-200"
-                                href={toAbsoluteUrl(intern.linkedin)}
-                                target="_blank"
-                                rel="noreferrer"
-                              >
-                                LinkedIn
-                              </a>
-                            )}
-                          </div>
-                        ) : (
-                          !intern.email && (
-                            <p className="mt-3 text-xs text-slate-400">No contact info</p>
-                          )
-                        )}
-                      </CardContent>
-                    </Card>
-                  ))}
-                </div>
-              )}
-            </>
-          )}
-        </section>
-      </div>
+                    <div className="flex flex-wrap gap-x-4 gap-y-0.5">
+                      {member.profileUrl && (
+                        <a className="text-blue-900 font-semibold hover:underline" href={toAbsoluteUrl(member.profileUrl)} target="_blank" rel="noreferrer">
+                          Profile
+                        </a>
+                      )}
+                      {member.github && (
+                        <a className="text-blue-900 font-semibold hover:underline" href={toAbsoluteUrl(member.github)} target="_blank" rel="noreferrer">
+                          GitHub
+                        </a>
+                      )}
+                      {member.linkedin && (
+                        <a className="text-blue-900 font-semibold hover:underline" href={toAbsoluteUrl(member.linkedin)} target="_blank" rel="noreferrer">
+                          LinkedIn
+                        </a>
+                      )}
+                    </div>
+                  </div>
+                </Card>
+              );
+            })}
+          </div>
+        )}
+      </section>
     </main>
   );
 }
