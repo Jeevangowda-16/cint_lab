@@ -264,42 +264,45 @@ function PublicationCard({ pub }) {
     const [open, setOpen] = useState(false);
 
     return (
-        <Card className="rounded-xl border border-slate-200 border-l-4 border-l-blue-900 shadow-sm hover:shadow-md transition-all duration-200 bg-gradient-to-r from-white to-slate-50/50">
-            <CardHeader className="p-6 pb-4">
-                <div className="flex flex-wrap items-center gap-3 mb-3">
-                    <Badge variant={BADGE_VARIANT[pub.category] || "secondary"} className="text-xs font-medium px-2.5 py-0.5">
+        /* Added flex layout to the card to handle vertical space perfectly inside a grid */
+        < Card className="flex flex-col h-full rounded-xl border border-slate-200 border-t-4 border-t-blue-900 shadow-sm hover:shadow-md transition-all duration-200 bg-gradient-to-b from-white to-slate-50/50" >
+            <CardHeader className="p-5 pb-3">
+                <div className="flex flex-wrap items-center gap-2 mb-3">
+                    <Badge variant={BADGE_VARIANT[pub.category] || "secondary"} className="text-[10px] font-medium px-2 py-0.5">
                         {pub.category}
                     </Badge>
-                    <span className="text-xs font-semibold text-slate-500 bg-white border border-slate-200 px-2 py-0.5 rounded-full">{pub.year}</span>
+                    <span className="text-[10px] font-semibold text-slate-500 bg-white border border-slate-200 px-2 py-0.5 rounded-full">{pub.year}</span>
                 </div>
-                <h3 className="text-[1.05rem] font-bold text-slate-900 leading-snug">{pub.title}</h3>
+                {/* Slightly reduced title size to accommodate tighter column constraints */}
+                <h3 className="text-base font-bold text-slate-900 leading-snug">{pub.title}</h3>
                 <p className="text-sm font-medium text-slate-700 mt-2">{pub.authors}</p>
-                <p className="text-sm text-slate-500 italic mt-1">{pub.venue}</p>
+                <p className="text-[13px] text-slate-500 italic mt-1 line-clamp-2">{pub.venue}</p>
             </CardHeader>
 
-            <CardContent className="px-6 pb-6 pt-0 space-y-4">
+            {/* mt-auto pushes action buttons and accordion to the bottom if cards in a row have different heights */}
+            <CardContent className="p-5 pt-2 mt-auto space-y-4">
                 {/* Action buttons */}
-                <div className="flex flex-wrap gap-2.5">
+                <div className="flex flex-wrap gap-2">
                     {pub.link && (
-                        <Button asChild variant="outline" size="sm" className="text-xs gap-1.5 border-slate-300 text-slate-700 hover:bg-slate-100 hover:text-slate-900">
+                        <Button asChild variant="outline" size="sm" className="h-8 px-2.5 text-[11px] gap-1.5 border-slate-300 text-slate-700 hover:bg-slate-100 hover:text-slate-900">
                             <a href={pub.link} target="_blank" rel="noreferrer">
-                                <ExternalLink className="h-3.5 w-3.5" />
-                                View Paper
+                                <ExternalLink className="h-3 w-3" />
+                                View
                             </a>
                         </Button>
                     )}
                     {pub.doi && (
-                        <Button asChild variant="outline" size="sm" className="text-xs gap-1.5 border-slate-300 text-slate-700 hover:bg-slate-100 hover:text-slate-900">
+                        <Button asChild variant="outline" size="sm" className="h-8 px-2.5 text-[11px] gap-1.5 border-slate-300 text-slate-700 hover:bg-slate-100 hover:text-slate-900">
                             <a href={`https://doi.org/${pub.doi}`} target="_blank" rel="noreferrer">
-                                <Hash className="h-3.5 w-3.5" />
+                                <Hash className="h-3 w-3" />
                                 DOI
                             </a>
                         </Button>
                     )}
                     {pub.pdf && (
-                        <Button asChild variant="outline" size="sm" className="text-xs gap-1.5 border-slate-300 text-slate-700 hover:bg-slate-100 hover:text-slate-900">
+                        <Button asChild variant="outline" size="sm" className="h-8 px-2.5 text-[11px] gap-1.5 border-slate-300 text-slate-700 hover:bg-slate-100 hover:text-slate-900">
                             <a href={pub.pdf} target="_blank" rel="noreferrer">
-                                <Download className="h-3.5 w-3.5" />
+                                <Download className="h-3 w-3" />
                                 PDF
                             </a>
                         </Button>
@@ -309,25 +312,25 @@ function PublicationCard({ pub }) {
                 {/* Expandable section */}
                 <Collapsible open={open} onOpenChange={setOpen}>
                     <CollapsibleTrigger asChild>
-                        <Button variant="ghost" size="sm" className="text-xs gap-1.5 px-0 h-auto text-blue-800 hover:text-blue-950 hover:bg-transparent font-medium">
+                        <Button variant="ghost" size="sm" className="text-[11px] gap-1.5 px-0 h-auto text-blue-800 hover:text-blue-950 hover:bg-transparent font-medium">
                             <ChevronDown
-                                className={`h-4 w-4 transition-transform duration-200 ${open ? "rotate-180" : ""}`}
+                                className={`h-3.5 w-3.5 transition-transform duration-200 ${open ? "rotate-180" : ""}`}
                             />
                             {open ? "Hide details" : "Show abstract & citation"}
                         </Button>
                     </CollapsibleTrigger>
                     <CollapsibleContent className="overflow-hidden data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0">
-                        <div className="pt-4 space-y-5">
+                        <div className="pt-3 space-y-4">
                             <div>
-                                <p className="text-xs font-semibold uppercase tracking-widest text-slate-500 mb-2">Abstract</p>
-                                <p className="text-sm text-slate-700 leading-relaxed">{pub.abstract}</p>
+                                <p className="text-[10px] font-semibold uppercase tracking-widest text-slate-500 mb-1.5">Abstract</p>
+                                <p className="text-[13px] text-slate-700 leading-relaxed">{pub.abstract}</p>
                             </div>
                             <Separator className="bg-slate-200" />
                             <div>
-                                <p className="text-xs font-semibold uppercase tracking-widest text-slate-500 mb-2 flex items-center gap-1.5">
-                                    <BookOpen className="h-3.5 w-3.5" /> Citation
+                                <p className="text-[10px] font-semibold uppercase tracking-widest text-slate-500 mb-1.5 flex items-center gap-1.5">
+                                    <BookOpen className="h-3 w-3" /> Citation
                                 </p>
-                                <p className="text-xs text-slate-700 leading-relaxed font-mono bg-white rounded-md p-3.5 border border-slate-200 shadow-sm">
+                                <p className="text-[11px] text-slate-700 leading-relaxed font-mono bg-white rounded-md p-3 border border-slate-200 shadow-sm break-words">
                                     {pub.citation}
                                 </p>
                             </div>
@@ -335,14 +338,14 @@ function PublicationCard({ pub }) {
                     </CollapsibleContent>
                 </Collapsible>
             </CardContent>
-        </Card>
+        </Card >
     );
 }
 
 // ─── PublicationsList ─────────────────────────────────────────────────────────
 
 function PublicationsList({ publications, showAll }) {
-    const displayed = showAll ? publications : publications.slice(0, 5);
+    const displayed = showAll ? publications : publications.slice(0, 8); // Increased slice to 8 for a better initial grid view
 
     if (displayed.length === 0) {
         return (
@@ -373,7 +376,9 @@ function PublicationsList({ publications, showAll }) {
                             {byYear[year].length} items
                         </Badge>
                     </div>
-                    <div className="space-y-4">
+
+                    {/* 👇 CHANGED: Grid layout applied here */}
+                    <div className="grid grid-cols-1 lg:grid-cols-2 gap-5 items-start">
                         {byYear[year].map((pub) => (
                             <PublicationCard key={pub.id} pub={pub} />
                         ))}
@@ -468,13 +473,13 @@ export default function PublicationsPage() {
         return result;
     }, [query, activeTab, selectedYear, sortOrder]);
 
-    // Reset showAll when filters change
     const handleQuery = (v) => { setQuery(v); setShowAll(false); };
     const handleTab = (v) => { setActiveTab(v); setShowAll(false); };
     const handleYear = (v) => { setSelectedYear(v); setShowAll(false); };
     const handleSort = (v) => { setSortOrder(v); setShowAll(false); };
 
-    const showToggle = !showAll && filtered.length > 5;
+    // Increased threshold to 8 to account for the 2-column grid looking better with even numbers
+    const showToggle = !showAll && filtered.length > 8;
 
     return (
         <main className="page-shell bg-slate-50/30 min-h-screen pb-16">
@@ -527,9 +532,9 @@ export default function PublicationsPage() {
                         years={years}
                     />
                     <Tabs value={activeTab} onValueChange={handleTab}>
-                        <TabsList className="segmented-tabs">
+                        <TabsList className="segmented-tabs bg-slate-100 p-1 border border-slate-200 rounded-lg">
                             {Object.keys(CATEGORY_MAP).map((k) => (
-                                <TabsTrigger key={k} value={k} className="segmented-tab-btn px-5 font-medium data-[state=active]:bg-white data-[state=active]:text-blue-800 data-[state=active]:shadow-sm">
+                                <TabsTrigger key={k} value={k} className="segmented-tab-btn px-5 font-medium data-[state=active]:bg-white data-[state=active]:text-blue-800 data-[state=active]:shadow-sm rounded-md transition-all">
                                     {k}
                                 </TabsTrigger>
                             ))}
@@ -548,7 +553,7 @@ export default function PublicationsPage() {
                     <div className="flex-1 min-w-0 space-y-8">
                         <div className="flex items-center justify-between border-b border-slate-200 pb-3">
                             <p className="text-sm text-slate-500 font-medium">
-                                Showing <span className="font-bold text-slate-900">{Math.min(showAll ? filtered.length : 5, filtered.length)}</span> of{" "}
+                                Showing <span className="font-bold text-slate-900">{Math.min(showAll ? filtered.length : 8, filtered.length)}</span> of{" "}
                                 <span className="font-bold text-slate-900">{filtered.length}</span> results
                             </p>
                         </div>
@@ -559,7 +564,7 @@ export default function PublicationsPage() {
                             <div className="flex justify-center pt-6 pb-8">
                                 <Button variant="outline" onClick={() => setShowAll(true)} className="text-sm gap-2 border-slate-300 text-slate-700 hover:bg-slate-50 font-medium px-6 py-5 rounded-full shadow-sm">
                                     <FileText className="h-4 w-4" />
-                                    See Complete List ({filtered.length - 5} more)
+                                    See Complete List ({filtered.length - 8} more)
                                 </Button>
                             </div>
                         )}
