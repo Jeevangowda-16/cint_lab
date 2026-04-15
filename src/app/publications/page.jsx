@@ -26,7 +26,6 @@ import {
     ChevronDown,
     Search,
     BookOpen,
-    Hash,
 } from "lucide-react";
 
 // ─── Mock Data ────────────────────────────────────────────────────────────────
@@ -43,7 +42,7 @@ const PUBLICATIONS = [
             "This paper presents a deep reinforcement learning framework for autonomous navigation of unmanned aerial vehicles (UAVs) in environments where GPS signals are unavailable. The proposed approach leverages a combination of visual odometry and IMU data to achieve robust localization, enabling reliable flight operations in indoor and urban canyon settings.",
         citation:
             'Rajesh K., Priya M., S. N. Omkar, "Autonomous UAV Navigation Using Deep Reinforcement Learning in GPS-Denied Environments," IEEE Trans. Aerosp. Electron. Syst., vol. 61, no. 2, pp. 1234–1245, 2025.',
-        doi: "10.1109/TAES.2025.001234",
+        // Replace these "#" with your actual URLs to make the buttons function
         pdf: "#",
         link: "#",
     },
@@ -58,7 +57,6 @@ const PUBLICATIONS = [
             "We propose an integrated framework for structural health monitoring (SHM) of composite aircraft wings by combining fiber Bragg grating (FBG) sensors with machine learning classifiers. Experimental validation on a representative wing structure demonstrates 98.3% classification accuracy for damage detection.",
         citation:
             'Ananya S., Vikram R., S. N. Omkar, "Structural Health Monitoring of Aircraft Wings Using Fiber Bragg Grating Sensors and Machine Learning," Smart Mater. Struct., vol. 34, no. 1, p. 015021, 2025.',
-        doi: "10.1088/1361-665X/ad1234",
         pdf: "#",
         link: "#",
     },
@@ -73,7 +71,6 @@ const PUBLICATIONS = [
             "A distributed consensus-based control algorithm is developed for maintaining rigid formations among a swarm of multi-rotor UAVs during aerial survey missions. The approach is validated through hardware-in-the-loop simulations and real-world flight trials.",
         citation:
             'Suresh P., Kavitha L., S. N. Omkar, "Multi-Rotor UAV Formation Control for Aerial Survey Applications," in Proc. AIAA SciTech Forum, Orlando, FL, Jan. 2024, Paper AIAA 2024-0987.',
-        doi: "10.2514/6.2024-0987",
         pdf: "#",
         link: "#",
     },
@@ -88,7 +85,6 @@ const PUBLICATIONS = [
             "This study introduces a convolutional neural network-based system for real-time bird detection and risk classification at airport vicinities. Using a dataset of over 50,000 annotated images, the model achieves a mean average precision of 91.7% under diverse lighting and weather conditions.",
         citation:
             'Meera T., S. N. Omkar, "Deep Learning Approaches for Bird Strike Risk Assessment at Airports," Aerosp. Sci. Technol., vol. 148, p. 109112, 2024.',
-        doi: "10.1016/j.ast.2024.109112",
         pdf: "#",
         link: "#",
     },
@@ -103,7 +99,6 @@ const PUBLICATIONS = [
             "An energy-efficient path planning algorithm for fixed-wing unmanned aerial vehicles operating in stochastic wind fields is presented. The algorithm integrates meteorological forecasts into a dynamic programming framework, reducing fuel consumption by up to 18% compared to conventional routing.",
         citation:
             'Arun B., Deepika N., S. N. Omkar, "Optimal Path Planning for Fixed-Wing UAVs in Turbulent Atmospheric Conditions," J. Guid. Control Dyn., vol. 47, no. 3, pp. 456–470, 2024.',
-        doi: "10.2514/1.G007890",
         pdf: "#",
         link: "#",
     },
@@ -118,7 +113,6 @@ const PUBLICATIONS = [
             "A wavelet-transform-based signal processing technique is applied to acceleration measurements for early-stage delamination detection in carbon-fibre reinforced polymer laminates. The method is shown to outperform Fourier-based approaches by 12 dB in signal-to-noise ratio for damage-induced frequency shifts.",
         citation:
             'Harini K., S. N. Omkar, "Vibration-Based Damage Detection in Composite Laminates Using Wavelet Transform," Compos. Struct., vol. 312, p. 116820, 2023.',
-        doi: "10.1016/j.compstruct.2023.116820",
         pdf: "#",
         link: "#",
     },
@@ -133,7 +127,6 @@ const PUBLICATIONS = [
             "This chapter reviews the application of particle swarm optimization (PSO) and ant colony optimization (ACO) algorithms to multi-objective aerodynamic shape design problems. Case studies on airfoil profile optimization and nacelle shaping for transonic flow are presented.",
         citation:
             'Rahul G., Preethi A., S. N. Omkar, "Swarm Intelligence Algorithms for Multi-Objective Aerodynamic Shape Optimization," in Advances in Swarm Intelligence, Springer, 2023, ch. 8, pp. 201–235.',
-        doi: "10.1007/978-3-031-12345-8",
         pdf: "#",
         link: "#",
     },
@@ -148,37 +141,6 @@ const PUBLICATIONS = [
             "We present a lightweight convolutional neural network pipeline for real-time 6-DoF pose estimation of micro air vehicles using a single monocular camera. The system runs at 60 fps on an NVIDIA Jetson Nano and achieves sub-centimetre positional accuracy in laboratory conditions.",
         citation:
             'Siddharth V., S. N. Omkar, "Real-Time Pose Estimation for Micro Air Vehicles Using Monocular Vision," in Proc. ICUAS 2023, Warsaw, Poland, Jun. 2023, pp. 123–130.',
-        doi: "10.1109/ICUAS57906.2023.001234",
-        pdf: "#",
-        link: "#",
-    },
-    {
-        id: 9,
-        title: "Adaptive Fuzzy Control for Rotorcraft Under Actuator Faults",
-        authors: "Nalini R., S. N. Omkar",
-        year: 2022,
-        category: "Journal",
-        venue: "Aerospace Science and Technology",
-        abstract:
-            "An adaptive fuzzy-logic-based fault-tolerant control strategy is developed for rotorcraft experiencing partial actuator failures in flight. The controller reconfigures online without prior knowledge of the fault model, maintaining stable hovering and trajectory tracking under single and dual actuator degradation scenarios.",
-        citation:
-            'Nalini R., S. N. Omkar, "Adaptive Fuzzy Control for Rotorcraft Under Actuator Faults," Aerosp. Sci. Technol., vol. 121, p. 107348, 2022.',
-        doi: "10.1016/j.ast.2022.107348",
-        pdf: "#",
-        link: "#",
-    },
-    {
-        id: 10,
-        title: "Convolutional Neural Network-Based Terrain Classification for Autonomous Landing",
-        authors: "Tanvi S., Manoj K., S. N. Omkar",
-        year: 2022,
-        category: "Conference",
-        venue: "AIAA Aviation Forum 2022, Chicago, IL",
-        abstract:
-            "A terrain classification pipeline based on lightweight convolutional neural networks is proposed to support autonomous landing zone selection for UAVs. The system processes downward-looking camera feeds in real time and distinguishes between safe, marginal, and hazardous landing surfaces.",
-        citation:
-            'Tanvi S., Manoj K., S. N. Omkar, "Convolutional Neural Network-Based Terrain Classification for Autonomous Landing," in Proc. AIAA Aviation Forum, Chicago, IL, Jun. 2022, Paper AIAA 2022-3456.',
-        doi: "10.2514/6.2022-3456",
         pdf: "#",
         link: "#",
     },
@@ -264,8 +226,7 @@ function PublicationCard({ pub }) {
     const [open, setOpen] = useState(false);
 
     return (
-        /* Added flex layout to the card to handle vertical space perfectly inside a grid */
-        < Card className="flex flex-col h-full rounded-xl border border-slate-200 border-t-4 border-t-blue-900 shadow-sm hover:shadow-md transition-all duration-200 bg-gradient-to-b from-white to-slate-50/50" >
+        <Card className="flex flex-col h-full rounded-xl border border-slate-200 border-t-4 border-t-blue-900 shadow-sm hover:shadow-md transition-all duration-200 bg-gradient-to-b from-white to-slate-50/50">
             <CardHeader className="p-5 pb-3">
                 <div className="flex flex-wrap items-center gap-2 mb-3">
                     <Badge variant={BADGE_VARIANT[pub.category] || "secondary"} className="text-[10px] font-medium px-2 py-0.5">
@@ -273,29 +234,19 @@ function PublicationCard({ pub }) {
                     </Badge>
                     <span className="text-[10px] font-semibold text-slate-500 bg-white border border-slate-200 px-2 py-0.5 rounded-full">{pub.year}</span>
                 </div>
-                {/* Slightly reduced title size to accommodate tighter column constraints */}
                 <h3 className="text-base font-bold text-slate-900 leading-snug">{pub.title}</h3>
                 <p className="text-sm font-medium text-slate-700 mt-2">{pub.authors}</p>
                 <p className="text-[13px] text-slate-500 italic mt-1 line-clamp-2">{pub.venue}</p>
             </CardHeader>
 
-            {/* mt-auto pushes action buttons and accordion to the bottom if cards in a row have different heights */}
             <CardContent className="p-5 pt-2 mt-auto space-y-4">
-                {/* Action buttons */}
+                {/* Action buttons - DOI removed, View and PDF map directly to the data fields */}
                 <div className="flex flex-wrap gap-2">
                     {pub.link && (
                         <Button asChild variant="outline" size="sm" className="h-8 px-2.5 text-[11px] gap-1.5 border-slate-300 text-slate-700 hover:bg-slate-100 hover:text-slate-900">
                             <a href={pub.link} target="_blank" rel="noreferrer">
                                 <ExternalLink className="h-3 w-3" />
                                 View
-                            </a>
-                        </Button>
-                    )}
-                    {pub.doi && (
-                        <Button asChild variant="outline" size="sm" className="h-8 px-2.5 text-[11px] gap-1.5 border-slate-300 text-slate-700 hover:bg-slate-100 hover:text-slate-900">
-                            <a href={`https://doi.org/${pub.doi}`} target="_blank" rel="noreferrer">
-                                <Hash className="h-3 w-3" />
-                                DOI
                             </a>
                         </Button>
                     )}
@@ -338,14 +289,14 @@ function PublicationCard({ pub }) {
                     </CollapsibleContent>
                 </Collapsible>
             </CardContent>
-        </Card >
+        </Card>
     );
 }
 
 // ─── PublicationsList ─────────────────────────────────────────────────────────
 
 function PublicationsList({ publications, showAll }) {
-    const displayed = showAll ? publications : publications.slice(0, 8); // Increased slice to 8 for a better initial grid view
+    const displayed = showAll ? publications : publications.slice(0, 8);
 
     if (displayed.length === 0) {
         return (
@@ -377,7 +328,6 @@ function PublicationsList({ publications, showAll }) {
                         </Badge>
                     </div>
 
-                    {/* 👇 CHANGED: Grid layout applied here */}
                     <div className="grid grid-cols-1 lg:grid-cols-2 gap-5 items-start">
                         {byYear[year].map((pub) => (
                             <PublicationCard key={pub.id} pub={pub} />
@@ -412,7 +362,6 @@ function FiltersBar({ query, onQuery, sortOrder, onSort, mobileYear, onMobileYea
                     <SelectItem value="oldest">Oldest First</SelectItem>
                 </SelectContent>
             </Select>
-            {/* Mobile year filter */}
             <Select
                 value={mobileYear === null ? "all" : String(mobileYear)}
                 onValueChange={(v) => onMobileYear(v === "all" ? null : Number(v))}
@@ -448,14 +397,9 @@ export default function PublicationsPage() {
     const filtered = useMemo(() => {
         let result = [...PUBLICATIONS];
 
-        // Category filter
-        const cat = CATEGORY_MAP[activeTab];
-        if (cat) result = result.filter((p) => p.category === cat);
-
-        // Year filter
+        if (CATEGORY_MAP[activeTab]) result = result.filter((p) => p.category === CATEGORY_MAP[activeTab]);
         if (selectedYear) result = result.filter((p) => p.year === selectedYear);
 
-        // Search
         if (query.trim()) {
             const q = query.toLowerCase();
             result = result.filter(
@@ -467,7 +411,6 @@ export default function PublicationsPage() {
             );
         }
 
-        // Sort
         result.sort((a, b) => (sortOrder === "newest" ? b.year - a.year : a.year - b.year));
 
         return result;
@@ -478,7 +421,6 @@ export default function PublicationsPage() {
     const handleYear = (v) => { setSelectedYear(v); setShowAll(false); };
     const handleSort = (v) => { setSortOrder(v); setShowAll(false); };
 
-    // Increased threshold to 8 to account for the 2-column grid looking better with even numbers
     const showToggle = !showAll && filtered.length > 8;
 
     return (
@@ -494,14 +436,12 @@ export default function PublicationsPage() {
                             Peer-reviewed publications and technical outputs grouped by year.
                         </p>
 
-                        {/* Stats */}
                         <div className="mt-8 grid grid-cols-2 md:grid-cols-4 gap-4">
                             {STATS.map((s) => (
                                 <StatCard key={s.label} label={s.label} value={s.value} />
                             ))}
                         </div>
 
-                        {/* Profile links */}
                         <div className="mt-8 p-5 md:p-6 rounded-lg border border-slate-200 bg-slate-50 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
                             <span className="text-sm text-slate-600 shrink-0">
                                 Total Citations: <span className="font-bold text-slate-900 text-base">2,036</span>
