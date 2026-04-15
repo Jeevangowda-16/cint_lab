@@ -121,11 +121,10 @@ export default function PeopleDirectory() {
                 key={filter.value}
                 onClick={() => setRoleFilter(filter.value)}
                 variant="ghost"
-                className={`segmented-tab-btn ${
-                  roleFilter === filter.value
+                className={`segmented-tab-btn ${roleFilter === filter.value
                     ? "segmented-tab-btn-active"
                     : ""
-                }`}
+                  }`}
               >
                 {filter.label}
               </Button>
@@ -136,11 +135,10 @@ export default function PeopleDirectory() {
                 key={designation}
                 onClick={() => setRoleFilter(designation)}
                 variant="ghost"
-                className={`segmented-tab-btn ${
-                  roleFilter === designation
+                className={`segmented-tab-btn ${roleFilter === designation
                     ? "segmented-tab-btn-active"
                     : ""
-                }`}
+                  }`}
               >
                 {designation}
               </Button>
@@ -149,11 +147,10 @@ export default function PeopleDirectory() {
             <Button
               onClick={() => setRoleFilter("interns")}
               variant="ghost"
-              className={`segmented-tab-btn ${
-                roleFilter === "interns"
+              className={`segmented-tab-btn ${roleFilter === "interns"
                   ? "segmented-tab-btn-active"
                   : ""
-              }`}
+                }`}
             >
               Interns
             </Button>
@@ -170,101 +167,101 @@ export default function PeopleDirectory() {
 
         {!isInternView && (
           <>
-        <h2 className="text-3xl text-gray-900 mb-5">Team</h2>
-        {teamLoading && <p className="text-gray-600">Loading team data...</p>}
-        {teamError && <p className="text-red-600">{teamError}</p>}
+            <h2 className="text-3xl text-gray-900 mb-5">Team</h2>
+            {teamLoading && <p className="text-gray-600">Loading team data...</p>}
+            {teamError && <p className="text-red-600">{teamError}</p>}
 
-        {!teamLoading && !teamError && (
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 items-stretch">
-            {visibleTeamMembers.map((member) => (
-              <Card
-                key={member.id}
-                className="paper-card p-4 rounded-xl h-full flex flex-col overflow-hidden"
-              >
-                <div className="relative mb-4 overflow-hidden rounded-lg border border-gray-200 bg-gray-100 aspect-[1/1.05]">
-                  {member.imageUrl ? (
-                    <Image
-                      src={member.imageUrl}
-                      alt={`${member.name} portrait`}
-                      fill
-                      unoptimized
-                      sizes="(max-width: 768px) 100vw, 50vw"
-                      className="object-cover object-center"
-                    />
-                  ) : (
-                    <div className="flex h-full w-full items-center justify-center bg-gradient-to-br from-blue-100 to-gray-100 text-2xl font-semibold text-blue-900">
-                      {getInitials(member.name)}
+            {!teamLoading && !teamError && (
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 items-stretch">
+                {visibleTeamMembers.map((member) => (
+                  <Card
+                    key={member.id}
+                    className="paper-card p-4 rounded-xl h-full flex flex-col overflow-hidden"
+                  >
+                    <div className="relative mb-4 overflow-hidden rounded-lg border border-gray-200 bg-gray-100 aspect-[1/1.05]">
+                      {member.imageUrl ? (
+                        <Image
+                          src={member.imageUrl}
+                          alt={`${member.name} portrait`}
+                          fill
+                          unoptimized
+                          sizes="(max-width: 768px) 100vw, 50vw"
+                          className="object-cover object-center"
+                        />
+                      ) : (
+                        <div className="flex h-full w-full items-center justify-center bg-gradient-to-br from-blue-100 to-gray-100 text-2xl font-semibold text-blue-900">
+                          {getInitials(member.name)}
+                        </div>
+                      )}
                     </div>
-                  )}
-                </div>
-                <h3 className="text-xl text-gray-900 leading-tight">{member.name}</h3>
-                <p className="text-xs font-semibold uppercase tracking-[0.08em] text-gray-600 mt-2">{member.designation || "Faculty"}</p>
-                <div className="mt-auto pt-4 space-y-2 text-sm">
-                  {member.email ? (
-                    <a className="block text-blue-700 font-semibold hover:underline" href={`mailto:${member.email}`}>
-                      {member.email}
-                    </a>
-                  ) : (
-                    <p className="text-gray-400">No public email</p>
-                  )}
-                  {member.profileUrl ? (
-                    <a
-                      className="block text-blue-700 font-semibold hover:underline"
-                      href={toAbsoluteUrl(member.profileUrl)}
-                      target="_blank"
-                      rel="noreferrer"
-                    >
-                      Profile Link
-                    </a>
-                  ) : (
-                    <p className="text-gray-400">No profile link</p>
-                  )}
-                </div>
-              </Card>
-            ))}
-          </div>
-        )}
+                    <h3 className="text-xl text-gray-900 leading-tight">{member.name}</h3>
+                    <p className="text-xs font-semibold uppercase tracking-[0.08em] text-gray-600 mt-2">{member.designation || "Faculty"}</p>
+                    <div className="mt-auto pt-4 space-y-2 text-sm">
+                      {member.email ? (
+                        <a className="block text-blue-700 font-semibold hover:underline" href={`mailto:${member.email}`}>
+                          {member.email}
+                        </a>
+                      ) : (
+                        <p className="text-gray-400">No public email</p>
+                      )}
+                      {member.profileUrl ? (
+                        <a
+                          className="block text-blue-700 font-semibold hover:underline"
+                          href={toAbsoluteUrl(member.profileUrl)}
+                          target="_blank"
+                          rel="noreferrer"
+                        >
+                          Profile Link
+                        </a>
+                      ) : (
+                        <p className="text-gray-400">No profile link</p>
+                      )}
+                    </div>
+                  </Card>
+                ))}
+              </div>
+            )}
           </>
         )}
 
         {isInternView && (
           <>
-        <h2 className="text-3xl text-gray-900 mb-5">Interns</h2>
-        {internLoading && <p className="text-gray-600">Loading interns...</p>}
-        {internError && <p className="text-red-600">{internError}</p>}
+            <h2 className="text-3xl text-gray-900 mb-5">Interns</h2>
+            {internLoading && <p className="text-gray-600">Loading interns...</p>}
+            {internError && <p className="text-red-600">{internError}</p>}
 
-        {!internLoading && !internError && (
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            {interns.map((intern) => (
-                <Card key={intern.id} className="paper-card rounded p-6">
-                  <h3 className="text-2xl text-gray-900">{intern.name}</h3>
-                  <p className="text-sm font-semibold text-blue-700 mt-1">
-                    {projectTitleById.get(String(intern.projectId || "")) || intern.program || intern.project}
-                  </p>
-                  {intern.college && <p className="text-sm text-gray-700 mt-3 leading-relaxed">{intern.college}</p>}
+            {!internLoading && !internError && (
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                {interns.map((intern) => (
+                  <Card key={intern.id} className="paper-card rounded p-6">
+                    <h3 className="text-2xl text-gray-900">{intern.name}</h3>
+                    <p className="text-sm font-semibold text-blue-700 mt-1">
+                      {projectTitleById.get(String(intern.projectId || "")) || intern.program || intern.project}
+                    </p>
+                    {intern.college && <p className="text-sm text-gray-700 mt-3 leading-relaxed">{intern.college}</p>}
 
-                  <div className="mt-4 space-y-2 text-sm">
-                    {intern.email && (
-                      <a className="block text-blue-700 font-semibold hover:underline" href={`mailto:${intern.email}`}>
-                        {intern.email}
-                      </a>
-                    )}
-                    {intern.phone && <p className="text-gray-700">Phone: {intern.phone}</p>}
-                    {intern.github && (
-                      <a className="block text-blue-700 hover:underline" href={toAbsoluteUrl(intern.github)} target="_blank" rel="noreferrer">
-                        GitHub
-                      </a>
-                    )}
-                    {intern.linkedin && (
-                      <a className="block text-blue-700 hover:underline" href={toAbsoluteUrl(intern.linkedin)} target="_blank" rel="noreferrer">
-                        LinkedIn
-                      </a>
-                    )}
-                  </div>
-              </Card>
-            ))}
-          </div>
-        )}
+                    <div className="mt-4 space-y-2 text-sm">
+                      {intern.email && (
+                        <a className="block text-blue-700 font-semibold hover:underline" href={`mailto:${intern.email}`}>
+                          {intern.email}
+                        </a>
+                      )}
+                      {intern.phone && <p className="text-gray-700">Phone: {intern.phone}</p>}
+                      {intern.github && (
+                        <a className="block text-blue-700 hover:underline" href={toAbsoluteUrl(intern.github)} target="_blank" rel="noreferrer">
+                          GitHub
+                        </a>
+                      )}
+                      {intern.linkedin && (
+                        <a className="block text-blue-700 hover:underline" href={toAbsoluteUrl(intern.linkedin)} target="_blank" rel="noreferrer">
+                          LinkedIn
+                        </a>
+                      )}
+                    </div>
+                  </Card>
+                ))}
+              </div>
+            )}
           </>
         )}
       </section>
