@@ -5,6 +5,14 @@ import {
 
 const COLLECTION_NAME = "projects";
 
+function normalizeProjectKey(project) {
+  return String(project.title || project.id || "")
+    .trim()
+    .toLowerCase()
+    .replace(/vedio/g, "video")
+    .replace(/\s+/g, " ");
+}
+
 export async function getProjects(filters = {}) {
   const { status, tag } = filters;
   let projects = getCollection(COLLECTION_NAME);
@@ -32,7 +40,7 @@ export async function getProjects(filters = {}) {
   const uniqueProjects = [];
 
   for (const project of sortedProjects) {
-    const key = String(project.title || project.id || "").trim().toLowerCase();
+    const key = normalizeProjectKey(project);
     if (!key || seen.has(key)) {
       continue;
     }

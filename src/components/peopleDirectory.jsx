@@ -1,10 +1,14 @@
 "use client";
 
+import Image from "next/image";
 import { useCallback, useMemo, useState } from "react";
 import { useAsyncData } from "@/hooks/useAsyncData";
 import { getInterns } from "@/services/internService";
 import { getProjects } from "@/services/projectService";
 import { getTeamMembers } from "@/services/teamService";
+import { Button } from "@/components/ui/button";
+import { Checkbox } from "@/components/ui/checkbox";
+import { Card } from "@/components/ui/card";
 
 const TEAM_FILTERS = [{ label: "All", value: "all" }];
 
@@ -12,6 +16,15 @@ function toAbsoluteUrl(value) {
   if (!value) return "";
   if (value.startsWith("http://") || value.startsWith("https://")) return value;
   return `https://${value}`;
+}
+
+function getInitials(name) {
+  return (name || "")
+    .split(/\s+/)
+    .filter(Boolean)
+    .slice(0, 2)
+    .map((part) => part[0]?.toUpperCase())
+    .join("");
 }
 
 export default function PeopleDirectory() {
@@ -93,60 +106,61 @@ export default function PeopleDirectory() {
       <section className="section-shell mb-10 glass-card relative overflow-hidden rounded p-6 md:p-10 reveal-up">
         <div className="absolute -top-14 -right-12 h-48 w-48 hero-glow-blue" />
         <div className="absolute -bottom-14 -left-10 h-40 w-40 hero-glow-gold" />
-        <p className="text-xs uppercase tracking-[0.12em] text-gray-600">Team at CINT Lab</p>
-        <h1 className="text-4xl md:text-5xl text-gray-900 mt-2">Team</h1>
-        <p className="mt-4 text-lg text-gray-700 max-w-3xl leading-relaxed">
+        <p className="text-xs uppercase tracking-[0.2em] text-slate-500 font-semibold">Team at CINT Lab</p>
+        <h1 className="text-4xl md:text-5xl font-semibold text-slate-900 tracking-tight leading-tight mt-2">Team</h1>
+        <p className="mt-4 text-lg md:text-xl text-slate-600 max-w-3xl leading-relaxed">
           Meet our faculty, associates, alumni, and interns contributing across intelligent systems and aerospace research.
         </p>
       </section>
 
       <section className="section-shell mb-12">
-        <div className="flex flex-wrap gap-3 items-center mb-6">
-          {TEAM_FILTERS.map((filter) => (
-            <button
-              key={filter.value}
-              type="button"
-              onClick={() => setRoleFilter(filter.value)}
-              className={`px-4 py-2 rounded font-semibold border ${
-                roleFilter === filter.value
-                  ? "bg-blue-700 text-white border-blue-800"
-                  : "bg-white text-gray-700 border-gray-300 hover:bg-gray-100"
+        <div className="mb-6 flex flex-col gap-3 md:flex-row md:items-center md:justify-between">
+          <div className="segmented-tabs">
+            {TEAM_FILTERS.map((filter) => (
+              <Button
+                key={filter.value}
+                onClick={() => setRoleFilter(filter.value)}
+                variant="ghost"
+                className={`segmented-tab-btn ${
+                  roleFilter === filter.value
+                    ? "segmented-tab-btn-active"
+                    : ""
+                }`}
+              >
+                {filter.label}
+              </Button>
+            ))}
+
+            {designationFilters.map((designation) => (
+              <Button
+                key={designation}
+                onClick={() => setRoleFilter(designation)}
+                variant="ghost"
+                className={`segmented-tab-btn ${
+                  roleFilter === designation
+                    ? "segmented-tab-btn-active"
+                    : ""
+                }`}
+              >
+                {designation}
+              </Button>
+            ))}
+
+            <Button
+              onClick={() => setRoleFilter("interns")}
+              variant="ghost"
+              className={`segmented-tab-btn ${
+                roleFilter === "interns"
+                  ? "segmented-tab-btn-active"
+                  : ""
               }`}
             >
-              {filter.label}
-            </button>
-          ))}
+              Interns
+            </Button>
+          </div>
 
-          {designationFilters.map((designation) => (
-            <button
-              key={designation}
-              type="button"
-              onClick={() => setRoleFilter(designation)}
-              className={`px-4 py-2 rounded font-semibold border ${
-                roleFilter === designation
-                  ? "bg-blue-700 text-white border-blue-800"
-                  : "bg-white text-gray-700 border-gray-300 hover:bg-gray-100"
-              }`}
-            >
-              {designation}
-            </button>
-          ))}
-
-          <button
-            type="button"
-            onClick={() => setRoleFilter("interns")}
-            className={`px-4 py-2 rounded font-semibold border ${
-              roleFilter === "interns"
-                ? "bg-blue-700 text-white border-blue-800"
-                : "bg-white text-gray-700 border-gray-300 hover:bg-gray-100"
-            }`}
-          >
-            Interns
-          </button>
-
-          {!isInternView && <label className="ml-auto text-sm text-gray-700 flex items-center gap-2">
-            <input
-              type="checkbox"
+          {!isInternView && <label className="text-sm text-gray-700 flex items-center gap-2 md:ml-auto">
+            <Checkbox
               checked={activeOnly}
               onChange={(event) => setActiveOnly(event.target.checked)}
             />
@@ -161,15 +175,31 @@ export default function PeopleDirectory() {
         {teamError && <p className="text-red-600">{teamError}</p>}
 
         {!teamLoading && !teamError && (
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 items-stretch">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 items-stretch">
             {visibleTeamMembers.map((member) => (
-              <article
+              <Card
                 key={member.id}
-                className="paper-card p-6 rounded h-full flex flex-col"
+                className="paper-card p-4 rounded-xl h-full flex flex-col overflow-hidden"
               >
-                <h3 className="text-2xl text-gray-900">{member.name}</h3>
-                <p className="text-sm font-semibold text-gray-700 mt-2">Designation: {member.designation || "Faculty"}</p>
-                <div className="mt-auto pt-6 space-y-2 text-sm">
+                <div className="relative mb-4 overflow-hidden rounded-lg border border-gray-200 bg-gray-100 aspect-[1/1.05]">
+                  {member.imageUrl ? (
+                    <Image
+                      src={member.imageUrl}
+                      alt={`${member.name} portrait`}
+                      fill
+                      unoptimized
+                      sizes="(max-width: 768px) 100vw, 50vw"
+                      className="object-cover object-center"
+                    />
+                  ) : (
+                    <div className="flex h-full w-full items-center justify-center bg-gradient-to-br from-blue-100 to-gray-100 text-2xl font-semibold text-blue-900">
+                      {getInitials(member.name)}
+                    </div>
+                  )}
+                </div>
+                <h3 className="text-xl text-gray-900 leading-tight">{member.name}</h3>
+                <p className="text-xs font-semibold uppercase tracking-[0.08em] text-gray-600 mt-2">{member.designation || "Faculty"}</p>
+                <div className="mt-auto pt-4 space-y-2 text-sm">
                   {member.email ? (
                     <a className="block text-blue-700 font-semibold hover:underline" href={`mailto:${member.email}`}>
                       {member.email}
@@ -190,7 +220,7 @@ export default function PeopleDirectory() {
                     <p className="text-gray-400">No profile link</p>
                   )}
                 </div>
-              </article>
+              </Card>
             ))}
           </div>
         )}
@@ -206,19 +236,13 @@ export default function PeopleDirectory() {
         {!internLoading && !internError && (
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             {interns.map((intern) => (
-              <article key={intern.id} className="paper-card rounded p-6">
-                <div className="flex items-center justify-between gap-3">
-                  <span className="chip">{intern.status || "active"}</span>
-                  <p className="text-xs uppercase tracking-[0.1em] text-gray-600">{intern.cohort ? `Cohort ${intern.cohort}` : "Intern"}</p>
-                </div>
-                <h3 className="text-2xl text-gray-900 mt-3">{intern.name}</h3>
-                <p className="text-sm font-semibold text-blue-700 mt-1">
-                  {projectTitleById.get(String(intern.projectId || "")) || intern.program || intern.project}
-                </p>
-                {(intern.college || intern.focusArea) && (
-                  <p className="text-sm text-gray-700 mt-3 leading-relaxed">{intern.college || `Focus: ${intern.focusArea}`}</p>
-                )}
-                {(intern.email || intern.phone || intern.github || intern.linkedin) && (
+                <Card key={intern.id} className="paper-card rounded p-6">
+                  <h3 className="text-2xl text-gray-900">{intern.name}</h3>
+                  <p className="text-sm font-semibold text-blue-700 mt-1">
+                    {projectTitleById.get(String(intern.projectId || "")) || intern.program || intern.project}
+                  </p>
+                  {intern.college && <p className="text-sm text-gray-700 mt-3 leading-relaxed">{intern.college}</p>}
+
                   <div className="mt-4 space-y-2 text-sm">
                     {intern.email && (
                       <a className="block text-blue-700 font-semibold hover:underline" href={`mailto:${intern.email}`}>
@@ -237,11 +261,7 @@ export default function PeopleDirectory() {
                       </a>
                     )}
                   </div>
-                )}
-                {!intern.email && !intern.phone && !intern.github && !intern.linkedin && (
-                  <p className="text-sm text-gray-600 mt-3">Mentor ID: {intern.mentorId || "TBD"}</p>
-                )}
-              </article>
+              </Card>
             ))}
           </div>
         )}

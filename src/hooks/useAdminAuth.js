@@ -3,7 +3,7 @@
 import { useAuth } from "@/lib/authContext";
 
 export function useAdminAuth() {
-  const { user, isAdmin, claims, loading, isAuthAvailable, logout } = useAuth();
+  const { user, isAdmin, claims, loading, isAuthAvailable, login, logout } = useAuth();
 
   return {
     user,
@@ -12,6 +12,7 @@ export function useAdminAuth() {
     loading,
     isAuthenticated: Boolean(user),
     isAuthAvailable,
+    login,
     logout,
   };
 }

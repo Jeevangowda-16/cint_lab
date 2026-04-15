@@ -57,7 +57,7 @@ h3,
 h4,
 h5,
 h6 {
-	font-family: Arial, Helvetica, sans-serif;
+	font-family: inherit;
 	letter-spacing: normal;
 }
 
@@ -125,6 +125,43 @@ h6 {
 	border: 1px solid #bfdbfe;
 }
 
+.segmented-tabs {
+	display: inline-flex;
+	width: 100%;
+	flex-wrap: wrap;
+	align-items: center;
+	gap: 0.25rem;
+	padding: 0.25rem;
+	border-radius: 0.75rem;
+	border: 1px solid #e2e8f0;
+	background: #f1f5f9;
+}
+
+@media (min-width: 768px) {
+	.segmented-tabs {
+		width: auto;
+	}
+}
+
+.segmented-tab-btn {
+	border-radius: 0.5rem;
+	padding: 0.5rem 1rem;
+	font-size: 0.875rem;
+	font-weight: 600;
+	color: #475569;
+	transition: background-color 140ms ease, color 140ms ease, box-shadow 140ms ease;
+}
+
+.segmented-tab-btn:hover {
+	background: rgba(255, 255, 255, 0.7);
+}
+
+.segmented-tab-btn-active {
+	background: #ffffff;
+	color: #1e3a8a;
+	box-shadow: 0 1px 2px rgba(15, 23, 42, 0.1);
+}
+
 .text-sky-700,
 .text-sky-800,
 .text-sky-900 {
@@ -162,6 +199,95 @@ h6 {
 	to {
 		opacity: 1;
 		transform: translateY(0);
+	}
+}
+
+.success-overlay {
+	position: fixed;
+	inset: 0;
+	z-index: 70;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	padding: 1.5rem;
+	background: rgba(15, 23, 42, 0.24);
+	backdrop-filter: blur(6px);
+	animation: successBackdropIn 180ms ease-out;
+}
+
+.success-card {
+	width: min(92vw, 28rem);
+	padding: 2rem 1.5rem;
+	border-radius: 1.25rem;
+	border: 1px solid #d1d5db;
+	background: rgba(255, 255, 255, 0.98);
+	box-shadow: 0 30px 80px rgba(15, 23, 42, 0.24);
+	text-align: center;
+	animation: successPop 320ms cubic-bezier(0.16, 1, 0.3, 1);
+	transform-origin: center;
+}
+
+.success-icon {
+	display: grid;
+	place-items: center;
+	width: 3.75rem;
+	height: 3.75rem;
+	margin: 0 auto 1rem;
+	border-radius: 9999px;
+	background: #22c55e;
+	color: #ffffff;
+	font-size: 1.85rem;
+	font-weight: 700;
+	box-shadow: 0 10px 24px rgba(34, 197, 94, 0.35);
+	animation: successPulse 1.2s ease-in-out infinite;
+}
+
+.success-title {
+	margin: 0;
+	font-size: 1.5rem;
+	font-weight: 700;
+	color: #111827;
+}
+
+.success-text {
+	margin-top: 0.5rem;
+	font-size: 1rem;
+	color: #4b5563;
+	line-height: 1.5;
+}
+
+@keyframes successBackdropIn {
+	from {
+		opacity: 0;
+	}
+
+	to {
+		opacity: 1;
+	}
+}
+
+@keyframes successPop {
+	from {
+		opacity: 0;
+		transform: translateY(14px) scale(0.94);
+	}
+
+	to {
+		opacity: 1;
+		transform: translateY(0) scale(1);
+	}
+}
+
+@keyframes successPulse {
+	0%,
+	100% {
+		transform: scale(1);
+		box-shadow: 0 10px 24px rgba(34, 197, 94, 0.35);
+	}
+
+	50% {
+		transform: scale(1.05);
+		box-shadow: 0 14px 30px rgba(34, 197, 94, 0.45);
 	}
 }
 
