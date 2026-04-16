@@ -79,9 +79,9 @@ export default function HomePage() {
                     </p>
 
                     <div className="flex gap-2 flex-wrap pt-4">
-                      <Badge variant="destructive">AI</Badge>
-                      <Badge variant="destructive">Autonomous Systems</Badge>
-                      <Badge variant="destructive">UAV</Badge>
+                      <Badge variant="secondary">AI</Badge>
+                      <Badge variant="secondary">Autonomous Systems</Badge>
+                      <Badge variant="secondary">UAV</Badge>
                     </div>
 
                     <div className="flex gap-4 pt-4">
@@ -222,7 +222,7 @@ export default function HomePage() {
                     Dr. S. N. Omkar
                   </h2>
 
-                  <p className="text-sm font-medium text-blue-700">
+                  <p className="text-sm font-medium text-blue-900">
                     Chief Research Scientist & Head of CINT Lab
                   </p>
                   <div className="pt-1">

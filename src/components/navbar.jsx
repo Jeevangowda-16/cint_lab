@@ -75,7 +75,7 @@ export default function Navbar() {
                         <span className="hidden md:block h-5 w-px bg-gray-200 mx-1" />
 
                         {/* CTA */}
-                        <Button variant="default" size="sm" asChild>
+                        <Button variant="default" className="bg-blue-900 text-white hover:bg-blue-800" size="sm" asChild>
                             <Link href="/apply">Apply for Internship</Link>
                         </Button>
 
