@@ -238,7 +238,7 @@ export default function EventsPage() {
                       variant="ghost"
                       className={`h-9 rounded text-sm ${
                         isSameDay(item.date, selectedMonth)
-                          ? "bg-blue-700 text-white font-semibold"
+                          ? "bg-blue-900 text-white font-semibold"
                           : item.isCurrentMonth
                             ? "text-gray-800 hover:bg-gray-100"
                             : "text-gray-400 hover:bg-gray-100"
@@ -305,7 +305,7 @@ export default function EventsPage() {
                             : formatDate(eventItem.eventDate)}
                         </p>
                         {eventItem.registrationUrl && (
-                          <Button className="mt-3 bg-blue-700 hover:bg-blue-800" asChild>
+                          <Button className="mt-3 bg-blue-900 hover:bg-blue-800" asChild>
                             <a href={eventItem.registrationUrl} target="_blank" rel="noreferrer">
                               Open Event
                             </a>
@@ -359,7 +359,7 @@ export default function EventsPage() {
                       <p className="mt-3 text-sm text-gray-700">Speaker: {eventItem.speaker}</p>
                       <p className="text-sm text-gray-700">Location: {eventItem.location}</p>
                       {eventItem.registrationUrl && (
-                        <Button className="mt-4 bg-blue-700 hover:bg-blue-800" asChild>
+                        <Button className="mt-4 bg-blue-900 hover:bg-blue-800" asChild>
                           <a href={eventItem.registrationUrl} target="_blank" rel="noreferrer">
                             Open Event
                           </a>

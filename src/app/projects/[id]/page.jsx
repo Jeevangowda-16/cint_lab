@@ -63,7 +63,7 @@ function SectionBlock({ section }) {
         <ul className="mt-4 space-y-3">
           {section.bullets.map((bullet) => (
             <li key={bullet} className="flex gap-3 text-gray-700 leading-relaxed">
-              <span className="mt-2 h-2 w-2 rounded bg-blue-700 shrink-0" />
+              <span className="mt-2 h-2 w-2 rounded bg-blue-900 shrink-0" />
               <span>{bullet}</span>
             </li>
           ))}

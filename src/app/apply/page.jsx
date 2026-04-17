@@ -98,16 +98,6 @@ export default function ApplyPage() {
 
   return (
     <main className="page-shell text-gray-800">
-      {successMessage && (
-        <div className="success-overlay" role="status" aria-live="polite">
-          <div className="success-card">
-            <div className="success-icon">✓</div>
-            <h2 className="success-title">Application Submitted Successfully</h2>
-            <p className="success-text">Thank you for submitting your application.</p>
-          </div>
-        </div>
-      )}
-
       <section className="section-shell max-w-4xl mb-10 relative overflow-hidden rounded glass-card p-6 md:p-10 reveal-up">
         <div className="absolute -top-14 -right-10 h-48 w-48 hero-glow-gold" />
         <div className="relative">
@@ -120,6 +110,16 @@ export default function ApplyPage() {
       </section>
 
       <form onSubmit={onSubmit} className="section-shell max-w-4xl paper-card rounded p-6 md:p-9 space-y-7">
+        {successMessage && (
+          <div
+            role="status"
+            aria-live="polite"
+            className="rounded-xl border border-green-200 bg-green-50 px-4 py-3 text-sm text-green-800 shadow-sm"
+          >
+            {successMessage}
+          </div>
+        )}
+
         <div className="subtle-grid rounded border border-gray-200 p-4 md:p-5">
           <p className="text-sm text-gray-700 leading-relaxed">
             Required fields are marked with <span className="font-semibold">*</span>. We review submissions in weekly faculty and mentor meetings.
@@ -219,7 +219,7 @@ export default function ApplyPage() {
         <Button
           type="submit"
           disabled={submitting}
-          className="px-8 py-3 bg-blue-700 hover:bg-blue-800"
+          className="px-8 py-3 bg-blue-900 hover:bg-blue-800"
         >
           {submitting ? "Submitting..." : "Submit Application"}
         </Button>

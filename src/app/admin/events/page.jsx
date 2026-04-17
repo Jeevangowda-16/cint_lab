@@ -152,7 +152,7 @@ export default function AdminEventsPage() {
                   href={eventItem.registrationUrl}
                   target="_blank"
                   rel="noreferrer"
-                  className="mt-3 inline-flex items-center rounded border border-blue-800 bg-blue-700 px-4 py-2 text-sm font-semibold text-white hover:bg-blue-800"
+                  className="mt-3 inline-flex items-center rounded border border-blue-900 bg-blue-900 px-4 py-2 text-sm font-semibold text-white hover:bg-blue-800"
                 >
                   Open Event
                 </a>
